@@ -11,10 +11,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#intro">Accueil</a>
+            <a class="nav-link active" aria-current="page" routerLink="/home" fragment="intro">Accueil</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#who" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" routerLink="/home" fragment="who" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Profiles
             </a>
             <ul class="dropdown-menu">
@@ -25,11 +25,12 @@
               <li><a class="dropdown-item" href="#">Administrations & Décideurs</a></li>
             </ul>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="#">fonctionnalités</a>
+            <a class="nav-link" routerLink="/home"  fragment="fonctionnalites">fonctionnalités</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-disabled="true">Participation</a>
+           <li class="nav-item">
+            <a class="nav-link" routerLink="/home"  fragment="community">Participation</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -126,7 +127,7 @@
       </section>
 
 
-      <section class="fonctionnalites">
+      <section class="fonctionnalites" id="fonctionnalites">
         <div class="row">
           <div class="col">
             <div class="card">
@@ -205,7 +206,7 @@
         </div>
       </section>
 
-      <section class="community">
+      <section class="community" id="community">
         <div class="image">
           <img src="assets/communaute.png" alt="">
         </div>

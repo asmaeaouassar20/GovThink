@@ -1,1 +1,265 @@
-<p>home works!</p>
+<div class="conteneur">
+
+  <div class="navbar">
+     <!-- top bar pour la navigation -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><h2 class="logo-style"><span class="gov">Gov</span><span class="think">Think</span></h2></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#intro">Accueil</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#who" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Profiles
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Citoyens</a></li>
+              <li><a class="dropdown-item" href="#">Entrepreneurs</a></li>
+              <li><a class="dropdown-item" href="#">Développeurs</a></li>
+              <li><a class="dropdown-item" href="#">Étudiants & Chercheurs</a></li>
+              <li><a class="dropdown-item" href="#">Administrations & Décideurs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">fonctionnalités</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-disabled="true">Participation</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Recherche" aria-label="Search"/>
+          <button class="btn btn-outline-light" type="submit">Recherche</button>
+        </form>
+      </div>
+    </div>
+    </nav>
+
+
+      <!-- boutons pour se connecter ou s'inscrire -->
+    <div class="connection-btns">
+      <button type="button" class="btn btn-dark">Se connecter</button>
+      <button type="button" class="btn btn-secondary">S'inscrire</button>
+    </div>
+  </div>
+
+
+  <!-- conteneur des section -->
+   <div class="container">
+
+      <section class="intro" id="intro">
+        <div class="row">
+          <div class="col">
+            <h1 class="my-5">Votre portail vers le numérique public</h1>
+            <h4 class="mb-4">Explorez, analysez et contribuez à la transformation numérique des services publics au Maroc.</h4>
+            <p>Rejoignez une communauté d'acteurs du numérique, de chercheurs et de citoyens engagés.
+            Explorez des tableaux de bord interactifs, accédez à des données ouvertes fiables et inspirez vos décisions grâce à l'intelligence des données publiques.</p>
+            <div class="mt-5 btns">
+              <button type="button">S'inscrire avec Google</button>
+              <button type="button">S'inscrire avec Email</button>
+            </div>
+          </div>
+          <div class="col image d-flex justify-content-center align-items-center">
+            <img src="assets/e-gov.png" alt="">
+          </div>
+        </div>
+      </section>
+
+      <section class="who" id="who">
+        <h3 class="mb-5">Qui peut profiter de GovThink ?</h3>
+        <div class="container">
+          <div class="row">
+            <div class="col profile">
+              <div>
+                <h4>Citoyens</h4>
+                <p>Accédez facilement aux liens officiels des services publics numériques et suivez l’évolution de la digitalisation au Maroc.</p>
+              </div>
+              <div>
+                <img src="assets/citoyens.png" alt="">
+               </div>
+            </div>
+            <div class="col profile">
+              <div>
+                <h4>Entrepreneurs</h4>
+                <p>Explorez des données ouvertes pour identifier des opportunités et développer des solutions innovantes.</p>
+              </div>
+              <div>
+                <img src="assets/entrepreneur.png" alt="">
+              </div>
+            </div>
+            <div class="col profile">
+              <div>
+                <h4>Développeurs</h4>
+                <p>Exploitez des APIs, prototypes et jeux de données pour créer des outils utiles à la société.</p>
+              </div>
+              <div>
+                <img src="assets/developpeur.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col profile">
+              <div>
+                <h4>Étudiants & Chercheurs</h4>
+                <p>Analysez les politiques numériques, réalisez des études de cas ou alimentez vos travaux académiques.</p>
+              </div>
+              <div>
+                <img src="assets/etudiant_chercheur.png" alt="">
+              </div>
+            </div>
+            <div class="col profile">
+              <div>
+                <h4>Administrations & Décideurs</h4>
+                <p>Pilotez vos projets grâce à des tableaux de bord clairs et prenez des décisions basées sur des données fiables.</p>
+              </div>
+              <div>
+                <img src="assets/admin_decideur.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="fonctionnalites">
+        <div class="row">
+          <div class="col">
+            <div class="card">
+              <h5 class="card-header py-4">
+                Jeux de données open source
+                <img src="assets/dataset.png" alt="icone représentant un dataset, car notre platfome permet aux utilisateurs de consulter les jeux de données disponibles">
+              </h5>
+              <div class="card-body">
+                <p class="card-text">Données publiques organisées, filtrées et téléchargeables pour vos projets ou analyses.</p>
+                <a href="#" class="btn">Voir plus</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <h5 class="card-header py-4">
+                Tableaux de bord interactifs
+                <img src="assets/dashboard.png" alt="icone représentant un dataset, car notre platfome permet aux utilisateurs de consulter les tableaux de bord réalisés à partir des jeux de données">
+              </h5>
+              <div class="card-body">
+                <p class="card-text">Visualisations claires pour suivre les indicateurs clés du numérique.</p>
+                <a href="#" class="btn ">Voir plus</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <h5 class="card-header py-4">
+                Articles & fiches explicatives
+                <img src="assets/article.png" alt="icone représentant un dataset, car notre platfome permet aux utilisateurs de consulter les articles et les fiches explicatives publiées après vérification">
+              </h5>
+              <div class="card-body">
+                <p class="card-text">Analyses, synthèses et vulgarisation autour de l’e-gouvernement.</p>
+                <a href="#" class="btn ">Voir plus</a>
+              </div>
+            </div>
+          </div>
+        </div>
+         <div class="row">
+          <div class="col">
+            <div class="card">
+              <h5 class="card-header py-4">
+                Études & analyses approfondies
+                <img src="assets/data-analytics.png" alt="icone représentant un dataset, car notre platfome permet aux utilisateurs de consulter les études et les  analyses  publiées après vérification">
+              </h5>
+              <div class="card-body">
+                <p class="card-text">Rapports, diagnostics et comparaisons locales ou internationales.</p>
+                <a href="#" class="btn ">Voir plus</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <h5 class="card-header py-4">
+                Liens utiles vers les services e-gov
+              <img src="assets/cliquez-sur.png" alt="icone représentant un dataset, car notre platfome permet aux utilisateurs de consulter et publier les liens vers les services e-gov qui peuvent être utiles pour les utilisateurs de la plateforme">
+              </h5>
+              <div class="card-body">
+                <p class="card-text">Portails administratifs, plateformes en ligne, services régionaux.</p>
+                <a href="#" class="btn ">Voir plus</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <h5 class="card-header py-4"> 
+                Espace communautaire 
+              <img src="assets/reunion.png" alt="icone représentant un dataset, car notre platfome fournit un espace communautaire pour échanger">
+              </h5>
+              <div class="card-body">
+                <p class="card-text">Forum pour échanger, poser des questions ou partager des idées.</p>
+                <a href="#" class="btn ">Voir plus</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="community">
+        <div class="image">
+          <img src="assets/communaute.png" alt="">
+        </div>
+        <div class="text">
+          <p> Le futur du service public passe par l’innovation, la transparence et la collaboration.</p>
+          <p>Que vous soyez citoyen engagé, entrepreneur du digital, chercheur passionné, ou acteur public, votre contribution compte.</p>
+          <p>Rejoignez GovThink pour partager vos idées, valoriser les données ouvertes et construire des solutions concrètes au service de tous les Marocains.</p>
+        </div>
+      </section>
+
+
+
+   </div>
+
+
+   <div class="footer">
+
+    <div class="row">
+        <div class="col logo">
+         <h2 class="logo-style"><span class="gov">Gov</span><span class="think">Think</span></h2>
+        </div>
+
+        <div class="col">
+          <p><a href="#">Accueil</a></p>
+          <p><a href="#">Tableaux de bord</a></p>
+          <p><a href="#">Jeux de données</a></p>
+          <p><a href="#">Articles</a></p>
+          <p><a href="#">Services e-gov</a></p>
+          <p><a href="#">Contact</a></p>
+        </div>
+
+        <div class="col">
+          <p><a href="#">Citoyens</a></p>
+          <p><a href="#">Entrepreneurs</a></p>
+          <p><a href="#">Chercheurs</a></p>
+          <p><a href="#">Développeurs</a></p>
+        </div>
+
+        <div class="col">
+          <p><a href="#">Blog</a></p>
+          <p><a href="#">Contribuer</a></p>
+          <p><a href="#">Politique de confidentialité</a></p>
+          <p><a href="#">Accessibilité</a></p>
+        </div>
+    </div>
+    
+    <hr>
+
+    <div class="social-media-links row">
+      <p>© 2025 GovThink — Tous droits réservés</p>
+    </div>
+
+
+   </div>
+
+
+</div>

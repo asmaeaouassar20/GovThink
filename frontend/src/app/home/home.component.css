@@ -155,21 +155,7 @@ section{
     }
 }
 
-.logo-style{
-    font-size: 24px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-bottom: 10px;
 
-    .gov{
-        color: #E8081B;
-    }
-    .think{
-        color: #088508;
-    }
-}
 
 
 /********  responsive ******* */

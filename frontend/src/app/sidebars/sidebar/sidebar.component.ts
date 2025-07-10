@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import {  NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -11,7 +11,7 @@ interface MenuItem{
 }
 @Component({
   selector: 'app-sidebar',
-  imports: [NgFor, RouterLink],
+  imports: [NgFor, RouterLink, NgIf],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
@@ -32,5 +32,18 @@ export class SidebarComponent {
     { titre:'Mentions légales / Politique de confidentialité', icon:'gavel', lien:'/*'},
     { titre:'profil', icon:'account_circle', lien:'/*'}
   ]
+
+
+  // le sidebar est au debut large
+  reduit = true;
+
+  toggleSidebar(){
+    console.log('click')
+    this.reduit=!this.reduit;
+  }
+
+
+  
+  
 
 }

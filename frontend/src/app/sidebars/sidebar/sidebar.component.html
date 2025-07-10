@@ -1,0 +1,32 @@
+<aside>
+   <div class="sidebar">
+    <div class="top-side-bar">
+        <div class="hero">
+            <div class="logo">
+                <h2 class="logo-style"><span class="gov">Gov</span><span class="think">Think</span></h2>
+            </div>
+            <img src="assets/burger-bar.png" alt="burger menu depuis flaticon">
+        </div>
+    
+
+        <div class="div-btn-create">
+            <button type="button" class="create-btn">
+                <i class="fa-solid fa-plus " style="color: #fff;"></i>
+                Créer
+            </button>
+        </div>
+    </div>
+
+    <div>
+        <nav>
+            <a *ngFor="let item of menuItems"
+                routerLink="{{item.lien}}"
+                [title]="item.titre"
+            >
+                <i class="material-icons">{{item.icon}}</i>
+                <span>{{item.titre}}</span>
+            </a>
+        </nav>
+    </div>
+   </div>
+</aside>

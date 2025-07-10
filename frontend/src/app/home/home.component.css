@@ -269,3 +269,26 @@ section{
 }   
 
 
+
+@media (max-width : 610px){
+   
+    .footer {
+        font-size: 13px;
+        .logo-style{
+            display: none;
+        }
+    }
+
+    .fonctionnalites{
+        .card {
+            font-size: 13px;
+            img{
+                display: none;
+            }
+            h5{
+                font-size: 15px;
+            }
+        }
+    }
+}
+

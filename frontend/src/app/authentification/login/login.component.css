@@ -3,7 +3,7 @@
     cursor: pointer;
   }
   a:hover{
-    color: #fff;
+    color: #739CC0;
   }
 }
 .others .form-group label{
@@ -35,13 +35,5 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
-
-
-label {
-  display: block;
-  color: #edecec;
-  font-weight: 600;
-  font-size: 18px;
 }
 

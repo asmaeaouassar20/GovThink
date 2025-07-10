@@ -19,32 +19,18 @@ export class SidebarComponent {
 
 
   menuItems : MenuItem[] = [
-      { titre: 'Dashboard', icon: 'dashboard', lien: '/dashboard' },
-    { titre:'Utilisateurs', icon:'people', lien:'/users'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-    { titre:'Paramètres', icon:'settings', lien:'/settings'},
-
+      { titre: 'Accueil ', icon: 'home', lien: '/*' },
+    { titre:'Tableaux de bord', icon:'dashboard', lien:'/*'},
+    { titre:'Catalogue des jeux de données', icon:'storage', lien:'/*'},
+    { titre:'Profils utilisateurs ', icon:'people', lien:'/*'},
+    { titre:'Assistant chatbot ', icon:'chat', lien:'/*'},
+    { titre:'Forum communautaire', icon:'forum', lien:'/*'},
+    { titre:'Ressources et documentation', icon:'library_books', lien:'/*'},
+    { titre:'Projets/analyses des utilisateurs', icon:'assignment', lien:'/*'},
+    { titre:'Statistiques d’utilisation de la plateforme', icon:'analytics', lien:'/*'},
+    { titre:'À propos / Équipe / Contact', icon:'info', lien:'/*'},
+    { titre:'Mentions légales / Politique de confidentialité', icon:'gavel', lien:'/*'},
+    { titre:'profil', icon:'account_circle', lien:'/*'}
   ]
 
 }

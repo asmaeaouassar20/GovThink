@@ -30,7 +30,8 @@ export class SidebarComponent {
     { titre:'Statistiques d’utilisation de la plateforme', icon:'analytics', lien:'/*'},
     { titre:'À propos / Équipe / Contact', icon:'info', lien:'/*'},
     { titre:'Mentions légales / Politique de confidentialité', icon:'gavel', lien:'/*'},
-    { titre:'profil', icon:'account_circle', lien:'/*'}
+    { titre:'profil', icon:'account_circle', lien:'/*'},
+    { titre:'déconnexion', icon:'logout', lien:'/*'}
   ]
 
 

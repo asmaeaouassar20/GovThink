@@ -85,7 +85,7 @@ aside {
 
 /*  *** pour le sidebar réduit  : MENU BURGER *** */
 .aside-reduit{
-    width: 85px;
+    width: 85px; //* largeur du sidebar réduit */
 }
 .top-side-bar-reduit{
     width: 60px !important;

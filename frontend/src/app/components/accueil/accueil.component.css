@@ -1,0 +1,53 @@
+.conteneur{
+    width: calc(100vw - 320px);
+    margin-left: 320px;
+}
+.progression{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .seq-connex , .progression-cercle{
+        text-align: center;
+    }
+    h6{
+        font-family: "Libertinus Math", system-ui;
+        font-weight: 800;
+        font-style: normal;
+    }
+}
+.row{
+    margin: 5rem auto;
+}
+.card-header{
+
+    cursor: pointer;
+
+    display: flex ;
+    justify-content: space-between;
+    align-items: center;
+   
+    border: none;
+    background-color: transparent;
+
+    i{
+        padding: 10px;
+        border-radius: 50%;
+        color: #739CC0;
+        border: 3px solid #739CC0;
+        box-shadow: 3px 3px 8px #739CC0;
+        transition: all .5s ease;
+    }
+    span{
+        font-family: "Libertinus Mono", monospace;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 13px;
+    }
+
+    &:hover i{
+        transform: scale(1.2);
+    }
+}
+
+

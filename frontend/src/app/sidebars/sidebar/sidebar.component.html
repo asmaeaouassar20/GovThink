@@ -1,36 +1,36 @@
-<aside class="aside-non-reduit" *ngIf="!reduit">
-   <div class="sidebar">
-    <div class="top-side-bar">
+@if (!reduit) {
+  <aside class="aside-non-reduit">
+    <div class="sidebar">
+      <div class="top-side-bar">
         <div class="hero">
-            <img src="assets/burger-bar.png" alt="burger menu depuis flaticon" (click)="toggleSidebar()">
-
-            <div class="logo">
-                <h2 class="logo-style"><span class="gov">Gov</span><span class="think">Think</span></h2>
-            </div>
+          <img src="assets/burger-bar.png" alt="burger menu depuis flaticon" (click)="toggleSidebar()">
+          <div class="logo">
+            <h2 class="logo-style"><span class="gov">Gov</span><span class="think">Think</span></h2>
+          </div>
         </div>
-    
-
         <div class="div-btn-create">
-            <button type="button" class="create-btn">
-                <i class="fa-solid fa-plus " style="color: #fff;"></i>
-                Créer
-            </button>
+          <button type="button" class="create-btn">
+            <i class="fa-solid fa-plus " style="color: #fff;"></i>
+            Créer
+          </button>
         </div>
-    </div>
-
-    <div>
+      </div>
+      <div>
         <nav>
-            <a *ngFor="let item of menuItems"
-                routerLink="{{item.lien}}"
-                [title]="item.titre"
-            >
-            <span>{{item.titre}}</span>    
-            <i class="material-icons">{{item.icon}}</i>
+          @for (item of menuItems; track item) {
+            <a
+              routerLink="{{item.lien}}"
+              [title]="item.titre"
+              >
+              <span>{{item.titre}}</span>
+              <i class="material-icons">{{item.icon}}</i>
             </a>
+          }
         </nav>
+      </div>
     </div>
-   </div>
-</aside>
+  </aside>
+}
 
 
 
@@ -38,30 +38,31 @@
 
 
 <!-- Menu réduit -->
-<aside *ngIf="reduit" class="aside-reduit">
-   <div class="sidebar ">
-    <div class="top-side-bar top-side-bar-reduit">
+@if (reduit) {
+  <aside class="aside-reduit">
+    <div class="sidebar ">
+      <div class="top-side-bar top-side-bar-reduit">
         <div class="hero hero-reduit">
-            <img src="assets/burger-bar.png" alt="burger menu depuis flaticon" (click)="toggleSidebar()">
+          <img src="assets/burger-bar.png" alt="burger menu depuis flaticon" (click)="toggleSidebar()">
         </div>
-    
-
         <div class="div-create-btn-reduit">
-            <button type="button" class="create-btn-reduit">
-                <i class="fa-solid fa-plus " style="color: #fff;"></i>
-            </button>
+          <button type="button" class="create-btn-reduit">
+            <i class="fa-solid fa-plus " style="color: #fff;"></i>
+          </button>
         </div>
-    </div>
-
-    <div class="div-nav-reduit">
+      </div>
+      <div class="div-nav-reduit">
         <nav>
-            <a *ngFor="let item of menuItems"
-                routerLink="{{item.lien}}"
-                [title]="item.titre"
-            >
-            <i class="material-icons">{{item.icon}}</i>
+          @for (item of menuItems; track item) {
+            <a
+              routerLink="{{item.lien}}"
+              [title]="item.titre"
+              >
+              <i class="material-icons">{{item.icon}}</i>
             </a>
+          }
         </nav>
+      </div>
     </div>
-   </div>
-</aside>
+  </aside>
+}

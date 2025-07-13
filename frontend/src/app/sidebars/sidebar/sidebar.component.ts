@@ -1,4 +1,4 @@
-import {  NgFor, NgIf } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -11,7 +11,7 @@ interface MenuItem{
 }
 @Component({
   selector: 'app-sidebar',
-  imports: [NgFor, RouterLink, NgIf],
+  imports: [RouterLink],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })

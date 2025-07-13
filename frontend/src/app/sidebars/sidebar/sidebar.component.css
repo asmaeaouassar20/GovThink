@@ -64,7 +64,7 @@ aside {
                 height: 50px;
                 position: absolute;
                 top: 0;
-                right: 0;
+                left: 0;
                 cursor: pointer;
                 transition: all .8s ease;
                 &:hover{
@@ -72,7 +72,8 @@ aside {
                 }
             }
             .logo{
-                padding-top: 15px;
+                padding: 15px 8px 2.5rem 5px;
+                float: right;
             }
         }
         .div-btn-create{
@@ -85,7 +86,7 @@ aside {
 
 /*  *** pour le sidebar réduit  : MENU BURGER *** */
 .aside-reduit{
-    width: 85px; //* largeur du sidebar réduit */
+    width: 85px; /* largeur du sidebar réduit */
 }
 .top-side-bar-reduit{
     width: 60px !important;

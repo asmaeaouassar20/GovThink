@@ -1,6 +1,8 @@
 .conteneur{
     width: calc(100vw - 320px);
-    margin-left: 320px;
+}
+.sidebar{
+    width: 320px;
 }
 .progression{
     display: flex;

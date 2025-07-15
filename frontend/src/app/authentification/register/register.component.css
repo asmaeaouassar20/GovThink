@@ -1,6 +1,10 @@
+.form-container{
+  width: 45%;
+}
 .others{
   display: flex;
   gap: 5rem;
+  width: 45%;
 }
 .others button{
   flex: 1;

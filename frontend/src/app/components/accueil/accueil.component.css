@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 .conteneur{
     width: calc(100vw - 320px);
 }
@@ -20,6 +21,12 @@
 }
 .welcome-col{
   margin-right: 10rem;
+  h5{
+    font-family: "Source Code Pro", monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
 }
 .row{
     margin: 5rem auto;
@@ -54,6 +61,7 @@
         transform: scale(1.2);
     }
 }
+
 
 
 

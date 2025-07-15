@@ -1,3 +1,7 @@
+
+.form-container{
+  width: 45%;
+}
 .form-container , .others{
   a{
     cursor: pointer;

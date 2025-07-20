@@ -7,6 +7,8 @@ import { SidebarComponent } from './sidebars/sidebar/sidebar.component';
 
 export const routes: Routes = [
 
+    {path:'', redirectTo:'/home', pathMatch:'full'},
+
     { path:'home' , component : HomeComponent}, //page d'acceuil
     { path:'register' , component : RegisterComponent},
     { path:'login', component:LoginComponent},
@@ -17,5 +19,8 @@ export const routes: Routes = [
     { path:'accueil', component:AccueilComponent},
 
     { path:'sidebar', component:SidebarComponent},
+    
+    {path:'**', redirectTo:'/home'}
+
 
 ];

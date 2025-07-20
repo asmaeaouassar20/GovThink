@@ -20,7 +20,7 @@ spring:
             enable: true
   datasource:
     password: Asmae@123
-    url: jdbc:mysql://localhost:3306/authentification
+    url: jdbc:mysql://localhost:3306/govthink
     username: root
   jpa:
     hibernate:

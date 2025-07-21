@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  private baseUrl = 'http://localhost:8080/api/auth/profile';
+  private baseUrl = 'http://localhost:8080/api/auth';
 
 
   constructor(private http:HttpClient){}
@@ -21,7 +21,7 @@ export class UserService {
    * récupérer le profil d'un utilisateur depuis une API
    *  > Elle envoie un header d'autorisation avec un token JWT
    * (JSON Web Token) qui est récupéré depuis le localstorage
-   * @returns  Observable<any>
+   * @returns  Observable<any>n
    */
   getProfile() : Observable<any>{
     return this.http.get(`${this.baseUrl}/profile`, {

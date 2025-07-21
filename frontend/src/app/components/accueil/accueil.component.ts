@@ -24,7 +24,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
   @ViewChild('donutCanvas', { static: true }) donutCanvas!: ElementRef<HTMLCanvasElement>;
   
   private chart: Chart | undefined;
-  connectedUser : any = null;
+  prenom : string = 'someone';
 
 
   constructor(private userService : UserService,
@@ -34,6 +34,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.createDonutChart();
+    this.loadProfile();
   }
 
 
@@ -44,7 +45,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
   loadProfile() : void{
     this.userService.getProfile().subscribe({
       next : (response) => {
-        this.connectedUser=response;
+        this.prenom=response.prenom;
       },
       error : (error) => {
         console.error('Ereur lors du chargement du profile');

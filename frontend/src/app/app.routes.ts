@@ -17,9 +17,8 @@ export const routes: Routes = [
 
 
     // Composants
-    { path:'accueil', component:AccueilComponent},
+    { path:'accueil', component:AccueilComponent,canActivate:[authGuard]},
 
-    { path:'sidebar', component:SidebarComponent, canActivate:[authGuard]},
     
     {path:'**', redirectTo:'/home'}
 

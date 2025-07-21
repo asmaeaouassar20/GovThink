@@ -1,8 +1,10 @@
 aside {
     background-color: #739CC0;
     width: 320px;
+    height: 100vh;
     .sidebar{
         padding: 1rem;
+
         .top-side-bar{
             position: fixed;
             top: 0;
@@ -16,8 +18,8 @@ aside {
         .create-btn {
             color: #fff;
             border: 2px solid #fff;
-            font-size: 18px;
-            padding: 8px 0;
+            font-size: 20px;
+            padding: 5px 0;
             border-radius: 25px;
             background-color: transparent;
             box-shadow: 1px 1px 5px #bebfcd;
@@ -28,6 +30,7 @@ aside {
                 background-color: #376791;
             }
 
+
         i{
             margin-right: 10px;
             margin-left: 0;
@@ -35,7 +38,7 @@ aside {
         }
         nav{
             position: sticky;
-            margin-top: 160px;
+            margin-top: 170px;
             a{
                 display: flex;
                 text-decoration: none;
@@ -58,7 +61,6 @@ aside {
         }
         .hero{
             position: relative;
-            padding-bottom: 1.2rem;
             img{
                 width: 50px;
                 height: 50px;
@@ -72,8 +74,9 @@ aside {
                 }
             }
             .logo{
-                padding: 15px 8px 2.5rem 5px;
+                padding: 15px 8px 2rem 5px;
                 float: right;
+
             }
         }
         .div-btn-create{
@@ -89,19 +92,19 @@ aside {
     width: 85px; /* largeur du sidebar réduit */
 }
 .top-side-bar-reduit{
-    width: 60px !important;
+    width: 50px !important;
 }
 .create-btn-reduit {
     color: #fff;
     border: 2px solid #fff;
     font-size: 18px;
-    padding: px 0;
     border-radius: 25px;
     background-color: transparent;
     box-shadow: 1px 1px 5px #bebfcd;
     font-weight: 600;
     width: 100%;
     transition: background-color .6s ease;
+
     &:hover{
          background-color: #376791;
     }

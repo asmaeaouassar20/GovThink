@@ -23,8 +23,24 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/login`,credentials);
   }
 
+
+
+
+
+
+  getToken() : string | null {
+    return localStorage.getItem('token');
+  }
   saveToken(token : string) : void{
     localStorage.setItem('token',token);
   }
+
+
+
+  isLoggedIn() : boolean {
+    return !!this.getToken(); //pour convertir une valeur en boolean
+  }
+
+
   
 }

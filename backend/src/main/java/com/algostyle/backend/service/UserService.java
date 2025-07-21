@@ -30,6 +30,15 @@ public class UserService
     }
 
 
+    public User authenticate(String email, String password){
+        User user= userRepository.findByEmail(email);
+        if(user!=null && passwordEncoder.matches(password,user.getPassword())){
+            return user;
+        }
+        return null;
+    }
+
+
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
     }

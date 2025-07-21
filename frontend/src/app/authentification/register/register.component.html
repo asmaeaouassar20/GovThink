@@ -9,27 +9,27 @@
   </div>
 
     <div class="form-container">
-        <form class="form">
+        <form class="form" (ngSubmit)="onSignup()" #signupForm="ngForm">
           <div class="form-group nomComplet">
             <div class="nom">
               <label for="nom">Nom</label>
-              <input type="text" id="nom" name="nom" required="">
+              <input type="text" id="nom" name="nom" required="" [(ngModel)]="userData.nom">
             </div>
             <div class=" prenom">
               <label for="prénom">Prénom</label>
-              <input type="text" id="prenom" name="prenom" required="">
+              <input type="text" id="prenom" name="prenom" required="" [(ngModel)]="userData.prenom">
             </div>
           </div>  
 
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required="">
+            <input type="email" id="email" name="email" required="" [(ngModel)]="userData.email">
           </div>
 
            <div class="form-group user-password">
             <div class="password">
               <label for="password" >Mot de passe</label>
-              <input type="password" id="password" name="password" required="">
+              <input type="password" id="password" name="password" required="" [(ngModel)]="userData.password">
             </div>
             <div class="password-confirm">
               <label for="password-confirm">Confirmation du mot de passe</label>
@@ -38,7 +38,8 @@
           </div>
          
 
-          <button class="form-submit-btn btn btn-outline-light" type="submit">S'inscrire</button>
+          <button [disabled]="!signupForm.valid" class="form-submit-btn btn btn-outline-light" type="submit">S'inscrire</button>
+          <div *ngIf="error"> {{error}}</div>
         </form>
       </div>
 

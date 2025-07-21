@@ -39,7 +39,6 @@ export class SidebarComponent {
   reduit = true;
 
   toggleSidebar(){
-    console.log('click')
     this.reduit=!this.reduit;
   }
 

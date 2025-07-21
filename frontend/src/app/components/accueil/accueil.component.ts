@@ -2,9 +2,14 @@ import { Component, OnInit , ViewChild, ElementRef, OnDestroy} from '@angular/co
 import { SidebarComponent } from "../../sidebars/sidebar/sidebar.component";
 
 
+// Importer les types et fonctions de Chart.js pour la création de graphiques
 import { Chart, ChartConfiguration, ChartType } from 'chart.js';
 import { registerables } from 'chart.js';
+import { UserService } from '../../service/user.service';
+import { Router } from '@angular/router';
 
+
+// Enregistrement des composants nécessaires de Chart.js
 Chart.register(...registerables);
 
 @Component({
@@ -14,14 +19,53 @@ Chart.register(...registerables);
   styleUrl: './accueil.component.css'
 })
 export class AccueilComponent implements OnInit, OnDestroy {
+  
+  // Référence à l'élément canvas dans le template via ViewChild
   @ViewChild('donutCanvas', { static: true }) donutCanvas!: ElementRef<HTMLCanvasElement>;
   
   private chart: Chart | undefined;
+  prenom : string = 'someone';
+
+
+  constructor(private userService : UserService,
+            private router : Router
+  ){}
+
 
   ngOnInit(): void {
     this.createDonutChart();
+    this.loadProfile();
   }
 
+
+
+  
+
+  // Charger les données de l'utilisateur
+  loadProfile() : void{
+    this.userService.getProfile().subscribe({
+      next : (response) => {
+        this.prenom=response.prenom;
+      },
+      error : (error) => {
+        console.error('Ereur lors du chargement du profile');
+      }
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Création du graphique en anneau
   private createDonutChart(): void {
     const ctx = this.donutCanvas.nativeElement.getContext('2d');
     
@@ -32,21 +76,21 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
     // Configuration simplifiée du diagramme en anneau
     this.chart = new Chart(ctx, {
-      type: 'doughnut',
+      type: 'doughnut',  // Type du graphique : en anneau
       data: {
         datasets: [{
-          data: [3, 97],
+          data: [3, 97],  // Donnée du graphique : 3% et 97%
           backgroundColor: [
-            '#739CC0 ',
-            '#fff'
+            '#739CC0 ', // Couleur pour la 1ère partie 3%
+            '#fff'  // Couleur pour la 2ème partie 97%
           ],
           borderColor: '#ffffff',
           borderWidth: 0,
-          hoverOffset: 5
+          hoverOffset: 5  //Décalage au survol
         }]
       },
       options: {
-        responsive: true,
+        responsive: true, // Le graphique s'adapte à la taulle du conteneur
         maintainAspectRatio: false,
         plugins: {
           legend: {
@@ -78,12 +122,14 @@ export class AccueilComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Méthode pour mettre à jour les données
-  
 
+  /**
+   * Méthode de cycle de vie Angular - appelée avant la description du composant
+   * - Permet de nettoyer les ressources (destruction du graphique)
+   */
   ngOnDestroy(): void {
     if (this.chart) {
-      this.chart.destroy();
+      this.chart.destroy(); // Desctruction propre du graphique pour éviter les fuites mémoire
     }
   }
 }

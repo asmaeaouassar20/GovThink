@@ -25,7 +25,7 @@ export class LoginComponent {
 
         next : (response) => {
           this.authService.saveToken(response.token);
-          this.router.navigate( ['/sidebar'])
+          this.router.navigate( ['/accueil'])
         },
         error : (error) =>{
           this.error = 'Identifiants invalides';

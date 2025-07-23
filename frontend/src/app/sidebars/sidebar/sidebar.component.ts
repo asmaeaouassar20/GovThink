@@ -16,7 +16,7 @@ interface MenuItem{
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-
+ 
 
   menuItems : MenuItem[] = [
       { titre: 'Accueil ', icon: 'home', lien: '/*' },
@@ -42,6 +42,9 @@ export class SidebarComponent {
   }
 
 
+  logout(){
+
+  }
   
   
 

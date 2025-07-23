@@ -23,7 +23,11 @@
               [title]="item.titre"
               >
               <span>{{item.titre}}</span>
-              <i class="material-icons">{{item.icon}}</i>
+              @if (item.icon!=='logout') {
+                <i class="material-icons">{{item.icon}}</i>
+              }@else {
+                <i class="material-icons" (click)="logout()">{{item.icon}}</i>
+              }
             </a>
           }
         </nav>
@@ -58,7 +62,11 @@
               routerLink="{{item.lien}}"
               [title]="item.titre"
               >
-              <i class="material-icons">{{item.icon}}</i>
+              @if (item.icon!=='logout') {
+                <i class="material-icons">{{item.icon}}</i>
+              }@else {
+                <i class="material-icons" (click)="logout()">{{item.icon}}</i>
+              }
             </a>
           }
         </nav>

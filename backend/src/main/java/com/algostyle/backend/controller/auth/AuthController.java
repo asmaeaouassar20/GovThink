@@ -96,4 +96,13 @@ public class AuthController {
     }
 
 
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(){
+        // RQ : La déconnexion réelle nécessiterait une gestion côté serveur du token7
+        // ici, on se contente d'une réponse positive, le client doit supprimer le token
+        return ResponseEntity.ok(new MyMessageResponse("Déconnecté avec succès"));
+    }
+
+
 }

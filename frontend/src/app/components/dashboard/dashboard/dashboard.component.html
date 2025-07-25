@@ -5,7 +5,7 @@
     <div class="conteneur ">
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
-                <form class="d-flex" role="search">
+                <div class="d-flex" >
                 <div class="dropdown">
                     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Choisir un fichier
@@ -14,11 +14,12 @@
                         <li><a class="dropdown-item" href="#">Action</a></li>
                     </ul>
                 </div>
-                <button class="btn btn-outline-success btn-tables me-4" type="submit" routerLink="/tables">Table</button>
-                <button class="btn btn-outline-success" type="submit" routerLink="/charts">Tableaux de bord</button>
-                </form>
+                <button class="btn btn-outline-success btn-tables me-4"  routerLink="/dashboard/tables">Table</button>
+                <button class="btn btn-outline-success"  routerLink="/dashboard/charts">Tableaux de bord</button>
+            </div>
             </div>
         </nav>
+        <router-outlet></router-outlet>
     </div>
     
 

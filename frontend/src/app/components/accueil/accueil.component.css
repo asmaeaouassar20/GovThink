@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+
+/*******  Pour le sidebar qu'on doit ajouter dans chaque composant *********/
 .result-container{
     display: flex;
     height: 100vh;
@@ -18,6 +21,14 @@
     z-index: 1000;
 
 }
+
+
+
+
+
+
+
+
 .progression{
     display: flex;
     justify-content: space-around;

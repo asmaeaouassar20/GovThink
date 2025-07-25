@@ -5,6 +5,7 @@ import { LoginComponent } from './authentification/login/login.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { SidebarComponent } from './sidebars/sidebar/sidebar.component';
 import { authGuard } from './guard/auth.guard';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export const routes: Routes = [
 
@@ -17,7 +18,8 @@ export const routes: Routes = [
 
 
     // Composants
-    { path:'accueil', component:AccueilComponent,canActivate:[authGuard]},
+    { path : 'accueil', component:AccueilComponent},
+    { path : 'dashboard', component:DashboardComponent},
 
     
     {path:'**', redirectTo:'/home'}

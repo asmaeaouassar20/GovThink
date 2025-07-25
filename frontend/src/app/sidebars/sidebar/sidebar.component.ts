@@ -19,8 +19,8 @@ export class SidebarComponent {
  
 
   menuItems : MenuItem[] = [
-      { titre: 'Accueil ', icon: 'home', lien: '/*' },
-    { titre:'Tableaux de bord', icon:'dashboard', lien:'/*'},
+      { titre: 'Accueil ', icon: 'home', lien: '/accueil' },
+    { titre:'Tableaux de bord', icon:'dashboard', lien:'/dashboard'},
     { titre:'Catalogue des jeux de données', icon:'storage', lien:'/*'},
     { titre:'Profils utilisateurs ', icon:'people', lien:'/*'},
     { titre:'Assistant chatbot ', icon:'chat', lien:'/*'},
@@ -30,7 +30,7 @@ export class SidebarComponent {
     { titre:'À propos / Équipe / Contact', icon:'info', lien:'/*'},
     { titre:'Mentions légales / Politique de confidentialité', icon:'gavel', lien:'/*'},
     { titre:'profil', icon:'account_circle', lien:'/*'},
-    { titre:'déconnexion', icon:'logout', lien:'/*'}
+    { titre:'déconnexion', icon:'logout', lien:'/*'} 
   ]
 
 

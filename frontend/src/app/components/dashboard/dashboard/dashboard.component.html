@@ -2,7 +2,30 @@
     <div class="sidebar">
         <app-sidebar></app-sidebar>
     </div>
-    <div class="conteneur">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae nobis ipsam placeat sunt, fugiat adipisci non eum enim inventore perferendis excepturi cupiditate commodi recusandae asperiores exercitationem, eaque aut reiciendis suscipit omnis atque tenetur alias nesciunt corporis. Ipsa explicabo debitis blanditiis doloremque vel, facere vitae eos sed obcaecati molestias. Sapiente, incidunt?
+    <div class="conteneur ">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <form class="d-flex" role="search">
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Choisir un fichier
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                    </ul>
+                </div>
+                <button class="btn btn-outline-success btn-tables me-4" type="submit" routerLink="/tables">Table</button>
+                <button class="btn btn-outline-success" type="submit" routerLink="/charts">Tableaux de bord</button>
+                </form>
+            </div>
+        </nav>
     </div>
+    
+
+
+
 </div>
+
+
+
+

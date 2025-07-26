@@ -1,0 +1,48 @@
+
+  <div class="dropdown dropdown-dashboard">
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Choisir un fichier
+    </button>
+    <ul class="dropdown-menu">
+      <li *ngFor = "let file of files" (click)="lireFichier(file.id)"><a class="dropdown-item">{{file.nom}}</a></li>
+    </ul>
+  </div>
+
+ @if (currentFileLink) {
+   <a class="lien-source" href={{currentFileLink}} >
+      <span class="me-3">consultez le lien pour plus d'informations : </span><span class="badge text-bg-secondary my-4">{{currentFileName}}</span>
+  </a>
+ }
+  
+
+
+<div class="dashboard">
+  <!-- Message de chargement : ce qu'on peut afficher en attendant l'affichage des données -->
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Chargement des données...</p>
+  </div>
+
+  <!-- Si les données existe et le chargement termine, on affiche le tableau des données -->
+  <div *ngIf="!loading && data.length > 0">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <!-- Boucle pour générer les en-têtes de colonnes -->
+          <th *ngFor="let column of columns">{{ column }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Boucle pour générer les lignes de données -->
+        <tr *ngFor="let row of data">
+          <td *ngFor="let column of columns">{{ row[column] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Si aucune donnée n'est disponible, on affiche le message suivant -->
+  <div *ngIf="!loading && data.length === 0" class="no-data">
+    <p>Aucune donnée disponible.</p>
+  </div>
+</div>

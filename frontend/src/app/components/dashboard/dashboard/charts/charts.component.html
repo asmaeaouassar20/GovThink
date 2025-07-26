@@ -1,0 +1,137 @@
+ <div class="dropdown dropdown-dashboard">
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Choisir un fichier
+    </button>
+    <ul class="dropdown-menu">
+      <li *ngFor = "let file of files" (click)="lireFichier(file.id)"><a class="dropdown-item">{{file.nom}}</a></li>
+    </ul>
+  </div>
+
+
+
+   @if (currentFileLink) {
+   <a class="lien-source" href={{currentFileLink}} >
+      <span class="me-3">consultez le lien pour plus d'informations : </span><span class="badge text-bg-secondary my-4">{{currentFileName}}</span>
+  </a>
+ }
+
+
+
+
+<div class="container">
+  <!-- État de chargement -->
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Analyse du fichier en cours...</p>
+  </div>
+
+  <!-- Analyse des colonnes -->
+  <div class="column-analysis" *ngIf="!loading && analyzedColumns.length > 0">
+    <h3>Analyse des colonnes</h3>
+    <div class="analysis-grid">
+      <div *ngFor="let col of analyzedColumns" 
+           class="column-card"
+           [class.recommended]="col.isGoodForVisualization"
+           [class.selected]="col.name === selectedColumn">
+        <h4>{{ col.name.trim() }}</h4>
+        <div class="column-stats">
+          <span class="stat">
+            <strong>Type:</strong> 
+            <span [class]="'type-' + col.type">{{ col.type }}</span>
+          </span>
+          <span class="stat">
+            <strong>Valeurs uniques:</strong> {{ col.uniqueValues }}/{{ col.totalValues }}
+          </span>
+          <span class="recommendation">
+            {{ getColumnRecommendation(col) }}
+          </span>
+        </div>
+        <div class="sample-values" *ngIf="col.sampleValues.length > 0">
+          <strong>Exemples:</strong> {{ col.sampleValues.join(', ') }}
+        </div>
+        <button *ngIf="col.isGoodForVisualization" 
+                (click)="selectedColumn = col.name; onColumnChange()"
+                class="select-column-btn btn btn-outline-success"
+                [disabled]="col.name === selectedColumn">
+          {{ col.name === selectedColumn ? '✅ Sélectionné' : 'Sélectionner' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sélecteur de colonne (alternative) -->
+  <div class="column-selector" *ngIf="!loading && visualizableColumns.length > 0">
+    <label for="columnSelect">
+      <strong>Colonne à visualiser:</strong>
+    </label>
+    <select id="columnSelect" [(ngModel)]="selectedColumn" (change)="onColumnChange()">
+      <option value="">-- Choisir une colonne --</option>
+      <option *ngFor="let column of visualizableColumns" [value]="column.name">
+        {{ column.name.trim() }} ({{ column.uniqueValues }} catégories)
+      </option>
+    </select>
+  </div>
+
+  <!-- Contrôles de graphique (pour le choix du type du graphique) -->
+  <div class="chart-controls" *ngIf="!loading && selectedColumn">
+    <h3>Type de graphique</h3>
+    <div class="chart-type-buttons">
+      <button (click)="changeChartType('bar')" 
+              [class.active]="chartType === 'bar'"
+              class="chart-btn bar-btn">
+        Barres
+      </button>
+      <button (click)="changeChartType('pie')" 
+              [class.active]="chartType === 'pie'"
+              class="chart-btn pie-btn">
+        Secteurs
+      </button>
+      <button (click)="changeChartType('doughnut')" 
+              [class.active]="chartType === 'doughnut'"
+              class="chart-btn doughnut-btn">
+        Donut
+      </button>
+      <button (click)="changeChartType('line')" 
+              [class.active]="chartType === 'line'"
+              class="chart-btn line-btn">
+        Lignes
+      </button>
+    </div>
+  </div>
+
+  <!-- Zone de graphique -->
+  <div class="chart-container" 
+       [style.display]="!loading && selectedColumn ? 'block' : 'none'">
+    <canvas #chartCanvas></canvas>
+  </div>
+
+  <!-- Messages d'aide -->
+  <div *ngIf="!loading && data.length > 0 && visualizableColumns.length === 0" 
+       class="no-visualization">
+    <h3>⚠️ Aucune colonne appropriée pour la visualisation</h3>
+    <p>Ce fichier contient principalement des données uniques (comme des identifiants ou des noms) 
+       qui ne sont pas adaptées aux graphiques de répartition.</p>
+    <p><strong>Suggestions:</strong></p>
+    <ul>
+      <li>Vérifiez s'il y a des colonnes de catégories (région, type, statut...)</li>
+      <li>Les colonnes avec des valeurs répétées fonctionnent mieux</li>
+      <li>Évitez les colonnes avec des identifiants uniques</li>
+    </ul>
+  </div>
+
+  <div *ngIf="!loading && data.length === 0" class="no-data">
+    <h3>Aucune donnée chargée</h3>
+    <p>Cliquez sur un des boutons ci-dessus pour charger un fichier.</p>
+  </div>
+
+  <!-- Informations de debug -->
+  <div class="debug-info" *ngIf="!loading && data.length > 0">
+    <h4>Informations sur le fichier:</h4>
+    <div class="debug-stats">
+      <span><strong>Lignes:</strong> {{ data.length }}</span><br>
+      <span><strong>Colonnes totales:</strong> {{ rawColumns.length }}</span><br>
+      <span><strong>Colonnes visualisables:</strong> {{ visualizableColumns.length }}</span><br>
+      <span *ngIf="selectedColumn"><strong>Colonne active:</strong> {{ selectedColumn.trim() }}</span><br>
+    </div>
+  </div>
+</div>

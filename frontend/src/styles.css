@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* ******** logo de la plateforme  ********** */
 .fluid-container{
   height: 100vh;
@@ -35,6 +39,9 @@
     align-items: center;
     flex-direction: column;
 }
+
+
+
 
 
 
@@ -114,4 +121,14 @@
 }
 
 
+/* **** Dropdown utilisé pour choisir entre "Tables" et "Tableaux de bord"  **** */
+.dropdown-dashboard button{
+ font-size: 20px;
+}
 
+
+/* **** div pour afficher le lien source du fichier  **** */
+.lien-source{
+  padding: 10px;
+  cursor: pointer;
+}

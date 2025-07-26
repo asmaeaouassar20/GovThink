@@ -11,7 +11,7 @@
                         Choisir un fichier
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li *ngFor="let file of files"><a class="dropdown-item" href="#">{{file.nom}}   </a></li>
                     </ul>
                 </div>
 

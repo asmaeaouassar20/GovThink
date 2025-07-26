@@ -1,17 +1,5 @@
 <div class="container">
 
-  <!-- Section contenant un dropdow permettant de sélectionner le fichier à visualiser -->
-  <div class="test-section">
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Choisir un fichier
-        </button>
-        <ul class="dropdown-menu">
-            <li *ngFor="let file of files"><a class="dropdown-item" (click)="lireFichier(file.id)">{{file.nom}}</a></li>
-        </ul>
-    </div>
-  </div>
-
   <!-- État de chargement -->
   <div *ngIf="loading" class="loading">
     <div class="spinner"></div>

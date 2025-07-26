@@ -37,6 +37,10 @@ export class ChartsComponent implements AfterViewInit, OnDestroy, OnInit {
   chart: Chart | undefined; // Instance du graphique Chart.js
   chartType: ChartType = 'bar'; // type du graphique ( 'bar' par défaut )
   files :   any[]=[];  // Liste des fichiers disponibles
+  myId : number = -1;
+  currentFileName : string ='';
+  currentFileLink : string ='';
+
 
   // Colonnes sélectionnées pour la visualisation
   selectedColumn = '';
@@ -72,8 +76,24 @@ export class ChartsComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
 
+  getFileById(fileId : number){
+      this.dashboardService.getFileById(fileId).subscribe({
+        next : (res) =>{
+          this.currentFileName=res.nom;
+          this.currentFileLink=res.networkLink;
+        },
+  
+        error : (error) =>{
+          console.error("fichier non trouvé avec id "+fileId);
+        }
+      })
+    }
+
+
 
   lireFichier(fileId: number) {
+    this.getFileById(fileId);
+    this.myId=fileId;
     this.loading = true;
     this.resetData(); // Réinitialisation des données précédentes
 

@@ -19,5 +19,9 @@ export class DashboardService {
   getAllFiles() : Observable<any[]>{
     return this.http.get<any[]>(`${this.apiUrl}`);
   }
+
+  getFileById(fileId : number) : Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/${fileId}`);
+  }
   
 }

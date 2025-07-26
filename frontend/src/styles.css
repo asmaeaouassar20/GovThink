@@ -42,6 +42,9 @@
 
 
 
+
+
+
 /* ******** formulaires  ********** */
 .form-container button:active {
   scale: 0.90;
@@ -118,4 +121,14 @@
 }
 
 
+/* **** Dropdown utilisé pour choisir entre "Tables" et "Tableaux de bord"  **** */
+.dropdown-dashboard button{
+ font-size: 20px;
+}
 
+
+/* **** div pour afficher le lien source du fichier  **** */
+.lien-source{
+  padding: 10px;
+  cursor: pointer;
+}

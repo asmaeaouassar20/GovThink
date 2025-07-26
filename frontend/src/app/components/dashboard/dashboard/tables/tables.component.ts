@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DashboardService } from '../../../../service/dashboard.service';
 import { NgIf, NgFor } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { error } from 'console';
 
 @Component({
   selector: 'app-tables',
@@ -10,25 +12,30 @@ import { NgIf, NgFor } from '@angular/common';
 })
 export class TablesComponent implements OnInit {
 
+
   data : any[] = [];    // Tableau qui contiendra toutes les lignes de données du fichiers Excel
   columns : string[] = [];  // Tableau pour stocker les noms des colonnes  ex: [ "Nom" , "Age" , "Ville" ]
   loading = false;    // indicateur d'état de chargement, utilisé pour afficher un spinner ou bloquer les actions pendant le chargement
   myId:number = -1  // Variable pour stocker l'ID du fichier à lire
   files: any[] = [];
+  currentFileName : string ='';
+  currentFileLink : string ='';
 
   // Injection du service DashboardService pour faire l'appel HTTP au backend
-  constructor(private dashboardService : DashboardService){}
+  constructor(private dashboardService : DashboardService,
+  ){}
  
 
   // Méthode exécutée automatiquement au moment où le composant est initialisé
   ngOnInit(): void {
-    this.lireFichier(this.myId);
-    // this.getFiles();
+    this.getFiles();
   }
 
 
   // Méthode pour lire un fichier Excel à partir de son identifiant (fileId)
   lireFichier(fileId : number){
+    this.getFileById(fileId);
+    this.myId=fileId;
     this.loading = true;  // Activer l'indicateur de chargement
 
     // Appel du service qui va chercher les donnée sExcel depuis l'API
@@ -54,6 +61,18 @@ export class TablesComponent implements OnInit {
 
 
 
+  getFileById(fileId : number){
+    this.dashboardService.getFileById(fileId).subscribe({
+      next : (res) =>{
+        this.currentFileName=res.nom;
+        this.currentFileLink=res.networkLink;
+      },
+
+      error : (error) =>{
+        console.error("fichier non trouvé avec id "+fileId);
+      }
+    })
+  }
 
 
 

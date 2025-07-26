@@ -2,25 +2,11 @@
     <div class="sidebar">
         <app-sidebar></app-sidebar>
     </div>
-    <div class="conteneur ">
-        <nav class="navbar bg-body-tertiary">
-            <div class="container-fluid">
-                <div class="d-flex" >
-                <div class="dropdown">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Choisir un fichier
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li *ngFor="let file of files"><a class="dropdown-item" href="#">{{file.nom}}   </a></li>
-                    </ul>
-                </div>
-
-                <button class="btn btn-outline-success btn-tables me-4"  routerLink="/dashboard/tables">Table</button>
-                <button class="btn btn-outline-success"  routerLink="/dashboard/charts">Tableaux de bord</button>
-
-            </div>
-            </div>
-        </nav>
+    <div class="conteneur">
+        <div class="nav-type-affichage d-flex justify-content-center align-items-center">
+            <button class="btn btn-outline-light " routerLink = "/dashboard/tables">Tables</button>
+            <button class="btn btn-outline-light " routerLink = "/dashboard/charts" >Tableaux de bord</button>
+        </div>
         <router-outlet></router-outlet>
         
     </div>

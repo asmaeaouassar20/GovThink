@@ -25,3 +25,18 @@
 .btn-tables{
     margin-left: 25rem;
 }
+
+
+
+
+.nav-type-affichage{
+    background-color: #739CC0;
+    padding: 1rem;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    button{
+        margin-left: 1.5rem;
+        padding: 1rem 4rem;
+        font-size: 1.1rem !important;
+    }
+}

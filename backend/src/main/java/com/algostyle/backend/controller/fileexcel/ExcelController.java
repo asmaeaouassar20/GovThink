@@ -58,4 +58,11 @@ public class ExcelController {
     public ResponseEntity<List<FichierExcel>>  getAllFiles(){
         return ResponseEntity.ok(this.excelService.getAllFiles());
     }
+
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<FichierExcel> getFileById(@PathVariable Long id ){
+        return ResponseEntity.ok(this.excelService.getFileById(id));
+    }
 }

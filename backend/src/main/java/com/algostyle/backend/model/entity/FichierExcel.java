@@ -14,6 +14,8 @@ public class FichierExcel {
     @Column(unique = true)
     private String chemin;
 
+    private String networkLink;
+
 
     public Long getId() {
         return id;
@@ -37,5 +39,13 @@ public class FichierExcel {
 
     public void setChemin(String chemin) {
         this.chemin = chemin;
+    }
+
+    public String getNetworkLink() {
+        return networkLink;
+    }
+
+    public void setNetworkLink(String networkLink) {
+        this.networkLink = networkLink;
     }
 }

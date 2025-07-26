@@ -1,33 +1,38 @@
-<div class="my-5">
-    <span class="pe-3">Le fichier choisi : </span><span class=" p-2 badge text-bg-info">Info</span>
+<div class="dropdown mb-3">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Sélectionner un fichier
+  </button>
+  <ul class="dropdown-menu">
+    <li *ngFor="let file of files"><a class="dropdown-item"  (click)="lireFichier(file.id)">{{file.nom}}</a></li>
+  </ul>
 </div>
-<table class="table mt-5">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>John</td>
-      <td>Doe</td>
-      <td>social</td>
-    </tr>
-  </tbody>
-</table>
+<div class="dashboard">
+  <!-- Message de chargement : ce qu'on peut afficher en attendant l'affichage des données -->
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Chargement des données...</p>
+  </div>
+
+  <!-- Si les données existe et le chargement termine, on affiche le tableau des données -->
+  <div *ngIf="!loading && data.length > 0">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <!-- Boucle pour générer les en-têtes de colonnes -->
+          <th *ngFor="let column of columns">{{ column }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Boucle pour générer les lignes de données -->
+        <tr *ngFor="let row of data">
+          <td *ngFor="let column of columns">{{ row[column] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Si aucune donnée n'est disponible, on affiche le message suivant -->
+  <div *ngIf="!loading && data.length === 0" class="no-data">
+    <p>Aucune donnée disponible.</p>
+  </div>
+</div>

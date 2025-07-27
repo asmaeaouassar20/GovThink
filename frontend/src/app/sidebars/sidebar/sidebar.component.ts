@@ -22,7 +22,7 @@ export class SidebarComponent {
       { titre: 'Accueil ', icon: 'home', lien: '/accueil' },
     { titre:'Tableaux de bord', icon:'dashboard', lien:'/dashboard'},
     { titre:'Catalogue des jeux de données', icon:'storage', lien:'/*'},
-    { titre:'Profils utilisateurs ', icon:'people', lien:'/*'},
+    { titre:'Profils utilisateurs ', icon:'people', lien:'/profiles'},
     { titre:'Assistant chatbot ', icon:'chat', lien:'/*'},
     { titre:'Forum communautaire', icon:'forum', lien:'/*'},
     { titre:'Ressources et documentation', icon:'library_books', lien:'/*'},

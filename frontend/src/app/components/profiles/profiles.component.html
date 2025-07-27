@@ -1,0 +1,98 @@
+<div class="result-container">
+    <div class="sidebar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="conteneur d-flex justify-content-center align-items-center"> 
+       
+        <div class="container">
+            <div class="bg-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+
+            <div class="row">
+                 <div 
+                    class="profile-card col" 
+                    [class.selected]="selectedProfile === 'citizen'"
+                    (click)="selectProfile('citizen', 'Citoyen')"
+                    (mouseenter)="onCardHover($event, true)"
+                    (mouseleave)="onCardHover($event, false)">
+                    <div class="profile-icon">👤</div>
+                    <h3 class="profile-title">Citoyen</h3>
+                    <p class="profile-description">
+                    Accédez aux services publics, informations citoyennes et participez à la vie démocratique locale.
+                    </p>
+                    <div class="profile-features">
+                    <span class="feature-tag">Voir plus</span>
+                    </div>
+                </div>
+                 <div 
+                    class="profile-card col" 
+                    [class.selected]="selectedProfile === 'entrepreneur'"
+                    (click)="selectProfile('entrepreneur', 'Entrepreneur')"
+                    (mouseenter)="onCardHover($event, true)"
+                    (mouseleave)="onCardHover($event, false)">
+                    <div class="profile-icon"><i class="fa-solid fa-user-tie" style="color: #50337e;"></i></div>
+                    <h3 class="profile-title">Entrepreneur</h3>
+                    <p class="profile-description">
+                    Découvrez les opportunités d'affaires, subventions et outils pour développer votre entreprise.
+                    </p>
+                    <div class="profile-features">
+                    <span class="feature-tag">Voir plus</span>
+                    </div>
+                </div>
+                  <div 
+                    class="profile-card col" 
+                    [class.selected]="selectedProfile === 'developer'"
+                    (click)="selectProfile('developer', 'Développeur')"
+                    (mouseenter)="onCardHover($event, true)"
+                    (mouseleave)="onCardHover($event, false)">
+                    <div class="profile-icon">💻</div>
+                    <h3 class="profile-title">Développeur</h3>
+                    <p class="profile-description">
+                    Accédez aux APIs, documentation technique et outils de développement pour vos projets.
+                    </p>
+                    <div class="profile-features">
+                    <span class="feature-tag">Voir plus</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div 
+                    class="profile-card col" 
+                    [class.selected]="selectedProfile === 'researcher'"
+                    (click)="selectProfile('researcher', 'Chercheur & Étudiant')"
+                    (mouseenter)="onCardHover($event, true)"
+                    (mouseleave)="onCardHover($event, false)">
+                    <div class="profile-icon">🎓</div>
+                    <h3 class="profile-title">Chercheur & Étudiant</h3>
+                    <p class="profile-description">
+                    Explorez les ressources académiques, données de recherche et opportunités de collaboration.
+                    </p>
+                    <div class="profile-features">
+                    <span class="feature-tag">Voir plus</span>
+                    </div>
+                </div>
+                
+                <div 
+                    class="profile-card col" 
+                    [class.selected]="selectedProfile === 'administration'"
+                    (click)="selectProfile('administration', 'Administration & Décideurs')"
+                    (mouseenter)="onCardHover($event, true)"
+                    (mouseleave)="onCardHover($event, false)">
+                    <div class="profile-icon">🏛️</div>
+                    <h3 class="profile-title">Administration & Décideurs</h3>
+                    <p class="profile-description">
+                    Consultez les tableaux de bord, analyses et outils d'aide à la décision stratégique.
+                    </p>
+                    <div class="profile-features">
+                    <span class="feature-tag">Voir plus</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

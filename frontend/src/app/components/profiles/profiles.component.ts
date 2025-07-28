@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { SidebarComponent } from "../../sidebars/sidebar/sidebar.component";
 
 
@@ -10,6 +10,8 @@ import { SidebarComponent } from "../../sidebars/sidebar/sidebar.component";
 })
 export class ProfilesComponent {
 
+  @ViewChild('voirplusmodal') model : ElementRef | undefined;
+ 
   /*  Variables de l'état du composant  */
   selectedProfile: string | null = null;
   selectedProfileTitle: string = '';
@@ -73,5 +75,36 @@ export class ProfilesComponent {
   get hasSelectedProfile(): boolean {
     return this.selectedProfile !== null;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  openPopup(){
+      if(this.model){
+        this.model.nativeElement.style.display = 'block';
+      }
+  } 
+
+  closePopup(){
+    if(this.model){
+      this.model.nativeElement.style.display='none';
+    }
+  }
+
+
+
+
+
 
 }

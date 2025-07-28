@@ -215,3 +215,11 @@
     padding: 2rem;
   }
 }
+
+
+
+
+/*   Pour le model  */
+.modal-content{
+  box-shadow: 5px 8px 15px #739CC0;
+}

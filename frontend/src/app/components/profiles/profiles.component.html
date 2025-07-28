@@ -14,7 +14,7 @@
             <div class="row">
                  <div 
                     class="profile-card col" 
-                    [class.selected]="selectedProfile === 'citizen'"
+                    [class.selected]="selectedProfile === 'Citoyen'"
                     (click)="selectProfile('citizen', 'Citoyen')"
                     (mouseenter)="onCardHover($event, true)"
                     (mouseleave)="onCardHover($event, false)">
@@ -24,7 +24,7 @@
                     Accédez aux services publics, informations citoyennes et participez à la vie démocratique locale.
                     </p>
                     <div class="profile-features">
-                    <span class="feature-tag">Voir plus</span>
+                    <span class="feature-tag" (click)="openPopup()">Voir plus</span>
                     </div>
                 </div>
                  <div 
@@ -39,7 +39,7 @@
                     Découvrez les opportunités d'affaires, subventions et outils pour développer votre entreprise.
                     </p>
                     <div class="profile-features">
-                    <span class="feature-tag">Voir plus</span>
+                    <span class="feature-tag" (click)="openPopup()">Voir plus</span>
                     </div>
                 </div>
                   <div 
@@ -54,7 +54,7 @@
                     Accédez aux APIs, documentation technique et outils de développement pour vos projets.
                     </p>
                     <div class="profile-features">
-                    <span class="feature-tag">Voir plus</span>
+                    <span class="feature-tag"  (click)="openPopup()">Voir plus</span>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                     Explorez les ressources académiques, données de recherche et opportunités de collaboration.
                     </p>
                     <div class="profile-features">
-                    <span class="feature-tag">Voir plus</span>
+                    <span class="feature-tag"  (click)="openPopup()">Voir plus</span>
                     </div>
                 </div>
                 
@@ -88,11 +88,31 @@
                     Consultez les tableaux de bord, analyses et outils d'aide à la décision stratégique.
                     </p>
                     <div class="profile-features">
-                    <span class="feature-tag">Voir plus</span>
+                    <span class="feature-tag"  (click)="openPopup()">Voir plus</span>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
+</div>
+
+
+
+<div class="modal " tabindex="-1" #voirplusmodal>
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{selectedProfileTitle}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closePopup()"></button>
+      </div>
+      <div class="modal-body">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio dignissimos alias autem magni neque, quam, adipisci quis earum hic illum quaerat eum tempora, repudiandae optio non pariatur quas. Tempora fugit nesciunt quaerat debitis? Aliquam minus quisquam ratione repudiandae quaerat, neque in harum quod dignissimos. Id suscipit cumque impedit sunt necessitatibus?</p>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closePopup()">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
 </div>

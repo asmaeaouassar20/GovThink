@@ -1,7 +1,7 @@
 package com.algostyle.backend.service;
 
 
-import com.algostyle.backend.model.dto.SignupRequest;
+import com.algostyle.backend.model.dto.auth.SignupRequest;
 import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

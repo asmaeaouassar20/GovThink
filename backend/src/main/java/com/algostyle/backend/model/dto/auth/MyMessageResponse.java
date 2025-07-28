@@ -1,4 +1,4 @@
-package com.algostyle.backend.model.dto;
+package com.algostyle.backend.model.dto.auth;
 
 public class MyMessageResponse {
     private String message;

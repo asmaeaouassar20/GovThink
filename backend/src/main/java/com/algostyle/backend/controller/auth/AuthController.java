@@ -1,17 +1,16 @@
 package com.algostyle.backend.controller.auth;
 
 
-import com.algostyle.backend.model.dto.JwtResponse;
-import com.algostyle.backend.model.dto.LoginRequest;
-import com.algostyle.backend.model.dto.MyMessageResponse;
-import com.algostyle.backend.model.dto.SignupRequest;
+import com.algostyle.backend.model.dto.auth.JwtResponse;
+import com.algostyle.backend.model.dto.auth.LoginRequest;
+import com.algostyle.backend.model.dto.auth.MyMessageResponse;
+import com.algostyle.backend.model.dto.auth.SignupRequest;
 import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.service.UserService;
 import com.algostyle.backend.utils.jwt.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;

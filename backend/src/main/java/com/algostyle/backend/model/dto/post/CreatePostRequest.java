@@ -1,0 +1,8 @@
+package com.algostyle.backend.model.dto.post;
+
+import jakarta.validation.constraints.NotBlank;
+
+public class CreatePostRequest {
+    @NotBlank(message = "Le contenu est obligatoire")
+    private String content;
+}

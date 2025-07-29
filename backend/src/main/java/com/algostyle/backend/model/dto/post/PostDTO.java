@@ -1,5 +1,7 @@
 package com.algostyle.backend.model.dto.post;
 
+import com.algostyle.backend.model.entity.Post;
+
 import java.time.LocalDateTime;
 
 public class PostDTO {
@@ -9,6 +11,16 @@ public class PostDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private int commentCount;
+
+
+    public PostDTO(Post post){
+        this.id=post.getId();
+        this.content=post.getContent();
+        this.authorName=post.getUser().getNom();
+        this.createdAt=post.getCreatedAt();
+        this.updatedAt=post.getUpdatedAt();
+        this.commentCount=post.getComments().size();
+    }
 
     public Long getId() {
         return id;

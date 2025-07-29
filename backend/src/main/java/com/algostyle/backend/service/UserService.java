@@ -4,11 +4,13 @@ package com.algostyle.backend.service;
 import com.algostyle.backend.model.dto.auth.SignupRequest;
 import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class UserService
 {
 

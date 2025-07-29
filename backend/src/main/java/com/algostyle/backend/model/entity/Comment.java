@@ -30,6 +30,13 @@ public class Comment {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+
+    public Comment(String content, User author, Post post){
+        this.content=content;
+        this.user=author;
+        this.post=post;
+    }
+
     public Long getId() {
         return id;
     }

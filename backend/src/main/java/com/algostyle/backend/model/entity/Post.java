@@ -32,6 +32,11 @@ public class Post {
     private List<Comment> comments=new ArrayList<>();
 
 
+    public Post(String content, User author){
+        this.content=content;
+        this.user=author;
+    }
+
     public Long getId() {
         return id;
     }

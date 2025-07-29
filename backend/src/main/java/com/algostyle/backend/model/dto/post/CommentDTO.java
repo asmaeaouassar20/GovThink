@@ -1,5 +1,7 @@
 package com.algostyle.backend.model.dto.post;
 
+import com.algostyle.backend.model.entity.Comment;
+
 import java.time.LocalDateTime;
 
 public class CommentDTO {
@@ -8,6 +10,14 @@ public class CommentDTO {
     private String authorName;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    public CommentDTO(Comment comment){
+        this.id=comment.getId();
+        this.content=comment.getContent();
+        this.authorName=comment.getUser().getNom();
+        this.createdAt=comment.getCreatedAt();
+        this.updatedAt=comment.getUpdatedAt();
+    }
 
     public Long getId() {
         return id;

@@ -7,6 +7,7 @@ import { DashboardComponent } from './components/dashboard/dashboard/dashboard.c
 import { TablesComponent } from './components/dashboard/dashboard/tables/tables.component';
 import { ChartsComponent } from './components/dashboard/dashboard/charts/charts.component';
 import { ProfilesComponent } from './components/profiles/profiles.component';
+import { PostsComponent } from './components/posts/posts.component';
 export const routes: Routes = [
 
     {path:'', redirectTo:'/home', pathMatch:'full'},
@@ -30,6 +31,7 @@ export const routes: Routes = [
         ]
     },
     { path : 'profiles' , component:ProfilesComponent},
+    { path:'posts' , component:PostsComponent},
 
 
     

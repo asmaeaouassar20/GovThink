@@ -24,7 +24,7 @@ export class SidebarComponent {
     { titre:'Catalogue des jeux de données', icon:'storage', lien:'/*'},
     { titre:'Profils utilisateurs ', icon:'people', lien:'/profiles'},
     { titre:'Assistant chatbot ', icon:'chat', lien:'/*'},
-    { titre:'Forum communautaire', icon:'forum', lien:'/*'},
+    { titre:'Forum communautaire', icon:'forum', lien:'/posts'},
     { titre:'Ressources et documentation', icon:'library_books', lien:'/*'},
     { titre:'Projets/analyses des utilisateurs', icon:'analytics', lien:'/*'},
     { titre:'À propos / Équipe / Contact', icon:'info', lien:'/*'},

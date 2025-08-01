@@ -31,7 +31,7 @@ public class PostService {
     private PostRepository postRepository;
 
     public List<PostDTO> getAllPosts(){
-        return postRepository.findAllWithUserOrderByCreayedAtDesc()
+        return postRepository.findAllByOrderByCreatedAtDesc()
                 .stream()
                 .map(PostDTO::new)
                 .collect(Collectors.toList());
@@ -62,7 +62,7 @@ public class PostService {
 
     public List<CommentDTO> getCommentsByPost(Long postId){
         Post post = postRepository.findById(postId).orElseThrow(()-> new RuntimeException("post avec id "+postId+" n'existe pas"));
-        return commentRepository.findByPostWithAuthorOrderByCreatedAtAsc(post)
+        return commentRepository.findByPostOrderByCreatedAtAsc(post)
                 .stream()
                 .map(CommentDTO::new)
                 .collect(Collectors.toList());

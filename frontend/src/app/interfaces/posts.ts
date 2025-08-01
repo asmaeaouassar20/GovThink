@@ -1,8 +1,9 @@
 export interface Post {
     id:number;
     content:string;
-    createdAt:Date;
-    updatedAt:Date;
+    authorName:string;
+    createdAt:string;
+    updatedAt:string;
     commentCount:number;
 }
 
@@ -10,8 +11,8 @@ export interface Comment {
     id:number;
     content:string;
     authorName:string;
-    createdAt:Date;
-    updatedAt:Date;
+    createdAt:string;
+    updatedAt:string;
 }
 
 export interface CreateCommentRequest{

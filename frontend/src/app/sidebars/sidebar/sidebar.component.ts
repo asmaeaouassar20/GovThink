@@ -26,7 +26,7 @@ export class SidebarComponent {
     { titre:'Assistant chatbot ', icon:'chat', lien:'/*'},
     { titre:'Forum communautaire', icon:'forum', lien:'/*'},
     { titre:'Ressources et documentation', icon:'library_books', lien:'/*'},
-    { titre:'Projets/analyses des utilisateurs', icon:'analytics', lien:'/*'},
+    { titre:'Projets/analyses des utilisateurs', icon:'analytics', lien:'/users-projects'},
     { titre:'À propos / Équipe / Contact', icon:'info', lien:'/*'},
     { titre:'Mentions légales / Politique de confidentialité', icon:'gavel', lien:'/*'},
     { titre:'profil', icon:'account_circle', lien:'/*'},

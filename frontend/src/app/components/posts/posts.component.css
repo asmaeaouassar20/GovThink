@@ -100,11 +100,18 @@
 }
 
 
+/* *** footer du poste *** */
+.nbr-reactions{
+    font-size: 15px;
+    padding:  5px !important;
+}
+
+
 
 /* *** icones du poste ***  */
 .icons i{
     font-size: 24px;
-    padding: 10px 20px 10px 0;
+    padding: 10px 38px 10px 0;
     cursor: pointer;
 }
 .icons i:hover{

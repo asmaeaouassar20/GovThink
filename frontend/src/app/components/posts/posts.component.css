@@ -120,16 +120,7 @@
 
 
 
-/* *** Buttons Modal :  bouton pour publier un poste  *** */
-.publish-btn{
-    background-color: #739CC0 ;
-    color: #fff;
-}
-.publish-btn:hover{
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #739CC0 ;
-}
+
 
 /* *** Title Modal  *** */
 .modal-title{

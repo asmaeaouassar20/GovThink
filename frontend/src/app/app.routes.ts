@@ -9,6 +9,7 @@ import { ChartsComponent } from './components/dashboard/dashboard/charts/charts.
 import { ProfilesComponent } from './components/profiles/profiles.component';
 import { UsersProjectsComponent } from './components/users-projects/users-projects.component';
 import { PostsComponent } from './components/posts/posts.component';
+import { AproposComponent } from './components/apropos/apropos.component';
 export const routes: Routes = [
 
     {path:'', redirectTo:'/home', pathMatch:'full'},
@@ -33,7 +34,8 @@ export const routes: Routes = [
     },
     { path : 'profiles' , component:ProfilesComponent},
     { path : 'users-projects', component:UsersProjectsComponent},
-    { path:'posts' , component:PostsComponent},
+    { path : 'posts' , component:PostsComponent},
+    { path : 'apropos', component:AproposComponent},
 
 
     

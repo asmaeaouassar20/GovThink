@@ -2,6 +2,9 @@ package com.algostyle.backend.model.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -15,13 +18,31 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+     @NotBlank(message = "L'email est obligatoire")
+     @Email(message = "Le format de l'email est invalide")
      @Column(unique = true)
     private String email;
 
+     @NotBlank(message = "Le mot de passe est obligatoire")
+     @Size(max = 6, message = "Le mot de passe doit contenir au moins 6 caractères")
+     @Column(nullable = false)
      private String password;
 
+     @Size(max = 100, message = "Le nom ne peut pas dépasser 100 caractères")
      private String nom;
-    private String prenom;
+
+     @Size(max = 100, message = "Le prenom ne peut pas dépasser 100 caractères")
+     private String prenom;
+
+
+     public User(){}
+
+    public User(Long id, String email, String nom, String prenom) {
+        this.id = id;
+        this.email = email;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
 
     @CreationTimestamp
     private LocalDateTime createdAt;

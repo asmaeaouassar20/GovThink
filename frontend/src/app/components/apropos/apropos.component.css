@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+AU+NSW:wght@100..400&display=swap');
+
+
+/*******  Pour le sidebar qu'on doit ajouter dans chaque composant *********/
+.result-container{
+    display: flex;
+    height: 100vh;
+}
+.conteneur{
+    width: calc(100vw - 320px);
+    margin-left: 320px;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 2rem;  
+}
+.sidebar{
+    width: 320px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+}
+
+/* sections de la page */
+.section-title{
+    margin: 3.5rem auto;
+}
+h1{
+    font-family: "Mozilla Headline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-variation-settings:"wdth" 100;
+    font-size: 1.8rem;
+    color: #739CC0;
+} 
+.section {
+    margin: 2.5rem auto;
+    padding: 1.5rem;
+    border-radius: 22px;
+    border-left:5px solid #739CC0 ; 
+    cursor: pointer; 
+    p{
+        font-family: "Playwrite AU NSW", cursive;
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+}
+.section:hover{
+    box-shadow: 5px 8px 12px #739CC0;
+}
+
+
+
+
+/* badges pour les profils concernés */
+.badge{
+    margin: 18px 8px;
+}

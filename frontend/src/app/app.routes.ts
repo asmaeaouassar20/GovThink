@@ -10,6 +10,7 @@ import { ProfilesComponent } from './components/profiles/profiles.component';
 import { UsersProjectsComponent } from './components/users-projects/users-projects.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { AproposComponent } from './components/apropos/apropos.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 export const routes: Routes = [
 
     {path:'', redirectTo:'/home', pathMatch:'full'},
@@ -36,6 +37,7 @@ export const routes: Routes = [
     { path : 'users-projects', component:UsersProjectsComponent},
     { path : 'posts' , component:PostsComponent},
     { path : 'apropos', component:AproposComponent},
+    { path : 'my-profile' , component:MyProfileComponent},
 
 
     

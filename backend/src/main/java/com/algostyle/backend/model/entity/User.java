@@ -24,7 +24,7 @@ public class User {
     private String email;
 
      @NotBlank(message = "Le mot de passe est obligatoire")
-     @Size(max = 6, message = "Le mot de passe doit contenir au moins 6 caractères")
+     @Size(min = 6, message = "Le mot de passe doit contenir au moins 6 caractères")
      @Column(nullable = false)
      private String password;
 
@@ -52,6 +52,11 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "id:"+id+" , nom:"+nom+" , prenom:"+prenom+" , email:"+email+" , createdAt:"+createdAt+" .\n";
+    }
 
     public Long getId() {
         return id;

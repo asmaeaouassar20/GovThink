@@ -42,7 +42,7 @@ public class ProfileController {
     ){
         try{
             UserProfileDTO updatedProfile = this.profileService.updateCurrentUserProfile(updateDTO);
-            return ResponseEntity.ok(ApiResponse.success("Utilisateur mis à jour avec succes",updatedProfile));
+            return ResponseEntity.ok(ApiResponse.success("Utilisateur mis à jour avec succès",updatedProfile));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiResponse.error("Erreur lors de la mise à jour de l'utilisateur "+e.getMessage()));
         }

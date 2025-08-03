@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProfileService {
 
 
@@ -27,12 +29,16 @@ public class ProfileService {
      * Met à jour l'utilisateur connecté
      */
     public UserProfileDTO updateCurrentUserProfile(UserProfileDTO userProfileDTO){
+
         User currentUser = getCurrentUser();
 
         // Vérifier si l'email n'est pas déjà utilisé par un autre utilisateur
         if(!currentUser.getEmail().equals(userProfileDTO.getEmail()) && userRepository.existsByEmailAndIdNot(userProfileDTO.getEmail(),currentUser.getId())){
             throw new RuntimeException("Cet email est déjà utilisé par un autre utilisateur");
         }
+
+        System.out.println("currentUser : "+currentUser);
+        System.out.println("userProfileDTO : "+userProfileDTO);
 
         // Mettre à jour les informations
         currentUser.setId(userProfileDTO.getId());
@@ -51,7 +57,6 @@ public class ProfileService {
 
     // Changer le mot de passe de l'utilisateur connecté
     public void changePassword(String currentPassword, String newPassword){
-
             User currentUser = getCurrentUser();
 
             // Vérifier l'ancien mot de passe
@@ -75,9 +80,8 @@ public class ProfileService {
     // récupérer l'utilisateur actuellement connecté
     private User getCurrentUser(){
         Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
-        System.out.println("email of current user : "+email);
-        return userRepository.findByEmail(email);
+        User user = (User) authentication.getPrincipal();
+        return user;
     }
 
 

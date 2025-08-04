@@ -101,7 +101,14 @@ public class ProfileService {
 
     public UserProfileDTO updateProfilePicture(MultipartFile file){
         User currentUser = getCurrentUser();
-        
+
+        try{
+            // Supprimer l'ancienne photo si elle existe
+            if(currentUser.getProfilePictureFilename()!=null){
+
+            }
+        }
+
     }
 
 

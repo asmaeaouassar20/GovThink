@@ -6,6 +6,10 @@ export interface UserProfile {
     bio : string;
 }
 
+export interface UpdateProfile {
+    
+}
+
 export interface ApiResponse<T>{
     success : boolean;
     message : string;

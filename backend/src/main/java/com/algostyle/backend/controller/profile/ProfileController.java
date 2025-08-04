@@ -2,6 +2,7 @@ package com.algostyle.backend.controller.profile;
 
 import com.algostyle.backend.model.dto.userprofile.ApiResponse;
 import com.algostyle.backend.model.dto.userprofile.ChangePasswordDTO;
+import com.algostyle.backend.model.dto.userprofile.UpdateProfileDTO;
 import com.algostyle.backend.model.dto.userprofile.UserProfileDTO;
 import com.algostyle.backend.service.ProfileService;
 import jakarta.validation.Valid;
@@ -24,6 +25,7 @@ public class ProfileController {
     @GetMapping
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<ApiResponse<UserProfileDTO>>  getCurrentProfile(){
+        System.out.println(profileService.getCurrentUserProfile());
         try{
             UserProfileDTO profile=profileService.getCurrentUserProfile();
             return ResponseEntity.ok(ApiResponse.success("profil récupéré avec succès",profile));
@@ -38,7 +40,7 @@ public class ProfileController {
     @PutMapping
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<ApiResponse<UserProfileDTO>> updateProfile(
-            @Valid @RequestBody UserProfileDTO updateDTO
+            @Valid @RequestBody UpdateProfileDTO updateDTO
     ){
         try{
             UserProfileDTO updatedProfile = this.profileService.updateCurrentUserProfile(updateDTO);
@@ -67,6 +69,9 @@ public class ProfileController {
         }catch (Exception e){
             return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
         }
-
     }
+
+
+
+
 }

@@ -6,6 +6,7 @@ public class UserProfileDTO {
     private String prenom;
     private String email;
 
+    private String bio;
 
     public UserProfileDTO(Long id, String nom, String prenom, String email) {
         this.id = id;
@@ -16,7 +17,7 @@ public class UserProfileDTO {
 
     @Override
     public String toString(){
-        return "id:"+id+" , nom:"+nom+" , prenom:"+prenom+" , email:"+email+" . \n";
+        return "id:"+id+" , nom:"+nom+" , prenom:"+prenom+" , email:"+email+" , bio:"+bio +" . \n";
     }
 
     public Long getId() {
@@ -51,4 +52,11 @@ public class UserProfileDTO {
         this.email = email;
     }
 
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 }

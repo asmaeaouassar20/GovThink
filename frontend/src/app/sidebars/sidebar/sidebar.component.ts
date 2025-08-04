@@ -27,7 +27,7 @@ export class SidebarComponent {
     { titre:'Forum communautaire', icon:'forum', lien:'/posts'},
     { titre:'Projets/analyses des utilisateurs', icon:'analytics', lien:'/users-projects'},
     { titre:'À propos ', icon:'info', lien:'/apropos'},
-    { titre:'profil', icon:'account_circle', lien:'/*'},
+    { titre:'profil', icon:'account_circle', lien:'/my-profile'},
     { titre:'déconnexion', icon:'logout', lien:'/*'} 
   ]
 

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -39,6 +39,19 @@ export class AuthService {
 
   isLoggedIn() : boolean {
     return !!this.getToken(); //pour convertir une valeur en boolean
+  }
+
+
+
+
+
+  // récupérer les headers d'authentification
+  getAuthHeaders() : HttpHeaders{
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+      'Content-Type' : 'application/json',
+      'Authorization' : token ? `Bearer ${token}` :''
+    });
   }
 
 

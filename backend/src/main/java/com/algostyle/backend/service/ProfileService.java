@@ -1,5 +1,6 @@
 package com.algostyle.backend.service;
 
+import com.algostyle.backend.model.dto.userprofile.UpdateProfileDTO;
 import com.algostyle.backend.model.dto.userprofile.UserProfileDTO;
 import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.repository.UserRepository;
@@ -8,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ProfileService {
@@ -28,23 +30,23 @@ public class ProfileService {
     /**
      * Met à jour l'utilisateur connecté
      */
-    public UserProfileDTO updateCurrentUserProfile(UserProfileDTO userProfileDTO){
+    public UserProfileDTO updateCurrentUserProfile(UpdateProfileDTO updateProfileDTO){
 
         User currentUser = getCurrentUser();
 
         // Vérifier si l'email n'est pas déjà utilisé par un autre utilisateur
-        if(!currentUser.getEmail().equals(userProfileDTO.getEmail()) && userRepository.existsByEmailAndIdNot(userProfileDTO.getEmail(),currentUser.getId())){
+        if(!currentUser.getEmail().equals(updateProfileDTO.getEmail()) && userRepository.existsByEmailAndIdNot(updateProfileDTO.getEmail(),currentUser.getId())){
             throw new RuntimeException("Cet email est déjà utilisé par un autre utilisateur");
         }
 
         System.out.println("currentUser : "+currentUser);
-        System.out.println("userProfileDTO : "+userProfileDTO);
+        System.out.println("userProfileDTO : "+updateProfileDTO);
 
         // Mettre à jour les informations
-        currentUser.setId(userProfileDTO.getId());
-        currentUser.setPrenom(userProfileDTO.getPrenom());
-        currentUser.setNom(userProfileDTO.getNom());
-        currentUser.setEmail(userProfileDTO.getEmail());
+        currentUser.setPrenom(updateProfileDTO.getPrenom());
+        currentUser.setNom(updateProfileDTO.getNom());
+        currentUser.setEmail(updateProfileDTO.getEmail());
+        currentUser.setBio(updateProfileDTO.getBio());
 
         User updatedUser = this.userRepository.save(currentUser);
         return convertToProfileDTO(updatedUser);
@@ -80,8 +82,7 @@ public class ProfileService {
     // récupérer l'utilisateur actuellement connecté
     private User getCurrentUser(){
         Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) authentication.getPrincipal();
-        return user;
+        return (User) authentication.getPrincipal();
     }
 
 
@@ -95,6 +96,14 @@ public class ProfileService {
                 user.getEmail()
         );
     }
+
+
+
+    public UserProfileDTO updateProfilePicture(MultipartFile file){
+        User currentUser = getCurrentUser();
+        
+    }
+
 
 }
 

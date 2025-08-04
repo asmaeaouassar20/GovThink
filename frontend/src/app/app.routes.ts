@@ -39,7 +39,6 @@ export const routes: Routes = [
     { path : 'apropos', component:AproposComponent},
     { path : 'my-profile' , component:MyProfileComponent},
 
-
     
     {path:'**', redirectTo:'/home'}
 

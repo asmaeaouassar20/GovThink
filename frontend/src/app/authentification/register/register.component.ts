@@ -16,6 +16,12 @@ export class RegisterComponent {
   message = '';
   error = '';
 
+  // Pour l'ajout de la photo de profil et de la biographie
+  isContentVisible = true;
+  showPopupPhotoProfil = false;
+  showPopupBiographie = false;
+
+
  
   constructor(private authService:AuthService,
             private router : Router

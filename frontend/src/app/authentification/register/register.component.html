@@ -8,7 +8,7 @@
       <h4 class="quote">Rejoignez la communauté de l'e-Gov Maroc </h4>
   </div>
 
-    <div class="form-container">
+    <div class="form-container" *ngIf="!showPopupBiographie && !showPopupPhotoProfil">
         <form class="form" (ngSubmit)="onSignup()" #signupForm="ngForm">
           <div class="form-group nomComplet">
             <div class="nom">
@@ -40,11 +40,38 @@
 
           <button [disabled]="!signupForm.valid" class="form-submit-btn btn btn-outline-light" type="submit">S'inscrire</button>
           <div *ngIf="error"> {{error}}</div>
+          
+
+          <div>
+              <button (click)="isContentVisible=!isContentVisible" class="btn-add-more my-1">{{isContentVisible? 'voir moins' : 'voir plus'}}</button>
+            <div class="voir-plus" *ngIf="isContentVisible">
+              <button (click)="showPopupPhotoProfil=true">Ajouter une photo de profil</button>
+              <button (click)="showPopupBiographie=true">Ajouter une biographie</button>
+            </div>
+          </div>
         </form>
       </div>
 
-      <div class="others mt-5">
+      <div class="others mt-5" *ngIf="!showPopupBiographie && !showPopupPhotoProfil">
         <button class="form-submit-btn btn btn-outline-light" type="submit">Se Connecter</button>
         <button class="form-submit-btn btn btn-outline-light" type="submit">S'inscrire avec Google</button>
       </div>
+     
+</div>
+
+
+
+
+<div class="add-photo" *ngIf="showPopupPhotoProfil">
+  <i class="fa-solid fa-xmark" style="color: #ffffff;" (click)="showPopupPhotoProfil=false"></i>
+  <input type="file" class="form-control">
+  <button>OK</button>
+</div>
+<div class="add-bio" *ngIf="showPopupBiographie">
+  <i class="fa-solid fa-xmark" style="color: #ffffff;" (click)="showPopupBiographie=false"></i>
+  <div class="form-floating">
+    <textarea class="form-control" placeholder="biographie" id="floatingTextarea" style="height: 150px;"></textarea>
+    <label for="floatingTextarea">écrire quelque chose à propos de vous ...</label>
+  </div>
+  <button>OK</button>
 </div>

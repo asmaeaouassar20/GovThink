@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+AU+QLD:wght@100..400&display=swap');
+
 .form-container{
   width: 45%;
 }
@@ -24,3 +26,58 @@
 
 
 
+
+/* bouton pour ajouter une photo de profil & biographie */
+.voir-plus{
+ display: flex;
+ justify-content: center;
+ align-items: start;
+ flex-direction: column;
+}
+.btn-add-more{
+  font-family: "Playwrite AU QLD", cursive;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  color: #739CC0 ;
+  letter-spacing: 2px;
+  font-size: 17px;
+}
+
+.voir-plus button{
+  text-decoration: underline;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.544);
+}
+.add-photo, .add-bio{
+  width: 30%;
+  background-color: #739CC0;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+  left: 35%;
+  box-shadow: 5px 8px 12px #739cc0d6;
+  input{
+    width: 80%;
+    margin: 3rem auto;
+    padding: 1rem;
+  }
+  button{
+    background-color: #304d66;
+    width: 20%;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 800;
+  }
+  i{
+    font-size: 38px;
+    position: absolute;
+    right: 8px;
+    cursor: pointer;
+  }
+}
+
+.add-bio .form-floating{
+  margin: 3rem 1.5rem 1.2rem 1.5rem;
+}

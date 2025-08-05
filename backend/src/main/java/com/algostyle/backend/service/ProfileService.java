@@ -20,9 +20,13 @@ public class ProfileService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private FileStorageService fileStorageService;
+
 
     public UserProfileDTO getCurrentUserProfile(){
         User user = getCurrentUser();
+        System.out.println("** current user **"+user);
         return convertToProfileDTO(user);
     }
 
@@ -93,23 +97,59 @@ public class ProfileService {
                 user.getId(),
                 user.getNom(),
                 user.getPrenom(),
-                user.getEmail()
+                user.getEmail(),
+                user.getBio(),
+                user.getProfilePictureUrl(),
+                user.getProfilePictureFilename()
         );
     }
 
 
 
+    // Chang la photo de profile
     public UserProfileDTO updateProfilePicture(MultipartFile file){
         User currentUser = getCurrentUser();
 
         try{
             // Supprimer l'ancienne photo si elle existe
             if(currentUser.getProfilePictureFilename()!=null){
-
+                fileStorageService.deleteProfilePicture(currentUser.getProfilePictureFilename());
             }
+
+            // Sauvegarder la nouvelle photo
+            String filePath = fileStorageService.saveProfilePicture(file);
+            String imageUrl = fileStorageService.createImageUrl(filePath);
+
+            // Mettre à jour l'utilisateur
+            currentUser.setProfilePictureFilename(filePath);
+            currentUser.setProfilePictureUrl(imageUrl);
+
+            User updatedUser = userRepository.save(currentUser);
+            return convertToProfileDTO(updatedUser);
+        }
+        catch (Exception e){
+            throw new RuntimeException("Erreur lors de l'upload : "+e.getMessage());
+        }
+    }
+
+
+
+    // Supprimer le photo de profil
+    public UserProfileDTO deleteProfilePicture() throws Exception{
+        User currentUser = getCurrentUser();
+
+        // Supprimer le fichier
+        if(currentUser.getProfilePictureFilename()!=null){
+            fileStorageService.deleteProfilePicture(currentUser.getProfilePictureFilename());
         }
 
+        // Mettre à jour l'utilisateur
+        currentUser.setProfilePictureFilename(null);
+        currentUser.setProfilePictureUrl(null);
+        User updatedUser = this.userRepository.save(currentUser);
+        return convertToProfileDTO(updatedUser);
     }
+
 
 
 }

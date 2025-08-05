@@ -1,5 +1,7 @@
 package com.algostyle.backend.model.dto.userprofile;
 
+import jakarta.persistence.Column;
+
 public class UserProfileDTO {
     private Long id;
     private String nom;
@@ -8,11 +10,18 @@ public class UserProfileDTO {
 
     private String bio;
 
-    public UserProfileDTO(Long id, String nom, String prenom, String email) {
+    private String profilePictureUrl;
+
+    private String profilePictureFilename;
+
+    public UserProfileDTO(Long id, String nom, String prenom, String email, String bio, String profilePictureUrl, String profilePictureFilename) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
+        this.bio = bio;
+        this.profilePictureUrl = profilePictureUrl;
+        this.profilePictureFilename = profilePictureFilename;
     }
 
     @Override
@@ -58,5 +67,21 @@ public class UserProfileDTO {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public String getProfilePictureUrl() {
+        return profilePictureUrl;
+    }
+
+    public void setProfilePictureUrl(String profilePictureUrl) {
+        this.profilePictureUrl = profilePictureUrl;
+    }
+
+    public String getProfilePictureFilename() {
+        return profilePictureFilename;
+    }
+
+    public void setProfilePictureFilename(String profilePictureFilename) {
+        this.profilePictureFilename = profilePictureFilename;
     }
 }

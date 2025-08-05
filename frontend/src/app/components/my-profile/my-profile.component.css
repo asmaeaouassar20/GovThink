@@ -55,7 +55,7 @@
             height: 100%;
             border-radius: 50%;
         }
-        i{
+        .edit-photo{
             position: absolute;
             top:50px;
             left: 220px;
@@ -63,6 +63,22 @@
             background-color:#739CC0;
             height: 40px;
             width : 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all .5s ease;
+        }
+        .delete-photo{
+            position: absolute;
+            top:90px;
+            left: 240px;
+            font-size: 15px;
+            background-color:#739CC0;
+            height: 30px;
+            width : 30px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -103,9 +119,14 @@
     }
 }
 
-.image i:hover {
+.image .edit-photo:hover {
     background-color: transparent !important;
     font-size: 27px !important;
+}
+.image .delete-photo:hover {
+    background-color: transparent !important;
+    color: red !important;
+    border: 2px solid #739CC0;
 }
 
 .profile-bio{

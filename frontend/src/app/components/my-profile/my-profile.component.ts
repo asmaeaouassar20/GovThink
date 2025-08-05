@@ -43,7 +43,6 @@ export class MyProfileComponent implements OnInit{
         if(response.success && response.data){
           this.userProfile=response.data;
           this.populateProfieForm();
-          console.log(this.userProfile);
         }else{
           this.errorMessage = response.message || 'Erreur lors du chargement du profil';
         }

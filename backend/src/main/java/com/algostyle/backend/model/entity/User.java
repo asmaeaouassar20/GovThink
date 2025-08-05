@@ -44,15 +44,6 @@ public class User {
     private String profilePictureFilename;
 
 
-     public User(){}
-
-    public User(Long id, String email, String nom, String prenom) {
-        this.id = id;
-        this.email = email;
-        this.nom = nom;
-        this.prenom = prenom;
-    }
-
     @CreationTimestamp
     private LocalDateTime createdAt;
 
@@ -65,9 +56,23 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
+
+    public User(Long id, String email, String password, String nom, String prenom, String bio, String profilePictureUrl, String profilePictureFilename, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.bio = bio;
+        this.profilePictureUrl = profilePictureUrl;
+        this.profilePictureFilename = profilePictureFilename;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
-        return "id:"+id+" , nom:"+nom+" , prenom:"+prenom+" , email:"+email+" , createdAt:"+createdAt+" .\n";
+        return "id:"+id+" , nom:"+nom+" , prenom:"+prenom+" , email:"+email+" , createdAt:"+createdAt+" , bio:"+bio+" .\n";
     }
 
 
@@ -177,4 +182,5 @@ public class User {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
+
 }

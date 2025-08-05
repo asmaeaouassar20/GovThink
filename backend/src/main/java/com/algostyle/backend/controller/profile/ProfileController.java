@@ -25,7 +25,6 @@ public class ProfileController {
     @GetMapping
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<ApiResponse<UserProfileDTO>>  getCurrentProfile(){
-        System.out.println(profileService.getCurrentUserProfile());
         try{
             UserProfileDTO profile=profileService.getCurrentUserProfile();
             return ResponseEntity.ok(ApiResponse.success("profil récupéré avec succès",profile));
@@ -68,6 +67,20 @@ public class ProfileController {
             return ResponseEntity.ok(ApiResponse.success("Mot de passe changé avec succès",null));
         }catch (Exception e){
             return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        }
+    }
+
+
+
+    @DeleteMapping("/picture")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity< ApiResponse<UserProfileDTO> > deleteProfilePicture(){
+        try{
+            UserProfileDTO updatedUserProfileDTO = this.profileService.deleteProfilePicture();
+            return ResponseEntity.ok(ApiResponse.success("Photo supprimé avec succès",updatedUserProfileDTO));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponse.error("Erreur lors de la suppression : "+e.getMessage()));
         }
     }
 

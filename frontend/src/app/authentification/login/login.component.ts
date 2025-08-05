@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [NgIf,FormsModule],
+  imports: [NgIf,FormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

@@ -4,6 +4,8 @@ import { DatePipe, NgIf } from '@angular/common';
 import { ProfileService } from '../../service/profile.service';
 import { UpdateProfile, UserProfile } from '../../interfaces/profile';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-profile',
@@ -30,9 +32,15 @@ export class MyProfileComponent implements OnInit{
   photoProfilUrl='';
 
 
+  // Concernant le changement de l'email : si l'utilisateur a changé son eamil on oblige la reconnexion
+  emailBefore='';
 
 
-  constructor(private profileService : ProfileService, private formBuilder : FormBuilder){
+
+  constructor(private profileService : ProfileService, 
+            private formBuilder : FormBuilder,
+            private router : Router
+          ){
     this.profileForm=this.createProfileForm();
   }
 
@@ -51,6 +59,7 @@ export class MyProfileComponent implements OnInit{
           this.userProfile=response.data;
           this.photoProfilUrl=`http://localhost:8080${this.userProfile.profilePictureUrl}`;
           this.populateProfieForm();
+          this.emailBefore=response.data.email;
         }else{
           this.errorMessage = response.message || 'Erreur lors du chargement du profil';
         }
@@ -79,6 +88,7 @@ export class MyProfileComponent implements OnInit{
 
   // Activer le mode édition du profile
   startEditingProfile() : void {
+    this.loadUserProfile();
     this.isEditingProfile=true;
   }
 
@@ -111,8 +121,11 @@ export class MyProfileComponent implements OnInit{
       next : (response)=>{
         if(response.success && response.data){
           this.userProfile=response.data;
-          this.isEditingProfile=false;
           this.successMessage = 'Profil mis à jour avec succès';
+           if(this.userProfile.email!=this.emailBefore){
+            alert('Reconnexion nécessaire ...')
+            this.router.navigate(['/login']);
+            }
         }else{
           this.errorMessage = response.message || 'Erreur lors de la mise à jour du profil';
         }
@@ -148,11 +161,12 @@ export class MyProfileComponent implements OnInit{
 
 
   saveChanges(){
-    console.log("save changes");
     if(this.photoProfilUrl==''){
       this.deleteProfilePicture();
     }
    this.changeProfileinfos();
+   this.loadUserProfile();
+   this.isEditingProfile=false;
   }
 
 }

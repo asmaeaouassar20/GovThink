@@ -44,10 +44,10 @@
         </div>
 
         <div *ngIf="isEditingProfile" >
-            <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+            <form [formGroup]="profileForm" >
                                <div>
-                <button class="edit-btn">
-                    <i class="fa-solid fa-check me-2" style="color: #7ca2ca;"></i>
+                <button class="edit-btn" (click)="saveChanges()">
+                    <i class="fa-solid fa-check me-2" style="color: #7ca2ca;" ></i>
                     Enregistrer
                 </button>
                 <button class="cancel-btn ms-3" (click)="cancelEditingProfile()">
@@ -60,13 +60,12 @@
                 <div class="image">
                     <img [src]="photoProfilUrl" alt="phot de profil personnelle">
                     <i class="fa-solid fa-pencil me-2 edit-photo" (click)="fileInput.click()"></i>
-                    <i class="fa-solid fa-trash delete-photo" style="color: #b86556; "></i>
+                    <i class="fa-solid fa-trash delete-photo" style="color: #b86556; " (click)="deleteProfilePictureLocaly()"></i>
                 </div>
 
                 <input type="file" 
                         #fileInput
                         accept="image/*"
-                        (change)="onFileSelected($event)"
                         style="display: none;"
                 >
 

@@ -36,6 +36,21 @@ export class ProfileService {
   }
 
 
+
+
+
+
+  // Supprimer la photo de profil
+  deleteProfilPicture() : Observable<ApiResponse<UserProfile>>{
+    return this.http.delete<ApiResponse<UserProfile>>(`${this.apiUrl}/picture`, {
+      headers : this.authService.getAuthHeaders()
+    });
+  }
+
+
+
+
+
   
 
 }

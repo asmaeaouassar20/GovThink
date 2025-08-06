@@ -86,6 +86,7 @@ export class MyProfileComponent implements OnInit{
   // Annuler l'édition du profil
   cancelEditingProfile() : void{
     this.isEditingProfile=false;
+    this.loadUserProfile();
   }
 
 
@@ -103,7 +104,7 @@ export class MyProfileComponent implements OnInit{
 
 
   // Sauvegarder le profil
-  saveProfile() : void {
+  changeProfileinfos() : void {
     const updatedata : UpdateProfile = this.profileForm.value;
     
     this.profileService.updateProfile(updatedata).subscribe({
@@ -123,8 +124,35 @@ export class MyProfileComponent implements OnInit{
     })
   }
 
-  onFileSelected(event: Event){
-    console.log(event)
+
+  deleteProfilePicture(){
+    this.profileService.deleteProfilPicture().subscribe({
+      next: (res)=>{
+        this.successMessage='Photo de profil mis à jour avec succès';
+        this.loadUserProfile();
+      },
+
+      error: (erreur) =>{
+        this.errorMessage = 'Erreur lors de la suppression de la photo de profil';
+      }
+    })
+  }
+
+  deleteProfilePictureLocaly(){
+    this.userProfile.profilePictureUrl='';
+    this.photoProfilUrl='';
+    console.log("delete profil picture")
+  }
+
+
+
+
+  saveChanges(){
+    console.log("save changes");
+    if(this.photoProfilUrl==''){
+      this.deleteProfilePicture();
+    }
+   this.changeProfileinfos();
   }
 
 }

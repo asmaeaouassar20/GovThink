@@ -4,6 +4,7 @@ import com.algostyle.backend.model.dto.userprofile.UpdateProfileDTO;
 import com.algostyle.backend.model.dto.userprofile.UserProfileDTO;
 import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.repository.UserRepository;
+import com.algostyle.backend.utils.auth.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,8 +27,8 @@ public class ProfileService {
 
     public UserProfileDTO getCurrentUserProfile(){
         User user = getCurrentUser();
-        System.out.println("** current user **"+user);
-        return convertToProfileDTO(user);
+        System.out.println("** current user **  :  "+user);
+        return UserUtil.convertToProfileDTO(user);
     }
 
 
@@ -53,7 +54,7 @@ public class ProfileService {
         currentUser.setBio(updateProfileDTO.getBio());
 
         User updatedUser = this.userRepository.save(currentUser);
-        return convertToProfileDTO(updatedUser);
+        return UserUtil.convertToProfileDTO(updatedUser);
     }
 
 
@@ -91,18 +92,6 @@ public class ProfileService {
 
 
 
-    // Convertir une entité User en userProfileDTO
-    private UserProfileDTO convertToProfileDTO(User user){
-        return new UserProfileDTO(
-                user.getId(),
-                user.getNom(),
-                user.getPrenom(),
-                user.getEmail(),
-                user.getBio(),
-                user.getProfilePictureUrl(),
-                user.getProfilePictureFilename()
-        );
-    }
 
 
 
@@ -125,7 +114,7 @@ public class ProfileService {
             currentUser.setProfilePictureUrl(imageUrl);
 
             User updatedUser = userRepository.save(currentUser);
-            return convertToProfileDTO(updatedUser);
+            return UserUtil.convertToProfileDTO(updatedUser);
         }
         catch (Exception e){
             throw new RuntimeException("Erreur lors de l'upload : "+e.getMessage());
@@ -147,7 +136,7 @@ public class ProfileService {
         currentUser.setProfilePictureFilename(null);
         currentUser.setProfilePictureUrl(null);
         User updatedUser = this.userRepository.save(currentUser);
-        return convertToProfileDTO(updatedUser);
+        return UserUtil.convertToProfileDTO(updatedUser);
     }
 
 

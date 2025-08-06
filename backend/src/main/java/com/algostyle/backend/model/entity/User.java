@@ -57,7 +57,10 @@ public class User {
     private List<Comment> comments = new ArrayList<>();
 
 
-    public User(Long id, String email, String password, String nom, String prenom, String bio, String profilePictureUrl, String profilePictureFilename, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public User() {
+    }
+
+    public User(Long id, String email, String password, String nom, String prenom, String bio, String profilePictureUrl, String profilePictureFilename) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -66,13 +69,13 @@ public class User {
         this.bio = bio;
         this.profilePictureUrl = profilePictureUrl;
         this.profilePictureFilename = profilePictureFilename;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
     @Override
     public String toString() {
-        return "id:"+id+" , nom:"+nom+" , prenom:"+prenom+" , email:"+email+" , createdAt:"+createdAt+" , bio:"+bio+" .\n";
+        return "id:"+id+" , nom:"+nom+" , prenom:"+prenom+" , email:"+email+" , createdAt:"+createdAt+" , bio:"+bio+" , profilePictureUrl:"+profilePictureUrl + " , profilePictureFilename:"+profilePictureFilename+" .\n";
     }
 
 
@@ -182,5 +185,6 @@ public class User {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
+
 
 }

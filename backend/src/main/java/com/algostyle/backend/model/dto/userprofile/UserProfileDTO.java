@@ -1,6 +1,10 @@
 package com.algostyle.backend.model.dto.userprofile;
 
 import jakarta.persistence.Column;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 public class UserProfileDTO {
     private Long id;
@@ -14,6 +18,10 @@ public class UserProfileDTO {
 
     private String profilePictureFilename;
 
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
     public UserProfileDTO(Long id, String nom, String prenom, String email, String bio, String profilePictureUrl, String profilePictureFilename) {
         this.id = id;
         this.nom = nom;
@@ -22,6 +30,8 @@ public class UserProfileDTO {
         this.bio = bio;
         this.profilePictureUrl = profilePictureUrl;
         this.profilePictureFilename = profilePictureFilename;
+        this.createdAt=LocalDateTime.now();
+        this.updatedAt=LocalDateTime.now();
     }
 
     @Override
@@ -83,5 +93,21 @@ public class UserProfileDTO {
 
     public void setProfilePictureFilename(String profilePictureFilename) {
         this.profilePictureFilename = profilePictureFilename;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

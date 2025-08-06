@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
@@ -50,6 +51,9 @@ public class ProfileController {
     }
 
 
+
+
+
     // Change le mot de passe de l'utilisateur connecté
     @PostMapping("/change-password")
     @PreAuthorize("isAuthenticated()")
@@ -69,6 +73,24 @@ public class ProfileController {
             return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
         }
     }
+
+
+
+
+
+
+    @PostMapping("/picture")
+    public ResponseEntity<ApiResponse<UserProfileDTO>> uploadProfilePicture(@RequestParam("file") MultipartFile file){
+        try{
+            UserProfileDTO updatedProfile = profileService.updateProfilePicture(file);
+            return ResponseEntity.ok(ApiResponse.success("Photo mise à jour avec succès",updatedProfile));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        }
+    }
+
+
+
 
 
 

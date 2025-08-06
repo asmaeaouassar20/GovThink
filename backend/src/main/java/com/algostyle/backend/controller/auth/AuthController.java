@@ -5,13 +5,19 @@ import com.algostyle.backend.model.dto.auth.JwtResponse;
 import com.algostyle.backend.model.dto.auth.LoginRequest;
 import com.algostyle.backend.model.dto.auth.MyMessageResponse;
 import com.algostyle.backend.model.dto.auth.SignupRequest;
+import com.algostyle.backend.model.dto.userprofile.ApiResponse;
+import com.algostyle.backend.model.dto.userprofile.UserProfileDTO;
 import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.service.UserService;
 import com.algostyle.backend.utils.jwt.JwtUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,16 +38,24 @@ public class AuthController {
 
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody SignupRequest request){
+    public ResponseEntity<?> signup(
+            @RequestParam("userData") String userDataJson,
+            @RequestParam(value = "profilePicture", required = false)MultipartFile profilePicture
+            ){
 
-        // Vérifier si l'email existe déjà
-        if(userService.existsByEmail(request.getEmail())){
-            return ResponseEntity.badRequest().body("Email déjà utilisé");
-        }
+       try{
+           // convertir le JSON en objet
+           ObjectMapper mapper=new ObjectMapper();
 
-        User user=userService.createUser(request);
+           SignupRequest signupRequest=mapper.readValue(userDataJson, SignupRequest.class);
 
-        return ResponseEntity.ok(new MyMessageResponse("Utilisateur créé avec succès"));
+           UserProfileDTO newUser = userService.createUser(signupRequest, profilePicture);
+           return ResponseEntity.ok(ApiResponse.success("Inscripiton réussie",newUser));
+       }catch (RuntimeException e){
+           return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+       }catch (Exception e){
+           return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiResponse.error("Erreur lors de linscription"));
+       }
     }
 
 

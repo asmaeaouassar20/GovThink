@@ -4,6 +4,9 @@ export interface UserProfile {
     prenom : string;
     email : string;
     bio : string;
+    profilePictureUrl : string;
+    createdAt : Date;
+    updatedAt : Date;
 }
 
 export interface UpdateProfile {

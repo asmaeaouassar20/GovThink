@@ -12,7 +12,7 @@ import { NgIf } from '@angular/common';
 })
 export class RegisterComponent {
 
-  userData = { nom:'', prenom:'', email:'', password:'' };
+  userData = { nom:'', prenom:'', email:'', password:'' , bio:''};
   message = '';
   error = '';
 
@@ -21,6 +21,8 @@ export class RegisterComponent {
   showPopupPhotoProfil = false;
   showPopupBiographie = false;
 
+  selectedPhoto : File | null = null; // la photo de profil séléctionné
+
 
  
   constructor(private authService:AuthService,
@@ -28,7 +30,16 @@ export class RegisterComponent {
   ){}
 
   onSignup() : void {
-    this.authService.signup(this.userData).subscribe({
+    const formData = new FormData();
+
+    // Ajouter les données utilisateur sous forme de chaîne JSON
+    formData.append('userData',JSON.stringify(this.userData));
+
+    if(this.selectedPhoto){
+      formData.append('profilePicture', this.selectedPhoto);
+    }
+
+    this.authService.signup(formData).subscribe({
       next : (response) =>{
         this.message = 'Inscription réussie';
         setTimeout( ()=> this.router.navigate(['/login']), 1500);
@@ -37,6 +48,18 @@ export class RegisterComponent {
         this.error = 'Erreur lors de l\'inscription';
       }
     })
+  }
+
+
+
+  onFileSelected(event : any){
+    this.selectedPhoto=event.target.files[0];
+  }
+  validateImage(){
+    this.showPopupPhotoProfil=false;
+  }
+  validateBio(){
+    this.showPopupBiographie=false;
   }
 
 } 

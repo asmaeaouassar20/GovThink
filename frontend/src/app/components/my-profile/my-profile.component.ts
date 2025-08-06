@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from "../../sidebars/sidebar/sidebar.component";
-import { NgIf } from '@angular/common';
+import { DatePipe, NgIf } from '@angular/common';
 import { ProfileService } from '../../service/profile.service';
 import { UpdateProfile, UserProfile } from '../../interfaces/profile';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-my-profile',
-  imports: [SidebarComponent, NgIf, ReactiveFormsModule],
+  imports: [SidebarComponent, NgIf, ReactiveFormsModule, DatePipe],
   templateUrl: './my-profile.component.html',
   styleUrl: './my-profile.component.css'
 })
@@ -24,6 +24,13 @@ export class MyProfileComponent implements OnInit{
   // Message
   errorMessage = '';
   successMessage = '';
+
+
+  // Pour l'affichage de la photo de profil
+  photoProfilUrl='';
+
+
+
 
   constructor(private profileService : ProfileService, private formBuilder : FormBuilder){
     this.profileForm=this.createProfileForm();
@@ -42,6 +49,7 @@ export class MyProfileComponent implements OnInit{
       next : (response) =>{
         if(response.success && response.data){
           this.userProfile=response.data;
+          this.photoProfilUrl=`http://localhost:8080${this.userProfile.profilePictureUrl}`;
           this.populateProfieForm();
         }else{
           this.errorMessage = response.message || 'Erreur lors du chargement du profil';

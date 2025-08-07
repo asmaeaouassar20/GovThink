@@ -147,3 +147,47 @@
     color: #000;
     border: 1px solid #739CC0 ;
 }
+
+
+
+
+
+/* l'icone qui permet de retourner à l'acceuil */
+.back-home{
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #6a788d;
+  transition: all .3s ease;
+  .home-icon{
+    font-size: 1.7rem;
+    transition: all .3s ease;
+  }
+  .hover-text{
+    opacity: 0;
+    margin-left: 0;
+    overflow: hidden;
+    transition: all .3s ease;
+    font-size: 1rem;
+     color: #719dc2;
+     font-weight: 900;
+  }
+  &:hover{
+    background-color: rgba(113, 157, 194, 0.1);
+
+    .home-icon{
+      color: #719dc2;
+    }
+    .hover-text{
+      opacity: 1;
+      width: auto;
+      margin-left: 10px;
+    }
+  }
+}
+

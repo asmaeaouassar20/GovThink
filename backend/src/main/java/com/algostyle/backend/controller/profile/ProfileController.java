@@ -86,15 +86,9 @@ public class ProfileController {
             @RequestParam("file") MultipartFile file,
             HttpServletRequest request) {
 
-        // Debug des headers
-        System.out.println("=== HEADERS REÇUS ===");
-        request.getHeaderNames().asIterator().forEachRemaining(headerName -> {
-            System.out.println(headerName + ": " + request.getHeader(headerName));
-        });
 
         // Vérifier spécifiquement l'Authorization header
         String authHeader = request.getHeader("Authorization");
-        System.out.println("Authorization header: " + authHeader);
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             System.out.println("ERREUR: Header Authorization manquant ou mal formaté");

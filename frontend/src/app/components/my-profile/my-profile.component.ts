@@ -216,9 +216,7 @@ export class MyProfileComponent implements OnInit{
 
 
 
-  saveChanges(): void {
-    console.log('Début de saveChanges()');
-    
+  saveChanges(): void {    
     // Reset des messages
     this.errorMessage = '';
     this.successMessage = '';

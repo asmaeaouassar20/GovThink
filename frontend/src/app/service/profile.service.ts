@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { ApiResponse, ChangePassword, UpdateProfile, UserProfile } from '../interfaces/profile';
 import { AuthService } from './auth.service';
 
@@ -49,6 +49,30 @@ export class ProfileService {
 
 
 
+
+  // mettre à jour la photo de profil
+  uploadProfilePicture(formData: FormData): Observable<ApiResponse<UserProfile>> {
+   
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+      alert('Token manquant - Veuillez vous reconnecter');
+      window.location.href = '/login';
+      return throwError(() => new Error('Token manquant'));
+    }
+    
+    const headers = new HttpHeaders();
+    headers.set('Authorization', `Bearer ${token}`);
+    
+    // créer un nouvel objet HttpHeaders
+    const authHeaders = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    
+    return this.http.post<ApiResponse<UserProfile>>(`${this.apiUrl}/picture`, formData, { 
+      headers: authHeaders 
+    });
+  }
 
 
   

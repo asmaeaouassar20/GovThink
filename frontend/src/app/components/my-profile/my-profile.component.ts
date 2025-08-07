@@ -6,6 +6,7 @@ import { UpdateProfile, UserProfile } from '../../interfaces/profile';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../service/auth.service';
 import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-my-profile',
@@ -30,10 +31,14 @@ export class MyProfileComponent implements OnInit{
 
   // Pour l'affichage de la photo de profil
   photoProfilUrl='';
+  previewPhotoUrl : string | null = null; //Nouvelle propriété pour prévisualier la photo
 
 
   // Concernant le changement de l'email : si l'utilisateur a changé son eamil on oblige la reconnexion
   emailBefore='';
+
+  // La photo sélectionnée
+  selectedFile : File | null = null;
 
 
 
@@ -60,6 +65,8 @@ export class MyProfileComponent implements OnInit{
           this.photoProfilUrl=`http://localhost:8080${this.userProfile.profilePictureUrl}`;
           this.populateProfieForm();
           this.emailBefore=response.data.email;
+          this.previewPhotoUrl=null;
+          this.selectedFile=null;
         }else{
           this.errorMessage = response.message || 'Erreur lors du chargement du profil';
         }
@@ -158,15 +165,101 @@ export class MyProfileComponent implements OnInit{
   }
 
 
-
-
-  saveChanges(){
-    if(this.photoProfilUrl==''){
-      this.deleteProfilePicture();
+  
+  // Méthode corrigée pour uploader la photo de profil
+  uploadProfilePicture(): Observable<any> {
+    if (!this.selectedFile) {
+      return of(null);
     }
-   this.changeProfileinfos();
-   this.loadUserProfile();
-   this.isEditingProfile=false;
+
+    // Créer le FormData correctement
+    const formData = new FormData();
+    formData.append('file', this.selectedFile, this.selectedFile.name);
+
+    return this.profileService.uploadProfilePicture(formData);
   }
+
+  // Méthode pour la sélection de fichier
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      
+      
+      // Vérifier le type de fichier
+      if (file.type.startsWith('image/')) {
+        // Vérifier la taille du fichier (par exemple, max 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+          this.errorMessage = 'Le fichier est trop volumineux (max 5MB)';
+          this.selectedFile = null;
+          return;
+        }
+
+        this.selectedFile = file;
+        
+        // Créer une URL de prévisualisation
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.previewPhotoUrl = e.target?.result as string;
+          this.photoProfilUrl = this.previewPhotoUrl;
+        };
+        reader.readAsDataURL(file);
+        
+        // Effacer les messages d'erreur
+        this.errorMessage = '';
+      } else {
+        this.errorMessage = 'Veuillez sélectionner un fichier image valide (JPG, PNG, GIF, etc.)';
+        this.selectedFile = null;
+      }
+    }
+  }
+
+
+
+  saveChanges(): void {
+    console.log('Début de saveChanges()');
+    
+    // Reset des messages
+    this.errorMessage = '';
+    this.successMessage = '';
+    
+    // Si une nouvelle photo a été sélectionnée, l'uploader d'abord
+    if (this.selectedFile) {
+      this.uploadProfilePicture().subscribe({
+        next: (response) => {
+          if (response && response.success) {
+            this.successMessage = 'Photo mise à jour avec succès';
+            this.selectedFile = null;
+            this.previewPhotoUrl = null;
+            // Après l'upload de la photo, mettre à jour les autres infos
+            this.changeProfileinfos();
+          } else {
+            this.errorMessage = response?.message || 'Erreur lors de l\'upload de la photo';
+          }
+        },
+        error: (error) => {
+        }
+      });
+    } else {
+      // Si pas de nouvelle photo, vérifier si on doit supprimer la photo existante
+      if (this.photoProfilUrl === '') {
+        this.deleteProfilePicture();
+      }
+      // Mettre à jour les autres informations
+      this.changeProfileinfos();
+    }
+
+    this.isEditingProfile = false;
+    // Recharger le profil à la fin
+    setTimeout(() => this.loadUserProfile(), 1000);
+  }
+
+
+
+
+  
+
+
+  
 
 }

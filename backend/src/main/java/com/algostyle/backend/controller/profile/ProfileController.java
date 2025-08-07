@@ -5,6 +5,7 @@ import com.algostyle.backend.model.dto.userprofile.ChangePasswordDTO;
 import com.algostyle.backend.model.dto.userprofile.UpdateProfileDTO;
 import com.algostyle.backend.model.dto.userprofile.UserProfileDTO;
 import com.algostyle.backend.service.ProfileService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -80,7 +81,25 @@ public class ProfileController {
 
 
     @PostMapping("/picture")
-    public ResponseEntity<ApiResponse<UserProfileDTO>> uploadProfilePicture(@RequestParam("file") MultipartFile file){
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<ApiResponse<UserProfileDTO>> uploadProfilePicture(
+            @RequestParam("file") MultipartFile file,
+            HttpServletRequest request) {
+
+        // Debug des headers
+        System.out.println("=== HEADERS REÇUS ===");
+        request.getHeaderNames().asIterator().forEachRemaining(headerName -> {
+            System.out.println(headerName + ": " + request.getHeader(headerName));
+        });
+
+        // Vérifier spécifiquement l'Authorization header
+        String authHeader = request.getHeader("Authorization");
+        System.out.println("Authorization header: " + authHeader);
+
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            System.out.println("ERREUR: Header Authorization manquant ou mal formaté");
+            return ResponseEntity.status(401).body(ApiResponse.error("Token manquant"));
+        }
         try{
             UserProfileDTO updatedProfile = profileService.updateProfilePicture(file);
             return ResponseEntity.ok(ApiResponse.success("Photo mise à jour avec succès",updatedProfile));

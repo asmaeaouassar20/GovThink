@@ -83,3 +83,30 @@
         margin-right: 8px;
     }
 }
+
+
+
+/* Le formulaire qui permet d'ajouter un nouveau projet  */
+.form-add-new-project{
+    width: 80%;
+    position: absolute;
+    top : 17%;
+    left: 12%;
+    box-shadow: 5px 10px 20px #486177;
+    border-radius: 15px;
+    padding: 40px 25px;
+    z-index:2;
+    background: #739CC0;
+    .entete{
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
+    }
+    .btn-close{
+        background-color: rgb(255, 255, 255);
+        font-size: 1.4rem;
+    }
+    .fa-plus{
+        font-weight:900 !important;
+    }
+}

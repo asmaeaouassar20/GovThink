@@ -1,6 +1,8 @@
 export interface Project {
-    imageUrl : string;
-    titre : string;
-    description : string;
-    projetLien : string;
+    id? : number;
+    titre : string; // obligatoire
+    description : string;  // obligatoire
+    imageUrl ? : string;    // optionnel
+    lienProjet : string;    // obligatoire
+    fileUrl ? : string;     // optionnel
 }

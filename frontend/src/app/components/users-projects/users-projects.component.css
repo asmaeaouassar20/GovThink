@@ -75,12 +75,11 @@
 
 /* les boutons des actions qu'on peut effectuer pour l'ajout d'un projet */
 .actions-btn{
-    display: flex;
-    button{
-        border: 1px solid #739CC0;
-        padding: 4px 12px;
-        border-radius: 15px;
-        margin-right: 8px;
+    .action-btn{
+        margin-top: 10px;
+        label{
+            font-size: 14px;
+        }
     }
 }
 
@@ -90,7 +89,7 @@
 .form-add-new-project{
     width: 80%;
     position: absolute;
-    top : 17%;
+    top : 16%;
     left: 12%;
     box-shadow: 5px 10px 20px #486177;
     border-radius: 15px;
@@ -109,4 +108,8 @@
     .fa-plus{
         font-weight:900 !important;
     }
+}
+.erreur{
+    color: rgba(255, 0, 0, 0.736);
+    font-style: italic;
 }

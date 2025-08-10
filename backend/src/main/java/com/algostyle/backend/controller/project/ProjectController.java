@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/projects")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProjectController {
     @Autowired
     private ProjectService projectService;
@@ -21,10 +21,7 @@ public class ProjectController {
         return this.projectService.findAll();
     }
 
-    @PostMapping
-    public Project createProject(@RequestBody Project project){
-        return  this.projectService.save(project);
-    }
+
 
     @PostMapping("/upload")
     public Project createProjectsWithFiles(
@@ -33,6 +30,10 @@ public class ProjectController {
             @RequestParam(value = "image", required = false) MultipartFile image
             ){
         try{
+            System.out.println(projetJson);
+            System.out.println(file.getName());
+            System.out.println(image.getName());
+
             ObjectMapper mapper=new ObjectMapper();
             Project project=mapper.readValue(projetJson,Project.class);
             return projectService.saveProjectWithFiles(project,file,image);

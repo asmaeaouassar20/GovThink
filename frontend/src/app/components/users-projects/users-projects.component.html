@@ -26,14 +26,16 @@
         </button>
 
         <div class="row my-4">
-            <div class="card col-12 col-md-6 col-lg-4 col-xl-3 m-2" style="width: 18rem;">
-            <img class="card-img-top" alt="...">
+           @for (projet of projects; track $index) {
+             <div class="card col-12 col-md-6 col-lg-4 col-xl-3 m-2" style="width: 18rem;">
+            <img class="card-img-top" [alt]="projet.description" [src]="projet.imageUrl">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                <h5 class="card-title">{{projet.titre}}</h5>
+                <p class="card-text">{{projet.description}}</p>
                 <a href="https://seinfeldquotes.com" class="text-blue-600 visited:text-purple-600"> Consultez le projet </a>
             </div>
             </div>
+           }
         </div>
     </div>
 
@@ -41,36 +43,67 @@
     <div *ngIf="addingNewProject" class="form-add-new-project">
       <div class="entete">
         <h5><i class="fa-solid fa-plus me-2" style="color: #66747f;"></i><span>Partagez Votre Propore Travail Avec La Communauté</span></h5>
-        <button type="button" class="btn-close"></button>
+        <button type="button" class="btn-close" (click)="addingNewProject=false"></button>
       </div>
       <div>
-        <form>
+        <form [formGroup]="myForm" (ngSubmit)="publishProject()">
             <div class="mb-5 mt-3">
                 <label for="titre" class="form-label">Titre</label>
-                <input type="text" class="form-control" id="titre" aria-describedby="emailHelp">
+                <input  type="text" class="form-control" id="titre" aria-describedby="emailHelp" formControlName="titre">
+                <div *ngIf="myForm.get('titre').invalid && myForm.get('titre')?.touched"  class="erreur">
+                  Le titre est requis
+                </div>
             </div>
             <div class="mb-5">
                 <label for="description" class="form-label">Description</label>
                 <div class="form-floating">
-                  <textarea class="form-control" placeholder="Ajouter une description en quelques lignes" id="description" style="height: 100px"></textarea>
+                  <textarea class="form-control" placeholder="Ajouter une description en quelques lignes" id="description" style="height: 100px" formControlName="description"></textarea>
+                </div>
+                <div *ngIf="myForm.get('description').invalid && myForm.get('description')?.touched" class="erreur">
+                  La description est requise
                 </div>
             </div>
             <div>
                 <label for="actions" class="form-label">Actions</label>
                 <div class="actions-btn">
-                  <button (click)="fileInput.click()">Ajouter un fichier</button>
-                  <button (click)="imageInput.click()" >Ajouter un lien</button>
-                  <button (click)="linkInput.click()">Ajouter une image</button>
-                  <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
-                  <input type="file" accept="image/*" #imageInput style="display: none;" (change)="onImageSelected($event)">
-                  <input type="text" #linkInput style="display: none;">
+
+                 <div  class="action-btn">
+                  <label for="fileInput">
+                    <span *ngIf="!selectedFile">Ajouter un fichier</span>
+                    <span *ngIf="selectedFile">{{ selectedFile.name }}</span>
+                  </label>
+                   <input type="file" id="fileInput" class="form-control" name="fileInput"  (change)="onFileSelected($event,'file')">
+                 </div>
+
+                  <div  class="action-btn">
+                  <label for="imageInput">
+                      <span *ngIf="!selectedImage">Ajouter une image</span>
+                      <span *ngIf="selectedImage">{{ selectedImage.name }}</span>
+                    </label>
+                   <input type="file" id="fileInput" class="form-control" name="fileInput" accept="image/*"  (change)="onFileSelected($event,'image')">
+                 </div>
+
+                  <div class="action-btn">
+                    <label for="linkInput">
+                      <span *ngIf="!myForm.value.lienProjet">Ajouter un lien</span>
+                    </label>
+                   <input type="text" 
+                        id="linkInput"
+                         class="form-control" 
+                         name="linkInput"
+                         formControlName="lienProjet"
+                         >
+                    <div *ngIf="myForm.get('lienProjet').invalid && myForm.get('lienProjet')?.touched" class="erreur">
+                        Le lien vers votre projet est requis
+                    </div>
+                 </div>
                 </div>
             </div>
+          <div class="modal-footer mt-4">
+            <button type="reset" class="btn btn-secondary" (click)="addingNewProject=false">Annuler</button>
+            <button type="submit" class="btn publish-btn ms-3" [disabled]="myForm.invalid">Publier</button>
+          </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" >Annuler</button>
-        <button type="button" class="btn publish-btn" (click)="publishProject()">Publier</button>
       </div>
     </div>
 

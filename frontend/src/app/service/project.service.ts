@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ProjectService {
 
-  private apiUrl = 'http://localhost:4200/api/projects';
+  private apiUrl = 'http://localhost:8080/api/projects';
 
   constructor(private http:HttpClient){}
 
@@ -17,7 +17,7 @@ export class ProjectService {
   }
 
   publishProject(formData : FormData) : Observable<Project>{
-    return this.http.post<Project>(this.apiUrl,formData);
+    return this.http.post<Project>(`${this.apiUrl}/upload`,formData);
   }
   
 }

@@ -1,14 +1,15 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from "../../sidebars/sidebar/sidebar.component";
-import { NgIf } from '@angular/common';
+import {NgIf } from '@angular/common';
 import { Project } from '../../interfaces/projects';
 import { HttpClient } from '@angular/common/http';
 import { ProjectService } from '../../service/project.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TruncatePipe } from '../../pipes/truncate.pipe';
 
 @Component({
   selector: 'app-users-projects',
-  imports: [SidebarComponent, NgIf, FormsModule, ReactiveFormsModule],
+  imports: [SidebarComponent, NgIf, FormsModule, ReactiveFormsModule, TruncatePipe],
   templateUrl: './users-projects.component.html',
   styleUrl: './users-projects.component.css'
 })
@@ -106,6 +107,7 @@ export class UsersProjectsComponent implements OnInit{
     const fileInputs = document.querySelectorAll('input[type="file"]');
     fileInputs.forEach(input => (input as HTMLInputElement).value='');
   }
+
 
 
 }

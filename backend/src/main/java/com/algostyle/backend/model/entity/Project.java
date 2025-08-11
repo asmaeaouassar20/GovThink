@@ -27,6 +27,12 @@ public class Project {
     private String fileUrl;
 
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
+
+
+
     public Long getId() {
         return id;
     }
@@ -73,5 +79,13 @@ public class Project {
 
     public void setFileUrl(String fileUrl) {
         this.fileUrl = fileUrl;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

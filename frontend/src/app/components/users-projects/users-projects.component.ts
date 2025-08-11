@@ -21,6 +21,7 @@ export class UsersProjectsComponent implements OnInit{
   selectedFile : File | null = null;
   selectedImage : File | null = null;
   myForm : FormGroup;
+  selectedProject : Project;
 
 
 
@@ -109,5 +110,15 @@ export class UsersProjectsComponent implements OnInit{
   }
 
 
+
+
+
+
+
+  // sélectionner un projet pour avoir plus de ses détails
+  selectProject(project : Project){
+    this.selectedProject=project;
+  }
+  
 
 }

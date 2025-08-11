@@ -28,14 +28,14 @@
         <div class="row my-4">
            @if (projects.length>0) {
             @for (projet of projects; track $index) {
-             <div class="card col-12 col-md-6 col-lg-4 col-xl-3 m-2" style="width: 18rem;">
-            <img class="card-img-top" [alt]="projet.description" [src]="projet.imageUrl">
-            <div class="card-body">
-                <h5 class="card-title">{{projet.titre}}</h5>
-                <p class="card-text">{{projet.description | truncate}}</p>
-                <a  href="{{projet.lienProjet}}" class="text-blue-600 visited:text-purple-600"> Consultez le projet </a><br>
-                <a *ngIf="projet.fileUrl" href="{{projet.fileUrl}}" class="text-blue-600 visited:text-purple-600"> Consultez le fichier </a>
-            </div>
+             <div class="card col-12 col-md-6 col-lg-4 col-xl-3 m-2" style="width: 18rem;" (click)="selectProject(projet)">
+                <img class="card-img-top" [alt]="projet.description" [src]="projet.imageUrl">
+                <div class="card-body">
+                    <h5 class="card-title">{{projet.titre}}</h5>
+                    <p class="card-text">{{projet.description | truncate}}</p>
+                    <a  href="{{projet.lienProjet}}" class="text-blue-600 visited:text-purple-600"> Consultez le projet </a><br>
+                    <a *ngIf="projet.fileUrl" href="{{projet.fileUrl}}" class="text-blue-600 visited:text-purple-600"> Consultez le fichier </a>
+                </div>
             </div>
            }
            }@else {
@@ -117,3 +117,15 @@
 
 
 
+<div class="project-details" *ngIf="selectedProject!=undefined">
+  <i class="fa-solid fa-rectangle-xmark text-danger"  (click)="selectedProject=undefined"></i>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{selectedProject.titre}}</h5>
+    <a href="{{selectedProject.imageUrl}}" >voir l'image</a>
+    <p class="card-text my-4">{{selectedProject.description}}</p>
+    <a *ngIf="selectedProject.lienProjet" [href]="selectedProject.lienProjet" class="card-link">consulter le projet</a>
+    <a *ngIf="selectedProject.fileUrl" [href]="selectedProject.fileUrl" class="card-link">consulter le fichier</a>
+  </div>
+</div>
+</div>

@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SidebarComponent } from "../../sidebars/sidebar/sidebar.component";
-import { NgFor, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Project } from '../../interfaces/projects';
 import { HttpClient } from '@angular/common/http';
 import { ProjectService } from '../../service/project.service';
@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 
 @Component({
   selector: 'app-users-projects',
-  imports: [SidebarComponent, NgFor, NgIf, FormsModule, ReactiveFormsModule],
+  imports: [SidebarComponent, NgIf, FormsModule, ReactiveFormsModule],
   templateUrl: './users-projects.component.html',
   styleUrl: './users-projects.component.css'
 })

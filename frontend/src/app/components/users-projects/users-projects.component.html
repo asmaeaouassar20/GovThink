@@ -32,7 +32,8 @@
             <div class="card-body">
                 <h5 class="card-title">{{projet.titre}}</h5>
                 <p class="card-text">{{projet.description}}</p>
-                <a href="https://seinfeldquotes.com" class="text-blue-600 visited:text-purple-600"> Consultez le projet </a>
+                <a  href="{{projet.lienProjet}}" class="text-blue-600 visited:text-purple-600"> Consultez le projet </a><br>
+                <a *ngIf="projet.fileUrl" href="{{projet.fileUrl}}" class="text-blue-600 visited:text-purple-600"> Consultez le fichier </a>
             </div>
             </div>
            }

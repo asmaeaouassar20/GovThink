@@ -1,4 +1,4 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libertinus+Mono&display=swap" rel="stylesheet">
 
@@ -21,58 +21,111 @@
         <h1>Projets et analyses proposés</h1>
         <p>Explorez les projets des autres, évaluez leurs analyses et partagez des données de qualité</p>
 
-        <button class="btn-add-new-dataset" (click)="openModalAddProject()">
+        <button class="btn-add-new-dataset" (click)="addingNewProject=true" >
             Ajouter Votre Propre Travail
         </button>
 
         <div class="row my-4">
-            <div class="card col-12 col-md-6 col-lg-4 col-xl-3 m-2" style="width: 18rem;" *ngFor="let item of L">
-            <img src="data:image/jpeg;base64,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" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-                <a href="https://seinfeldquotes.com" class="text-blue-600 visited:text-purple-600"> Consultez le projet </a>
+           @if (projects.length>0) {
+            @for (projet of projects; track $index) {
+             <div class="card col-12 col-md-6 col-lg-4 col-xl-3 m-2" style="width: 18rem;" (click)="selectProject(projet)">
+                <img class="card-img-top" [alt]="projet.description" [src]="projet.imageUrl">
+                <div class="card-body">
+                    <h5 class="card-title">{{projet.titre}}</h5>
+                    <p class="card-text">{{projet.description | truncate}}</p>
+                    <a  href="{{projet.lienProjet}}" class="text-blue-600 visited:text-purple-600"> Consultez le projet </a><br>
+                    <a *ngIf="projet.fileUrl" href="{{projet.fileUrl}}" class="text-blue-600 visited:text-purple-600"> Consultez le fichier </a>
+                </div>
             </div>
-            </div>
+           }
+           }@else {
+            <p class="text-center">Aucun post pour le moment</p>
+           }
         </div>
     </div>
+
+
+    <div *ngIf="addingNewProject" class="form-add-new-project">
+      <div class="entete">
+        <h5><i class="fa-solid fa-plus me-2" style="color: #66747f;"></i><span>Partagez Votre Propore Travail Avec La Communauté</span></h5>
+        <button type="button" class="btn-close" (click)="addingNewProject=false"></button>
+      </div>
+      <div>
+        <form [formGroup]="myForm" (ngSubmit)="publishProject()">
+            <div class="mb-5 mt-3">
+                <label for="titre" class="form-label">Titre</label>
+                <input  type="text" class="form-control" id="titre" aria-describedby="emailHelp" formControlName="titre">
+                <div *ngIf="myForm.get('titre').invalid && myForm.get('titre')?.touched"  class="erreur">
+                  Le titre est requis
+                </div>
+            </div>
+            <div class="mb-5">
+                <label for="description" class="form-label">Description</label>
+                <div class="form-floating">
+                  <textarea class="form-control" placeholder="Ajouter une description en quelques lignes" id="description" style="height: 100px" formControlName="description"></textarea>
+                </div>
+                <div *ngIf="myForm.get('description').invalid && myForm.get('description')?.touched" class="erreur">
+                  La description est requise
+                </div>
+            </div>
+            <div>
+                <label for="actions" class="form-label">Actions</label>
+                <div class="actions-btn">
+
+                 <div  class="action-btn">
+                  <label for="fileInput">
+                    <span *ngIf="!selectedFile">Ajouter un fichier</span>
+                    <span *ngIf="selectedFile">{{ selectedFile.name }}</span>
+                  </label>
+                   <input type="file" id="fileInput" class="form-control" name="fileInput"  (change)="onFileSelected($event,'file')">
+                 </div>
+
+                  <div  class="action-btn">
+                  <label for="imageInput">
+                      <span *ngIf="!selectedImage">Ajouter une image</span>
+                      <span *ngIf="selectedImage">{{ selectedImage.name }}</span>
+                    </label>
+                   <input type="file" id="fileInput" class="form-control" name="fileInput" accept="image/*"  (change)="onFileSelected($event,'image')">
+                 </div>
+
+                  <div class="action-btn">
+                    <label for="linkInput">
+                      <span *ngIf="!myForm.value.lienProjet">Ajouter un lien</span>
+                    </label>
+                   <input type="text" 
+                        id="linkInput"
+                         class="form-control" 
+                         name="linkInput"
+                         formControlName="lienProjet"
+                         >
+                    <div *ngIf="myForm.get('lienProjet').invalid && myForm.get('lienProjet')?.touched" class="erreur">
+                        Le lien vers votre projet est requis
+                    </div>
+                 </div>
+                </div>
+            </div>
+          <div class="modal-footer mt-4">
+            <button type="reset" class="btn btn-secondary" (click)="addingNewProject=false">Annuler</button>
+            <button type="submit" class="btn publish-btn ms-3" [disabled]="myForm.invalid">Publier</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
 </div>
 
 
 
 
-<div class="modal" tabindex="-1" #addNewProjectModal>
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"><i class="fa-solid fa-plus me-2" style="color: #66747f;"></i>Partagez Votre Propore Travail Avec La Communauté</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModalAddProject()"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-            <div class="mb-3">
-                <label for="titre" class="form-label">Titre</label>
-                <input type="text" class="form-control" id="titre" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <div class="form-floating">
-                  <textarea class="form-control" placeholder="Ajouter une description en quelques lignes" id="description" style="height: 100px"></textarea>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="actions" class="form-label">Actions</label>
-                <div class="actions-btn">
-                  <button>Importer un fichier</button>
-                  <button>Ajouter un lien</button>
-                </div>
-            </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModalAddProject()">Annuler</button>
-        <button type="button" class="btn publish-btn">Publier</button>
-      </div>
-    </div>
+<div class="project-details" *ngIf="selectedProject!=undefined">
+  <i class="fa-solid fa-rectangle-xmark text-danger"  (click)="selectedProject=undefined"></i>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{selectedProject.titre}}</h5>
+    <a href="{{selectedProject.imageUrl}}" >voir l'image</a>
+    <p class="card-text my-4">{{selectedProject.description}}</p>
+    <a *ngIf="selectedProject.lienProjet" [href]="selectedProject.lienProjet" class="card-link">consulter le projet</a>
+    <a *ngIf="selectedProject.fileUrl" [href]="selectedProject.fileUrl" class="card-link">consulter le fichier</a>
   </div>
+</div>
 </div>

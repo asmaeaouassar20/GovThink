@@ -53,6 +53,9 @@
    height: 280px;
    object-fit: cover;
 }
+.card{
+    cursor: pointer;
+}
 
 
 /* Style pour le bouton d'ajout d'un nouveau projet */
@@ -75,11 +78,65 @@
 
 /* les boutons des actions qu'on peut effectuer pour l'ajout d'un projet */
 .actions-btn{
-    display: flex;
-    button{
-        border: 1px solid #739CC0;
-        padding: 4px 12px;
-        border-radius: 15px;
-        margin-right: 8px;
+    .action-btn{
+        margin-top: 10px;
+        label{
+            font-size: 14px;
+        }
+    }
+}
+
+
+
+/* Le formulaire qui permet d'ajouter un nouveau projet  */
+.form-add-new-project{
+    width: 80%;
+    position: absolute;
+    top : 16%;
+    left: 12%;
+    box-shadow: 5px 10px 20px #486177;
+    border-radius: 15px;
+    padding: 40px 25px;
+    z-index:2;
+    background: #739CC0;
+    .entete{
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
+    }
+    .btn-close{
+        background-color: rgb(255, 255, 255);
+        font-size: 1.4rem;
+    }
+    .fa-plus{
+        font-weight:900 !important;
+    }
+}
+.erreur{
+    color: rgba(255, 0, 0, 0.736);
+    font-style: italic;
+}
+
+
+
+
+
+
+/* La section qui permet d'afficher les détails d'un projet */
+.project-details{
+    position: absolute;
+    top: 12%;
+    left: 45%;
+    background-color: #00000059;
+    padding: .8rem 1.8rem 1.8rem 1.8rem;
+    box-shadow: 8px 10px 20px #0000008b;
+
+    .fa-rectangle-xmark{
+        font-size: 30px;
+       cursor: pointer;
+    }
+    a{
+        font-style: italic;
+        color: #739CC0;
     }
 }

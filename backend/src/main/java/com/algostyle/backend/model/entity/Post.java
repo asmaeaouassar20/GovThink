@@ -1,5 +1,6 @@
 package com.algostyle.backend.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -86,5 +87,10 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    @Override
+    public String toString(){
+        return "id:"+id+" - content:"+content+" - user email:"+ user.getEmail()+" .\n";
     }
 }

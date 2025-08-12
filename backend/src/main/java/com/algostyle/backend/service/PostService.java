@@ -53,13 +53,6 @@ public class PostService {
 
 
 
-    public List<CommentDTO> getCommentsByPost(Long postId){
-        Post post = postRepository.findById(postId).orElseThrow(()-> new RuntimeException("post avec id "+postId+" n'existe pas"));
-        return commentRepository.findByPostOrderByCreatedAtAsc(post)
-                .stream()
-                .map(CommentDTO::new)
-                .collect(Collectors.toList());
-    }
 
 
     public CommentDTO addComment(Long postId, CreateCommentRequest request, String email){

@@ -4,6 +4,7 @@ import com.algostyle.backend.model.dto.post.CommentDTO;
 import com.algostyle.backend.model.dto.post.CreateCommentRequest;
 import com.algostyle.backend.model.dto.post.CreatePostRequest;
 import com.algostyle.backend.model.dto.post.PostDTO;
+import com.algostyle.backend.model.entity.Comment;
 import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.service.PostService;
 import jakarta.validation.Valid;
@@ -60,27 +61,20 @@ public class PostController {
 
 
 
-    
 
-    @GetMapping("/{id}/comments")
-    public ResponseEntity<List<CommentDTO>> getComments(@PathVariable Long id){
-        try{
-            List<CommentDTO> commentDTOS=this.postService.getCommentsByPost(id);
-            return ResponseEntity.ok(commentDTOS);
-        }catch (RuntimeException e){
-            return ResponseEntity.badRequest().build();
-        }
-    }
+
+   
 
 
     @PostMapping("/{id}/comments")
     public ResponseEntity<CommentDTO> addComment(
-            @PathVariable Long id,
+            @PathVariable(value = "id") Long postId,
             @RequestBody CreateCommentRequest request,
-            Principal principal
+            @AuthenticationPrincipal User user
     ){
+
         try{
-            CommentDTO commentDTO = this.postService.addComment(id,request,principal.getName());
+            CommentDTO commentDTO = this.postService.addComment(postId,request,user.getEmail());
             return ResponseEntity.status(HttpStatus.CREATED).body(commentDTO);
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().build();

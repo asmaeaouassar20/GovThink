@@ -58,4 +58,10 @@ public class CommentDTO {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+
+    @Override
+    public String toString(){
+        return "id:"+id+" - content:"+content+ " - authorName:"+authorName+ " .\n";
+    }
 }

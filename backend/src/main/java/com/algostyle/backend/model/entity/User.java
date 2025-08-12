@@ -57,6 +57,7 @@ public class User {
     private List<Comment> comments = new ArrayList<>();
 
 
+
     public User() {
     }
 
@@ -89,6 +90,10 @@ public class User {
     protected void onUpdate(){
         updatedAt = LocalDateTime.now();
     }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Project> projects = new ArrayList<>();
+
 
     public Long getId() {
         return id;
@@ -154,6 +159,7 @@ public class User {
         this.comments = comments;
     }
 
+
     public String getBio() {
         return bio;
     }
@@ -187,4 +193,12 @@ public class User {
     }
 
 
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
 }

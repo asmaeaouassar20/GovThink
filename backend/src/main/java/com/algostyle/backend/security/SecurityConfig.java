@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .cors().and()
                 .csrf().disable()
                 .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**", "/api/**").permitAll()
+                .requestMatchers("/api/auth/**", "/api/**", "/uploads/*").permitAll()
                 .anyRequest().authenticated()
         ).exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)

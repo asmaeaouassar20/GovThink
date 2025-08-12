@@ -51,14 +51,7 @@ public class PostService {
         return new PostDTO(createdPost);
     }
 
-    public void deletePost(Long id, String email){
-        Post post = this.postRepository.findById(id).orElseThrow(()-> new RuntimeException("post avec id "+id+ " non trouvable"));
 
-        if(!post.getUser().getEmail().equals(email)){
-            throw new RuntimeException("Vous ne pouvez supprimer que vos propres posts");
-        }
-        this.postRepository.delete(post);
-    }
 
     public List<CommentDTO> getCommentsByPost(Long postId){
         Post post = postRepository.findById(postId).orElseThrow(()-> new RuntimeException("post avec id "+postId+" n'existe pas"));

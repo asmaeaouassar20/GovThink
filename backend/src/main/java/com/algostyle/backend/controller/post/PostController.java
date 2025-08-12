@@ -4,11 +4,13 @@ import com.algostyle.backend.model.dto.post.CommentDTO;
 import com.algostyle.backend.model.dto.post.CreateCommentRequest;
 import com.algostyle.backend.model.dto.post.CreatePostRequest;
 import com.algostyle.backend.model.dto.post.PostDTO;
+import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.service.PostService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -42,10 +44,10 @@ public class PostController {
     @PostMapping
     public ResponseEntity<PostDTO> createPost(
             @Valid @RequestBody CreatePostRequest request,
-            Principal principal
+            @AuthenticationPrincipal User user
             ){
         try{
-            PostDTO postDTO=postService.createPost(request,principal.getName());
+            PostDTO postDTO=postService.createPost(request,user.getEmail());
             return ResponseEntity.status(HttpStatus.CREATED).body(postDTO);
         }catch (RuntimeException e){
             return ResponseEntity.badRequest().build();
@@ -54,20 +56,11 @@ public class PostController {
 
 
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePost(
-            @PathVariable Long id,
-            Principal principal
-    ){
-        try{
-            this.postService.deletePost(id, principal.getName());
-            return ResponseEntity.noContent().build();
-        }catch (RuntimeException e){
-            return ResponseEntity.badRequest().build();
-        }
-    }
 
 
+
+
+    
 
     @GetMapping("/{id}/comments")
     public ResponseEntity<List<CommentDTO>> getComments(@PathVariable Long id){

@@ -32,6 +32,9 @@ public class Post {
     private List<Comment> comments=new ArrayList<>();
 
 
+    public Post() {
+    }
+
     public Post(String content, User author){
         this.content=content;
         this.user=author;

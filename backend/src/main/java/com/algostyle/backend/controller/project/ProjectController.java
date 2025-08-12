@@ -2,9 +2,11 @@ package com.algostyle.backend.controller.project;
 
 
 import com.algostyle.backend.model.entity.Project;
+import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.service.ProjectService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,12 +35,14 @@ public class ProjectController {
     public Project createProjectsWithFiles(
             @RequestParam("projet") String projetJson,      // Projet en format JSON
             @RequestParam(value = "file", required = false) MultipartFile file,    // Fichier attaché (PDF, doc ...)
-            @RequestParam(value = "image", required = false) MultipartFile image    // Image attachée (PNG, JPG ... )
+            @RequestParam(value = "image", required = false) MultipartFile image,    // Image attachée (PNG, JPG ... )
+            @AuthenticationPrincipal User user
             ){
         try{
             // Conversion du JSON reçu en objet Java Projet
             ObjectMapper mapper = new ObjectMapper();
             Project project = mapper.readValue(projetJson, Project.class);
+            project.setUser(user);
 
             // Sauvegarder le projet avec les fichiers via le service
             Project savedProject = projectService.saveProjectWithFiles(project, file, image);

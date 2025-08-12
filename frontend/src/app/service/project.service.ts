@@ -17,7 +17,12 @@ export class ProjectService {
   }
 
   publishProject(formData : FormData) : Observable<Project>{
-    return this.http.post<Project>(`${this.apiUrl}/upload`,formData);
+    return this.http.post<Project>(`${this.apiUrl}/upload`,formData, {
+      headers : {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+
+    });
   }
   
 }

@@ -98,6 +98,12 @@
       flex-direction: column;
     }
 }
+.creation-date{
+    font-style: italic;
+    font-size: 13px;
+    padding: 5px;
+    color: #0000008f;
+}
 
 
 /* *** footer du poste *** */

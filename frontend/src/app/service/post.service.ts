@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PostService {
-  private apiUrl = 'http://localhost:4200/api/posts';
+  private apiUrl = 'http://localhost:8080/api/posts';
 
   http = inject(HttpClient)
 
@@ -21,7 +21,11 @@ export class PostService {
   }
 
   createPost(post : CreatePostRequest) : Observable<Post>{
-    return this.http.post<Post>(`${this.apiUrl}`,post);
+    return this.http.post<Post>(`${this.apiUrl}`,post, {
+      headers : {
+        'Authorization' : `Bearer ${localStorage.getItem('token')}`
+      }
+    });
   }
 
   deletePost(id : number) : Observable<void>{

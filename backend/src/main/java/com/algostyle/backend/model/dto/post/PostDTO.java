@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 public class PostDTO {
     private Long id;
+    private String title;
     private String content;
     private String authorName;
     private LocalDateTime createdAt;
@@ -15,6 +16,7 @@ public class PostDTO {
 
     public PostDTO(Post post){
         this.id=post.getId();
+        this.title=post.getTitle();
         this.content=post.getContent();
         this.authorName=post.getUser().getNom();
         this.createdAt=post.getCreatedAt();
@@ -28,6 +30,14 @@ public class PostDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {

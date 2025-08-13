@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { SidebarComponent } from "../../sidebars/sidebar/sidebar.component";
-import { CreatePostRequest, Post } from '../../interfaces/posts';
+import { Comment, CreatePostRequest, Post } from '../../interfaces/posts';
 import { PostService } from '../../service/post.service';
 
 @Component({
@@ -17,6 +17,8 @@ export class PostsComponent implements OnInit {
   @ViewChild('newpost')  newpost : ElementRef | undefined;
   posts : Post[] = [];
   newPost : CreatePostRequest = { title : '', content : '' } ;
+  selectedPost : Post | undefined;
+  commentsOfSelectedPost : Comment[]=[];
 
 
   constructor(private postService:PostService){}
@@ -51,10 +53,28 @@ export class PostsComponent implements OnInit {
   }
 
 
+  // Utilisé lorsqu'on sélectionne un poste
+  getPostById(id:number){
+    this.postService.getPost(id).subscribe({
+      next : (post) => this.selectedPost=post,
+      error : (erreur) => console.error("erreur lors de la récupération du post avec l'id: "+id+" , erreur: "+erreur)
+    })
+  }
 
 
 
 
+  getCommentsById(postId:number){
+    this.postService.getCommentsByPostId(postId).subscribe({
+      next : (comments) => console.log(comments),
+      error : (erreur) => console.error("erreur lors de la récupération des commentaires du post dont l'id est: ",postId,", erreur:",erreur)
+    })
+  }
+
+
+
+
+  // pour créer un nouveau post
   openModalToCreateNewPost(){
     if(this.newpost){
       this.newpost.nativeElement.style.display='block';
@@ -65,5 +85,8 @@ export class PostsComponent implements OnInit {
       this.newpost.nativeElement.style.display='none';
     }
   }
+
+
+  
   
 }

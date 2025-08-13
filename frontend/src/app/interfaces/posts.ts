@@ -13,7 +13,7 @@ export interface Comment {
     content:string;
     authorName:string;
     createdAt:string;
-    updatedAt:string;
+    updatedAt:string; 
 }
 
 export interface CreateCommentRequest{

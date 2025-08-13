@@ -13,7 +13,7 @@ export class PostService {
 
   getAllPosts() : Observable<Post[]>{
     return this.http.get<Post[]>(`${this.apiUrl}`);
-  }
+  } 
 
 
   getPost(id : number) : Observable<Post>{
@@ -28,13 +28,11 @@ export class PostService {
     });
   }
 
-  deletePost(id : number) : Observable<void>{
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  }
+  
 
 
-  getComments(id : number) : Observable<Comment[]>{
-    return this.http.get<Comment[]>(`${this.apiUrl}/${id}/comments`);
+  getCommentsByPostId(postId : number) : Observable<Comment[]>{
+    return this.http.get<Comment[]>(`${this.apiUrl}/${postId}/comments`);
   }
 
   addComment(id : number, comment : CreateCommentRequest) : Observable<Comment>{

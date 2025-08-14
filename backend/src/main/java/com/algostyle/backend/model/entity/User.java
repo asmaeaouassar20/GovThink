@@ -121,8 +121,13 @@ public class User {
         this.comments = comments;
     }
 
+    public Set<Post> getSavedPosts() {
+        return savedPosts;
+    }
 
-
+    public void setSavedPosts(Set<Post> savedPosts) {
+        this.savedPosts = savedPosts;
+    }
 
     @Override
     public String toString() {

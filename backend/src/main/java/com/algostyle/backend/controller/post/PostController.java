@@ -2,9 +2,12 @@ package com.algostyle.backend.controller.post;
 
 import com.algostyle.backend.model.dto.post.*;
 import com.algostyle.backend.model.entity.Comment;
+import com.algostyle.backend.model.entity.Post;
 import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.service.PostService;
+import com.algostyle.backend.service.UserService;
 import jakarta.validation.Valid;
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -20,6 +24,9 @@ import java.util.List;
 public class PostController {
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping
     public ResponseEntity<List<PostDTO>> getAllPosts(){
@@ -111,6 +118,17 @@ public class PostController {
         }catch (Exception e){
             return ResponseEntity.badRequest().body(null);
         }
+    }
+
+
+    @GetMapping("/saved-posts")
+    public ResponseEntity<List<PostDTO>> getSavedPosts(@AuthenticationPrincipal User user){
+       try{
+           List<PostDTO> savedPosts = userService.getSavedPosts(user.getId());
+           return ResponseEntity.ok(savedPosts);
+       }catch(Exception e){
+           return ResponseEntity.badRequest().body(null);
+       }
     }
 
 }

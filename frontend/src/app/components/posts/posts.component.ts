@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DatePipe, NgIf } from '@angular/common';
 import { SidebarComponent } from "../../sidebars/sidebar/sidebar.component";
-import { MyComment, CreatePostRequest, Post } from '../../interfaces/posts';
+import { MyComment, CreatePostRequest, Post, PostResponse } from '../../interfaces/posts';
 import { PostService } from '../../service/post.service';
 import { error } from 'console';
 
@@ -18,7 +18,7 @@ export class PostsComponent implements OnInit {
   @ViewChild('newpost')  newpost : ElementRef | undefined;
   posts : Post[] = [];
   newPost : CreatePostRequest = { title : '', content : '' } ;
-  selectedPost : Post | undefined;
+  selectedPost : PostResponse | undefined;
   commentsOfSelectedPost : MyComment[]=[];
   addingComment=false;
   viewComments=false;
@@ -66,13 +66,6 @@ export class PostsComponent implements OnInit {
 
 
 
-  getCommentsByPostId(postId:number){
-    this.viewComments=true;
-    this.postService.getCommentsByPostId(postId).subscribe({
-      next : (comments) => this.commentsOfSelectedPost=comments,
-      error : (erreur) => console.error("erreur lors de la récupération des commentaires du post avec id : "+postId+". Erreur : "+erreur)
-    })
-  }
 
 
 

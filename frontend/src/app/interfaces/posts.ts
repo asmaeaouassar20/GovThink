@@ -8,6 +8,17 @@ export interface Post {
     commentCount:number; 
     likesCount:number;
 }
+export interface PostResponse {
+    id:number;
+    title : string;
+    content:string;
+    authorName:string;
+    createdAt:string;
+    updatedAt:string;
+    commentCount:number; 
+    likesCount:number;
+    comments : MyComment[]
+}
 
 export interface MyComment {
     id:number;

@@ -1,9 +1,6 @@
 package com.algostyle.backend.controller.post;
 
-import com.algostyle.backend.model.dto.post.CommentDTO;
-import com.algostyle.backend.model.dto.post.CreateCommentRequest;
-import com.algostyle.backend.model.dto.post.CreatePostRequest;
-import com.algostyle.backend.model.dto.post.PostDTO;
+import com.algostyle.backend.model.dto.post.*;
 import com.algostyle.backend.model.entity.Comment;
 import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.service.PostService;
@@ -32,10 +29,10 @@ public class PostController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<PostDTO> getPost(@PathVariable Long id){
+    public ResponseEntity<PostResponse> getPost(@PathVariable Long id){
         try{
-            PostDTO postDTO = postService.getPostById(id);
-            return ResponseEntity.ok(postDTO);
+            PostResponse postResponse = postService.getPostById(id);
+            return ResponseEntity.ok(postResponse);
         }catch (RuntimeException e){
             return ResponseEntity.notFound().build();
         }
@@ -57,10 +54,6 @@ public class PostController {
 
 
 
-    @GetMapping("/{postId}/comments")
-    public ResponseEntity<List<Comment>> getCommentsByPostId(@PathVariable Long postId){
-        return ResponseEntity.ok(postService.getCommentsByPostId(postId));
-    }
 
 
     

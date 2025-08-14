@@ -21,6 +21,8 @@ public class Post {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
+    private int likesCount;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -35,12 +37,16 @@ public class Post {
     private List<Comment> comments=new ArrayList<>();
 
 
+
+
     public Post() {
+        likesCount=0;
     }
 
     public Post(String content, User author){
         this.content=content;
         this.user=author;
+        likesCount=0;
     }
 
     public Long getId() {
@@ -99,8 +105,16 @@ public class Post {
         this.comments = comments;
     }
 
+    public int getLikesCount() {
+        return likesCount;
+    }
+
+    public void setLikesCount(int likesCount) {
+        this.likesCount = likesCount;
+    }
+
     @Override
     public String toString(){
-        return "id:"+id+" - content:"+content+" - user email:"+ user.getEmail()+" .\n";
+        return "id:"+id+" - content:"+content+" - user email:"+ user.getEmail()+" -  likes count:"+likesCount+" .\n";
     }
 }

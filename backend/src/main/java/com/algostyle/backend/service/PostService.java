@@ -69,4 +69,13 @@ public class PostService {
         Comment createdComment=commentRepository.save(comment);
         return new CommentDTO(createdComment);
     }
+
+
+    public PostDTO addLike(Long postId){
+        Post post=this.postRepository.findById(postId).orElseThrow(()-> new RuntimeException("Le post avec id "+postId+" non trouvable"));
+        System.out.println(">> post : "+post);
+        post.setLikesCount(post.getLikesCount()+1);
+        Post savedPost=this.postRepository.save(post);
+        return new PostDTO(savedPost);
+    }
 }

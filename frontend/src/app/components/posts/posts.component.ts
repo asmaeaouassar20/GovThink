@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgIf } from '@angular/common';
 import { SidebarComponent } from "../../sidebars/sidebar/sidebar.component";
-import { Comment, CreatePostRequest, Post } from '../../interfaces/posts';
+import { MyComment, CreatePostRequest, Post } from '../../interfaces/posts';
 import { PostService } from '../../service/post.service';
 
 @Component({
   selector: 'app-posts',
-  imports: [FormsModule, SidebarComponent, DatePipe],
+  imports: [FormsModule, SidebarComponent, DatePipe, NgIf],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.css'
 })
@@ -18,7 +18,9 @@ export class PostsComponent implements OnInit {
   posts : Post[] = [];
   newPost : CreatePostRequest = { title : '', content : '' } ;
   selectedPost : Post | undefined;
-  commentsOfSelectedPost : Comment[]=[];
+  commentsOfSelectedPost : MyComment[]=[];
+  addingComment=false;
+  viewComments=false;
 
 
   constructor(private postService:PostService){}
@@ -63,13 +65,17 @@ export class PostsComponent implements OnInit {
 
 
 
-
-  getCommentsById(postId:number){
+  getCommentsByPostId(postId:number){
+    this.viewComments=true;
     this.postService.getCommentsByPostId(postId).subscribe({
-      next : (comments) => console.log(comments),
-      error : (erreur) => console.error("erreur lors de la récupération des commentaires du post dont l'id est: ",postId,", erreur:",erreur)
+      next : (comments) => this.commentsOfSelectedPost=comments,
+      error : (erreur) => console.error("erreur lors de la récupération des commentaires du post avec id : "+postId+". Erreur : "+erreur)
     })
   }
+
+
+
+  
 
 
 

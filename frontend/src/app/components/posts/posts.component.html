@@ -33,9 +33,9 @@
                     <!-- <h5 class="card-title">Special title treatment</h5> -->
                     <p class="card-text">{{post.content}}</p>
                     <div class="mt-4 icons">
-                        <i class="fa-regular fa-thumbs-up" ><span class="reaction">pas encore</span></i>
-                        <i class="fa-regular fa-comment" ><span class="reaction">{{post.commentCount}}</span></i>
-                        <i class="fa-solid fa-plus"><span class="reaction">Ajouter un commentaire pour ce post</span></i>
+                        <i class="fa-regular fa-thumbs-up"  ><span class="reaction">pas encore</span></i>
+                        <i class="fa-regular fa-comment" (click)="getCommentsByPostId(post.id)" ><span class="reaction">{{post.commentCount}}</span></i>
+                        <i class="fa-solid fa-plus" (click)="addingComment=true"><span class="reaction">Ajouter un commentaire pour ce post</span></i>
                     </div>
                 </div>
                 </div>
@@ -52,6 +52,7 @@
 
 
 
+<!-- Modal pour créer un nouveau post -->
 <div class="modal" tabindex="-1" #newpost>
   <div class="modal-dialog">
     <div class="modal-content">
@@ -73,7 +74,7 @@
 
             <div class="modal-footer">
                 <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModalToCreateNewPost()">Annuler</button>
-                <button type="submit" class="btn publish-btn" [disabled]="!myForm.valid">Publier le poste</button>
+                <button type="submit" class="btn publish-btn " [disabled]="!myForm.valid">Publier le poste</button>
             </div>
         </form>
       </div>
@@ -81,6 +82,269 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+<div class="select-post-comments" *ngIf="addingComment">
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <div class="rounded-circle d-flex justify-content-center align-items-center  cancel-icon"
+                    (click)="addingComment=false"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <!-- Titre du poste s'il existe -->
+                 <h1 class="card-title display-6 fw-bold  mb-3">
+                    titre du poste
+                 </h1>
+
+                 <!-- Informations sur l'autheur et la date de création du poste -->
+                  <div class="d-flex align-items-center mb-4">
+                    <div class="user-icon-post d-flex justify-content-center align-items-center rounded-circle me-3">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <h6 class="fw-semibold">autheur du poste</h6>
+                        <small class="text-muted">
+                            <i class="fas fa-calendar-alt me-2"></i>
+                            la date de création ici
+                        </small>
+                    </div>
+                  </div>
+
+
+
+                  <!-- Contenu du post -->
+                   <div class="post-content">
+                        <p class="card-text fs-5">
+                            le contenu du post
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis consequuntur ducimus, labore, nesciunt, eos explicabo cum itaque fuga repellendus iusto numquam similique ipsum quod laboriosam illo excepturi minus nulla in cupiditate error praesentium perferendis veniam vero! Minus, voluptatum corrupti nam voluptatibus ex numquam quae accusamus, cupiditate sed, distinctio temporibus ea.
+                        </p>
+                   </div>
+
+
+                   <!-- Actions  du post  -->
+                    <div class="border-top mt-3 pt-3">
+                        <div>
+                            <button class="btn btn-outline-primary btn-sm me-2">
+                                <i class="fas fa-thumbs-up me-1"></i> J'aime
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <!-- formulaire pour ajouter un commentaire  -->
+                     <div class="mt-3">
+                        <h6 class="mb-3">Ajouter un commentaire</h6>
+                        <div class="row">
+                            <div class="col-12">
+
+                                <div class="form-floating mb-3">
+                                    <textarea
+                                    class="form-control"
+                                    placeholder="écrivez votre commentaire ici ..."
+                                    style="height: 100px;"
+                                    id="newContentComment"
+                                    ></textarea>
+                                    <label for="newContentComment">Votre Commentaire</label>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-muted"> .../500 caractères</small>
+                                    <button 
+                                        class="btn btn-outline-primary"
+                                    >
+                                <i class="fas fa-paper-plane me-1"></i>
+                                Publier
+                                </button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                    
+
+            </div>
+        </div>
+        <div class="cancel-btn ms-5" (click)="addingComment=false">
+            <span class="badge text-bg-secondary">retourner aux posts</span>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="select-post-comments" *ngIf="viewComments">
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <div class="rounded-circle d-flex justify-content-center align-items-center  cancel-icon" (click)="viewComments=false">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                <!-- Titre du poste s'il existe -->
+                 <h1 class="card-title display-6 fw-bold  mb-3">
+                    titre du poste
+                 </h1>
+
+                 <!-- Informations sur l'autheur et la date de création du poste -->
+                  <div class="d-flex align-items-center mb-4">
+                    <div class="user-icon-post d-flex justify-content-center align-items-center rounded-circle me-3">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <h6 class="fw-semibold">autheur du poste</h6>
+                        <small class="text-muted">
+                            <i class="fas fa-calendar-alt me-2"></i>
+                            la date de création ici
+                        </small>
+                    </div>
+                  </div>
+
+
+
+                  <!-- Contenu du post -->
+                   <div class="post-content">
+                        <p class="card-text fs-5">
+                            le contenu du post
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis consequuntur ducimus, labore, nesciunt, eos explicabo cum itaque fuga repellendus iusto numquam similique ipsum quod laboriosam illo excepturi minus nulla in cupiditate error praesentium perferendis veniam vero! Minus, voluptatum corrupti nam voluptatibus ex numquam quae accusamus, cupiditate sed, distinctio temporibus ea.
+                        </p>
+                   </div>
+
+
+                   <!-- Actions  du post  -->
+                    <div class="border-top mt-3 pt-3">
+                        <div>
+                            <button class="btn btn-outline-primary btn-sm me-2">
+                                <i class="fas fa-thumbs-up me-1"></i> J'aime
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <!-- section des commentaires  -->
+                     <div class="card comments-section mt-4 mb-3">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-comments me-2"></i>
+                                Commentaires 888
+                            </h5>
+                        </div>
+
+                        <!-- Liste des commentaires -->
+                        <div>
+
+                            <!-- Commentaire 1  -->
+                            <div class="mb-3 p-3 border rounded-3 ">
+                        
+                                    <div>
+                                        <div class="d-flex">
+                                                <!-- Avatar du commentateur -->
+                                            <div class="user-icon-comment rounded-circle d-flex align-items-center justify-content-center me-3 ">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+
+                                            <!-- autheur et creation date  -->
+                                            <div class="flex-grow-1">
+                                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                                        <h6 class="mb-0 fw-semibold">comment author</h6>
+                                                        <small class="text-muted">
+                                                            created at 18/05/2025
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <p class="p-3">contenu du commentaire Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ad adipisci provident. Explicabo vitae quaerat, labore magnam ratione non reiciendis amet temporibus quasi, dolore ad cumque natus id nam officiis laborum odit veritatis totam adipisci consequatur eligendi. Odio vero praesentium consectetur laudantium, omnis laborum. Impedit ex quod ipsam debitis eveniet.</p>
+
+                                    </div>
+
+                                     <!-- Actions du commentaire -->
+                                      <div class="mt-2">
+                                        <button class="btn btn-link btn-sm text-muted p-0 me-2">
+                                            <i class="fas fa-thumbs-up me-1"></i>
+                                            Utile
+                                        </button>
+
+                                        <button class="btn btn-link btn-sm text-muted p-0">
+                                            <i class="fa fa-reply me-1"></i>
+                                            Répondre
+                                        </button>
+                                      </div>
+                            </div>
+
+                            <!-- Commentaire 2  -->
+                            <div class="mb-3 p-3 border rounded-3 ">
+                        
+                                    <div>
+                                        <div class="d-flex">
+                                                <!-- Avatar du commentateur -->
+                                            <div class="user-icon-comment rounded-circle d-flex align-items-center justify-content-center me-3 ">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+
+                                            <!-- autheur et creation date  -->
+                                            <div class="flex-grow-1">
+                                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                                        <h6 class="mb-0 fw-semibold">comment author</h6>
+                                                        <small class="text-muted">
+                                                            created at 18/05/2025
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <p class="p-3">contenu du commentaire Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ad adipisci provident. Explicabo vitae quaerat, labore magnam ratione non reiciendis amet temporibus quasi, dolore ad cumque natus id nam officiis laborum odit veritatis totam adipisci consequatur eligendi. Odio vero praesentium consectetur laudantium, omnis laborum. Impedit ex quod ipsam debitis eveniet.</p>
+
+                                    </div>
+
+                                     <!-- Actions du commentaire -->
+                                      <div class="mt-2">
+                                        <button class="btn btn-link btn-sm text-muted p-0 me-2">
+                                            <i class="fas fa-thumbs-up me-1"></i>
+                                            Utile
+                                        </button>
+
+                                        <button class="btn btn-link btn-sm text-muted p-0">
+                                            <i class="fa fa-reply me-1"></i>
+                                            Répondre
+                                        </button>
+                                      </div>
+                            </div>
+
+
+
+                            <div class="text-center py-4">
+                                <i class="fas fa-comment-slash fa-2x text-muted mb-2"></i>
+                                <p class="text-muted">Aucun commentaire pour le moment. Soyez le premier à commenter !</p>
+                            </div>
+                        </div>
+                     </div>
+
+            </div>
+        </div>
+        <div class="cancel-btn" (click)="viewComments=false">
+            <span class="badge text-bg-secondary">retourner aux posts</span>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 
 
 

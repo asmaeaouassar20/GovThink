@@ -8,7 +8,7 @@ export interface Post {
     commentCount:number; 
 }
 
-export interface Comment {
+export interface MyComment {
     id:number;
     content:string;
     authorName:string;

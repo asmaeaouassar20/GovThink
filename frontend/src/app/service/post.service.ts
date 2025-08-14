@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { CreateCommentRequest, CreatePostRequest, Post } from '../interfaces/posts';
+import { CreateCommentRequest, CreatePostRequest, Post, MyComment } from '../interfaces/posts';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -31,8 +31,8 @@ export class PostService {
   
 
 
-  getCommentsByPostId(postId : number) : Observable<Comment[]>{
-    return this.http.get<Comment[]>(`${this.apiUrl}/${postId}/comments`);
+  getCommentsByPostId(postId : number) : Observable<MyComment[]>{
+    return this.http.get<MyComment[]>(`${this.apiUrl}/${postId}/comments`);
   }
 
   addComment(id : number, comment : CreateCommentRequest) : Observable<Comment>{

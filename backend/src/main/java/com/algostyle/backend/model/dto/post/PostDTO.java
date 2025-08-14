@@ -12,6 +12,7 @@ public class PostDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private int commentCount;
+    private int likesCount;
 
 
     public PostDTO(Post post){
@@ -22,6 +23,7 @@ public class PostDTO {
         this.createdAt=post.getCreatedAt();
         this.updatedAt=post.getUpdatedAt();
         this.commentCount=post.getComments().size();
+        this.likesCount=post.getLikesCount();
     }
 
     public Long getId() {
@@ -78,5 +80,13 @@ public class PostDTO {
 
     public void setCommentCount(int commentCount) {
         this.commentCount = commentCount;
+    }
+
+    public int getLikeCount() {
+        return likesCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likesCount = likeCount;
     }
 }

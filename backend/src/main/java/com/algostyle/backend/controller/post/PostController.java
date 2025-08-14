@@ -81,4 +81,16 @@ public class PostController {
     }
 
 
+
+    @PostMapping("/{id}/likes")
+    public ResponseEntity<PostDTO> addLike(@PathVariable(value = "id") Long postId){
+        try{
+            PostDTO postDTO=this.postService.addLike(postId);
+            return ResponseEntity.status(HttpStatus.CREATED).body(postDTO);
+        }catch (RuntimeException e){
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
 }

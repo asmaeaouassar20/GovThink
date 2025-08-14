@@ -6,6 +6,7 @@ export interface Post {
     createdAt:string;
     updatedAt:string;
     commentCount:number; 
+    likesCount:number;
 }
 
 export interface MyComment {

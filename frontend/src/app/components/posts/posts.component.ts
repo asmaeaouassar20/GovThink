@@ -4,6 +4,7 @@ import { DatePipe, NgIf } from '@angular/common';
 import { SidebarComponent } from "../../sidebars/sidebar/sidebar.component";
 import { MyComment, CreatePostRequest, Post } from '../../interfaces/posts';
 import { PostService } from '../../service/post.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-posts',
@@ -75,6 +76,12 @@ export class PostsComponent implements OnInit {
 
 
 
+  addLike(postId:number){
+    this.postService.addLike(postId).subscribe({
+      next : (post) => this.loadPosts(),
+      error : (erreur) => console.log("erreur lors de l'ajout d'un like. Erreur: "+erreur)
+    })
+  }
   
 
 

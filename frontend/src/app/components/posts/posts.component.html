@@ -33,7 +33,7 @@
                     <!-- <h5 class="card-title">Special title treatment</h5> -->
                     <p class="card-text">{{post.content}}</p>
                     <div class="mt-4 icons">
-                        <i class="fa-regular fa-thumbs-up"  ><span class="reaction">pas encore</span></i>
+                        <i class="fa-regular fa-thumbs-up" (click)="addLike(post.id)"  ><span class="reaction">{{post.likesCount}}</span></i>
                         <i class="fa-regular fa-comment" (click)="getCommentsByPostId(post.id)" ><span class="reaction">{{post.commentCount}}</span></i>
                         <i class="fa-solid fa-plus" (click)="addingComment=true"><span class="reaction">Ajouter un commentaire pour ce post</span></i>
                     </div>

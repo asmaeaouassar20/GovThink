@@ -28,6 +28,10 @@ export class PostService {
     });
   }
 
+
+  addLike(postId : number) : Observable<Post> {
+    return this.http.post<Post>(`${this.apiUrl}/${postId}/likes`, null);
+  }
   
 
 

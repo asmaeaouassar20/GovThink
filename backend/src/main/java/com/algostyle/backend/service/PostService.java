@@ -75,5 +75,31 @@ public class PostService {
     }
 
 
+    @Transactional
+    public UserDTO savePost(Long postId, Long userId){
+        User user=userRepository.findById(userId).orElseThrow(()-> new RuntimeException("user avec id "+userId+" est non trouvable"));
+        Post post=postRepository.findById(postId).orElseThrow(()-> new RuntimeException("post avec id "+postId+" est non trouvable"));
+
+        // s'assurer que le post n'est pas déjà sauvegardé
+        if(!user.isPostSaved(post)){
+            user.savePost(post);
+            User savedUser = userRepository.save(user);
+            return new UserDTO(savedUser);
+        }else{
+            throw new RuntimeException("Post déjà sauvegardé");
+        }
+    }
+
+    @Transactional
+    public UserDTO unsavePost(Long postId, Long userId){
+        User user = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("user avec id "+userId+" non trouvable"));
+        Post post = postRepository.findById(postId).orElseThrow(()-> new RuntimeException("post avec id "+postId+" non trouvable"));
+
+        user.unsavePost(post);
+        User savedPost = userRepository.save(user);
+        return new UserDTO(savedPost);
+    }
+
+
 
 }

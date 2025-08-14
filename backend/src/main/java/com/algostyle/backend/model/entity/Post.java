@@ -8,7 +8,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "posts")
@@ -36,6 +38,10 @@ public class Post {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> comments=new ArrayList<>();
+
+
+    @ManyToMany(mappedBy = "savedPosts")
+    private Set<User> savedByUsers = new HashSet<>();
 
 
 
@@ -119,6 +125,13 @@ public class Post {
     }
 
 
+    public Set<User> getSavedByUsers() {
+        return savedByUsers;
+    }
+
+    public void setSavedByUsers(Set<User> savedByUsers) {
+        this.savedByUsers = savedByUsers;
+    }
 
     @Override
     public String toString(){

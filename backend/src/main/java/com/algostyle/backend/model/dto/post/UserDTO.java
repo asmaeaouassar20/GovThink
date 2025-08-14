@@ -14,14 +14,12 @@ public class UserDTO {
     private String email;
     private String nom;
     private String prenom;
-    private List<Long> idsSavedPost;
 
 
     public UserDTO(User user){
         this.email=user.getEmail();
         this.nom=user.getNom();
         this.prenom=user.getPrenom();
-        this.idsSavedPost=user.getIdsSavedPost();
     }
 
     public String getEmail() {
@@ -48,11 +46,5 @@ public class UserDTO {
         this.prenom = prenom;
     }
 
-    public List<Long> getIdsSavedPost() {
-        return idsSavedPost;
-    }
 
-    public void setIdsSavedPost(List<Long> idsSavedPost) {
-        this.idsSavedPost = idsSavedPost;
-    }
 }

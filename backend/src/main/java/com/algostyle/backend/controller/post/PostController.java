@@ -87,13 +87,30 @@ public class PostController {
 
 
 
+    @PostMapping("/{id}/save")
+    public ResponseEntity<UserDTO> savePost(
+            @PathVariable(value = "id") Long postId,
+            @AuthenticationPrincipal User user
+    ){
+        try{
+            UserDTO userDTO=postService.savePost(postId,user.getId());
+            return ResponseEntity.status(HttpStatus.CREATED).body(userDTO);
+        }catch(RuntimeException e){
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
 
-
-
-
-
-
-
-
+    @DeleteMapping("/{id}/unsave")
+    public ResponseEntity<UserDTO> unsavePost(
+            @PathVariable(value = "id") Long postId,
+            @AuthenticationPrincipal User user
+    ){
+        try{
+            UserDTO userDTO = postService.unsavePost(postId,user.getId());
+            return ResponseEntity.ok(userDTO);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
 
 }

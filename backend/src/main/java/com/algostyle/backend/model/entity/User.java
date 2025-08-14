@@ -7,7 +7,9 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
@@ -33,6 +35,26 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_saved_posts",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "post_id")
+    )
+    private Set<Post> savedPosts = new HashSet<>();
+
+
+
+    // pour sauvegarder un post
+    public void savePost(Post post){
+        this.savedPosts.add(post);
+    }
+    public boolean unsavePost(Post post){
+        return this.savedPosts.remove(post);
+    }
+    public boolean isPostSaved(Post post){
+        return this.savedPosts.contains(post);
+    }
 
 
     public Long getId() {

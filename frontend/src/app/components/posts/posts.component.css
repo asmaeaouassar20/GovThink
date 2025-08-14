@@ -127,7 +127,6 @@
 }
 
 
-
 /* *** Buttons Modal :  bouton pour publier un poste  *** */
 .publish-btn{
     background-color: #739CC0 ;
@@ -166,10 +165,22 @@
         box-shadow: 8px 10px 18px #aaaaaab7;
     }
 }
-.user-icon-post, .user-icon-comment{
+.user-icon-post{
     background-color: #739CC0;
     width: 40px;
     height: 40px;
+}
+.user-icon-comment{
+    width: 40px;
+    height: 40px;
+    border: 2px solid #739CC0;
+}
+.nb-likes-post{
+    border: 1px solid rgb(129, 212, 219);
+    color: #125a98;
+    padding: 2px 10px;
+    border-radius: 7px;
+    font-size: 13px;
 }
 
 

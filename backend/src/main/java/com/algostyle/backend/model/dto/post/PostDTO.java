@@ -89,4 +89,6 @@ public class PostDTO {
     public void setLikesCount(int likeCount) {
         this.likesCount = likeCount;
     }
+
+
 }

@@ -35,8 +35,12 @@ export class PostService {
   
 
 
-  addComment(id : number, comment : CreateCommentRequest) : Observable<Comment>{
-    return this.http.post<Comment>(`${this.apiUrl}/${id}/comments`,comment);
+  addComment(id : number, comment : CreateCommentRequest) : Observable<MyComment>{
+    return this.http.post<MyComment>(`${this.apiUrl}/${id}/comments`,comment,{
+      headers : {
+        'Authorization' : `Bearer ${localStorage.getItem('token')}`
+      }
+    });
   }
 
 }

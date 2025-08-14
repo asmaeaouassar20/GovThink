@@ -23,7 +23,7 @@ public class PostResponse {
         this.id=post.getId();
         this.title=post.getTitle();
         this.content=post.getContent();
-        this.authorName=post.getUser().getNom()+post.getUser().getPrenom();
+        this.authorName=post.getUser().getNom()+" "+post.getUser().getPrenom();
         this.createdAt=post.getCreatedAt();
         this.updatedAt=post.getUpdatedAt();
         this.commentCount=post.getComments().size();

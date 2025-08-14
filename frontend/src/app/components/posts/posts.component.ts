@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DatePipe, NgIf } from '@angular/common';
 import { SidebarComponent } from "../../sidebars/sidebar/sidebar.component";
-import { MyComment, CreatePostRequest, Post, PostResponse } from '../../interfaces/posts';
+import { MyComment, CreatePostRequest, Post, PostResponse, CreateCommentRequest } from '../../interfaces/posts';
 import { PostService } from '../../service/post.service';
 import { error } from 'console';
 
@@ -19,9 +19,11 @@ export class PostsComponent implements OnInit {
   posts : Post[] = [];
   newPost : CreatePostRequest = { title : '', content : '' } ;
   selectedPost : PostResponse | undefined;
-  commentsOfSelectedPost : MyComment[]=[];
   addingComment=false;
   viewComments=false;
+
+  newComment : CreateCommentRequest = {content:''};
+ 
 
 
   constructor(private postService:PostService){}
@@ -56,13 +58,7 @@ export class PostsComponent implements OnInit {
   }
 
 
-  // Utilisé lorsqu'on sélectionne un poste
-  getPostById(id:number){
-    this.postService.getPost(id).subscribe({
-      next : (post) => this.selectedPost=post,
-      error : (erreur) => console.error("erreur lors de la récupération du post avec l'id: "+id+" , erreur: "+erreur)
-    })
-  }
+
 
 
 
@@ -75,6 +71,42 @@ export class PostsComponent implements OnInit {
       error : (erreur) => console.log("erreur lors de l'ajout d'un like. Erreur: "+erreur)
     })
   }
+
+
+
+
+
+
+  openViewCommentsWindow(postId:number){
+    this.viewComments=true;
+    this.postService.getPost(postId).subscribe({
+      next : (post) => this.selectedPost=post,
+      error : (erreur) => console.log("erreur lors de la récupération du post avec id "+postId+". Erreur : "+erreur)
+    })
+  }
+  closeViewCommentsWindow(){
+    this.viewComments=false;
+    this.selectedPost=undefined;
+    this.loadPosts();
+  }
+
+
+
+
+
+  openAddCommentWindow(postId:number){
+    this.addingComment=true;
+    this.postService.getPost(postId).subscribe({
+      next : (post) => this.selectedPost=post ,
+      error : (erreur) => console.error("erreur lors de la récupération du post avec id "+postId+". Erreur : "+erreur)
+    })
+  }
+  closeAddCommentWindow(){
+    this.addingComment=false;
+    this.selectedPost=undefined;
+    this.loadPosts();
+  }
+
   
 
 
@@ -90,6 +122,29 @@ export class PostsComponent implements OnInit {
     if(this.newpost){
       this.newpost.nativeElement.style.display='none';
     }
+  }
+
+
+
+
+  // Pour publier un commentaire selon l'id du poste sélectionné 
+  publishComment(postId:number){
+    if(this.newComment.content.length>500){
+      alert("le commentaire ne doit passer 500 caractères !!");
+      return;
+    }
+    this.postService.addComment(postId,this.newComment).subscribe({
+      next : (comment) => {
+        this.selectedPost.comments.push(comment);
+        this.addingComment=false;
+        this.openViewCommentsWindow(postId);
+      },
+      error : (erreur) => {
+        console.error("erreur lors de l'ajout du commentaire au post d'id "+postId+". Erreur: ");
+        console.log(erreur)
+      }
+    })
+
   }
 
 

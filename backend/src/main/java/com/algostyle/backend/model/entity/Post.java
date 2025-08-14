@@ -3,6 +3,7 @@ package com.algostyle.backend.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
@@ -39,14 +40,18 @@ public class Post {
 
 
 
+
+
     public Post() {
         likesCount=0;
+
     }
 
     public Post(String content, User author){
         this.content=content;
         this.user=author;
         likesCount=0;
+
     }
 
     public Long getId() {
@@ -112,6 +117,8 @@ public class Post {
     public void setLikesCount(int likesCount) {
         this.likesCount = likesCount;
     }
+
+
 
     @Override
     public String toString(){

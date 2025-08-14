@@ -2,6 +2,7 @@ package com.algostyle.backend.model.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -31,6 +32,8 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
+
+
 
     public Long getId() {
         return id;
@@ -95,6 +98,9 @@ public class User {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
+
+
 
     @Override
     public String toString() {

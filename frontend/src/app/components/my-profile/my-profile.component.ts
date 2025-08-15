@@ -105,6 +105,8 @@ export class MyProfileComponent implements OnInit{
 
   // Activer le mode édition du profile
   startEditingProfile() : void {
+    this.publishedPostView=false;
+    this.savedPostsView=false;
     this.loadUserProfile();
     this.isEditingProfile=true;
   }

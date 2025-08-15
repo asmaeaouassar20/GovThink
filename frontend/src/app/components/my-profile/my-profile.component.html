@@ -106,12 +106,16 @@
  
         </div>
 
-        <div class="d-grid mt-5 gap-2" style="grid-template-columns: auto auto;">
+
+        
+
+       @if (!isEditingProfile) {
+         <div class="d-grid mt-5 gap-2" style="grid-template-columns: auto auto;">
             <button class="btn btn-profile-post" (click)="getPublishedPosts()">Mes Postes Publiés</button>
             <button class="btn btn-profile-post" (click)="getSavedPosts()">Mes Postes Sauvegardés</button>
         </div>
 
-        <!-- Liste des posts publiés par l'utilisateur connecté -->
+        <!-- Liste des posts enregistrés par l'utilisateur connecté -->
         <div class="posts   mb-5 mt-5" *ngIf="savedPostsView">
           @if (savedPosts.length==0) {
             <h1 class="text-center fw-semibold" style="color: #eb6047;">Aucun poste sauvegardé</h1>
@@ -188,6 +192,7 @@
           }
         </div>
 
+       }
 
     </div>
 </div>

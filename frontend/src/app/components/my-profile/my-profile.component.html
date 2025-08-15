@@ -36,13 +36,18 @@
                 <div class="infos">
                     <p class="mb-2">{{userProfile.email}}</p>
                     <h1 class="mb-2">{{userProfile.nom}} {{userProfile.prenom}}</h1>
-                    <h6>inscrit à <span class="date">{{userProfile.createdAt | date : 'dd-MMM-yyyy  hh:mm:ss'}}</span></h6>
-                    <h6>vu pour la dernière fois à <span class="date">{{userProfile.updatedAt  |  date : 'dd-MMM-yyyy hh:mm:ss'}}</span></h6>
+                    <h6>inscrit à  <span class="date ms-2">{{userProfile.createdAt | date : 'dd-MMM-yyyy  hh:mm:ss'}}</span></h6>
+                    <h6>vu pour la dernière fois à <span class="date ms-2">{{userProfile.updatedAt  |  date : 'dd-MMM-yyyy hh:mm:ss'}}</span></h6>
                 </div>
             </div>
             <div class="profile-bio">
                 <h2>Biographie</h2>
-                <p>{{userProfile.bio}}</p>
+                @if(userProfile.bio.length===0){
+                    <span class="fw-semibold none-bio">aucune bio </span>
+                }
+                @else {
+                    <p>{{userProfile.bio}}</p>
+                }
             </div>
         </div>
 

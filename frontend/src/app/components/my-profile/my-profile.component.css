@@ -174,3 +174,20 @@
     font-style: italic;
     color: #00000080;
 }
+
+
+
+
+
+
+/* Boutons pour récupérer les postes publiés ou sauvegardé  */
+.btn-profile-post{
+    background-color: #739CC0 ;
+    color: #fff;
+    font-weight : 600;
+    border: 2px solid #739CC0 ;
+}
+.btn-profile-post:hover{
+    background-color: #fff;
+    color: #739CC0 ;
+}

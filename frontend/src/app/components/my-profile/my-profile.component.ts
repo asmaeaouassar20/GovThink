@@ -7,6 +7,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../service/auth.service';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { Post } from '../../interfaces/posts';
+import { PostService } from '../../service/post.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -40,11 +42,15 @@ export class MyProfileComponent implements OnInit{
   // La photo sélectionnée
   selectedFile : File | null = null;
 
+  // Les posts sauvegardés par l'utilisateur
+  savedPosts : Post[] = [];
+
 
 
   constructor(private profileService : ProfileService, 
             private formBuilder : FormBuilder,
-            private router : Router
+            private router : Router,
+            private postService : PostService
           ){
     this.profileForm=this.createProfileForm();
   }
@@ -256,6 +262,17 @@ export class MyProfileComponent implements OnInit{
 
 
   
+
+  // Récupération des postes sauvegradés
+  getSavedPosts(){
+    this.postService.getSavedPosts().subscribe({
+      next : (savedPosts) => this.savedPosts=savedPosts,
+      error : (erreur) => {
+        console.log("Erreur lors de la récupérations des posts sauvegardé. Erreur : ");
+        console.log(erreur)
+      }
+    })
+  }
 
 
   

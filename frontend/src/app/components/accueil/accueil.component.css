@@ -96,15 +96,3 @@
 
 
 
-
-/* donut-chart.component.css */
-.chart-wrapper {
-  position: relative;
-  /* height: 400px; */
-  background-color:#dbe2e9a3 !important;
-  /* margin-bottom: 30px; */
-  padding: 20px;
-  background: #f8f9fa;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}

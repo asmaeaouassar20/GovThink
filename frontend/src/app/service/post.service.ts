@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { CreateCommentRequest, CreatePostRequest, Post, MyComment, PostResponse } from '../interfaces/posts';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { UserDTO } from '../interfaces/users';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,32 @@ export class PostService {
 
   addComment(id : number, comment : CreateCommentRequest) : Observable<MyComment>{
     return this.http.post<MyComment>(`${this.apiUrl}/${id}/comments`,comment,{
+      headers : {
+        'Authorization' : `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+  }
+
+
+  getSavedPosts():Observable<Post[]>{
+    return this.http.get<Post[]>(`${this.apiUrl}/saved-posts`,{
+      headers : {
+        'Authorization' : `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+  }
+
+
+  savePost(postId:number):Observable<UserDTO>{
+    return this.http.post<UserDTO>(`${this.apiUrl}/${postId}/save`,{},{
+      headers : {
+        'Authorization' : `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+  }
+
+  unsavePost(postId:number):Observable<UserDTO>{
+    return this.http.delete<UserDTO>(`${this.apiUrl}/${postId}/unsave`,{
       headers : {
         'Authorization' : `Bearer ${localStorage.getItem('token')}`
       }

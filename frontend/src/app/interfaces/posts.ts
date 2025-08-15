@@ -17,7 +17,7 @@ export interface PostResponse {
     updatedAt:string;
     commentCount:number; 
     likesCount:number;
-    comments : MyComment[]
+    commentsDto : MyComment[]
 }
 
 export interface MyComment {

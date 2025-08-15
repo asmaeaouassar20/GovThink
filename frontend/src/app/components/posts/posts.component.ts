@@ -23,6 +23,8 @@ export class PostsComponent implements OnInit {
   viewComments=false;
 
   newComment : CreateCommentRequest = {content:''};
+
+  savedPosts : Post[] = [] ;  //Récupérer les posts sauvegardés par l'utilisateur connecté
  
 
 
@@ -31,6 +33,7 @@ export class PostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPosts();
+    this.getSavedPosts();
   }
 
   loadPosts(){
@@ -80,7 +83,10 @@ export class PostsComponent implements OnInit {
   openViewCommentsWindow(postId:number){
     this.viewComments=true;
     this.postService.getPost(postId).subscribe({
-      next : (post) => this.selectedPost=post,
+      next : (post) => {
+        this.selectedPost=post;
+        console.log(this.selectedPost);
+      },
       error : (erreur) => console.log("erreur lors de la récupération du post avec id "+postId+". Erreur : "+erreur)
     })
   }
@@ -129,13 +135,13 @@ export class PostsComponent implements OnInit {
 
   // Pour publier un commentaire selon l'id du poste sélectionné 
   publishComment(postId:number){
-    if(this.newComment.content.length>500){
+    if(this.newComment.content.length>500 || this.newComment.content.length<8){
       alert("le commentaire ne doit passer 500 caractères !!");
       return;
     }
     this.postService.addComment(postId,this.newComment).subscribe({
       next : (comment) => {
-        this.selectedPost.comments.push(comment);
+        this.selectedPost.commentsDto.push(comment);
         this.addingComment=false;
         this.openViewCommentsWindow(postId);
       },
@@ -147,6 +153,51 @@ export class PostsComponent implements OnInit {
 
   }
 
+
+
+
+  getSavedPosts(){
+    this.postService.getSavedPosts().subscribe({
+      next : (savedPosts) =>  this.savedPosts=savedPosts,
+      error : (erreur) => {
+        console.error("erreur lors de la récupération des posts sauvegardés. Erreur : ");
+        console.log(erreur);
+      }
+    })
+  }
+  containsPost(id:number){
+    for(let post of this.savedPosts){
+      if(post.id===id) return true;
+    }
+    return false;
+  }
+
+
+
+  savePost(postId:number){
+    this.postService.savePost(postId).subscribe({
+      next : (user) => {
+          this.getSavedPosts();
+      },
+      error : (erreur) =>{
+        console.log("erreur lors de la sauvegarde du post. Erreur : ");
+        console.log(erreur);
+      }
+    })
+
+  }
+
+  unsavePost(postId:number){
+    this.postService.unsavePost(postId).subscribe({
+      next : (user) => {
+        this.getSavedPosts();
+      },
+      error : (erreur) => {
+        console.log("erreur lors de la sauvegarde du post. Erreur : ");
+        console.log(erreur);
+      }
+    })
+  }
 
   
   

@@ -6,6 +6,7 @@ import com.algostyle.backend.model.entity.Post;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PostResponse {
     private Long id;
@@ -16,7 +17,7 @@ public class PostResponse {
     private LocalDateTime updatedAt;
     private int commentCount;
     private int likesCount;
-    private List<Comment> comments = new ArrayList<>();
+    private List<CommentDTO> commentsDto = new ArrayList<>();
 
 
     public PostResponse(Post post){
@@ -28,7 +29,7 @@ public class PostResponse {
         this.updatedAt=post.getUpdatedAt();
         this.commentCount=post.getComments().size();
         this.likesCount=post.getLikesCount();
-        this.comments=post.getComments();
+        this.commentsDto=post.getComments().stream().map(CommentDTO::new).collect(Collectors.toList());
     }
 
 
@@ -96,13 +97,11 @@ public class PostResponse {
         this.likesCount = likesCount;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public List<CommentDTO> getCommentsDto() {
+        return commentsDto;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    public void setCommentsDto(List<CommentDTO> commentsDto) {
+        this.commentsDto = commentsDto;
     }
-
-
 }

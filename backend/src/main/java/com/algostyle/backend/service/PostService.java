@@ -52,6 +52,7 @@ public class PostService {
     public PostResponse getPostById(Long postId){
         List<Comment> comments = this.commentRepository.findByPostIdOrderByCreatedAtDesc(postId);
         Post post=this.postRepository.findById(postId).orElseThrow(()->new RuntimeException("post avec id "+postId+" est non trouvable"));
+        post.setComments(comments);
         return new PostResponse(post);
     }
 

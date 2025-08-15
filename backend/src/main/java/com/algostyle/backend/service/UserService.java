@@ -3,6 +3,7 @@ package com.algostyle.backend.service;
 
 import com.algostyle.backend.model.dto.auth.SignupRequest;
 import com.algostyle.backend.model.dto.userprofile.UserProfileDTO;
+import com.algostyle.backend.model.dto.post.PostDTO;
 import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.repository.UserRepository;
 import com.algostyle.backend.utils.auth.UserUtil;
@@ -11,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -86,7 +90,10 @@ public class UserService
         return userRepository.existsByEmail(email);
     }
 
-
-
+    @Transactional
+    public List<PostDTO> getSavedPosts(Long userId){
+        User user=userRepository.findById(userId).orElseThrow(()->new RuntimeException("user avec id "+userId+" est introuveable"));
+        return user.getSavedPosts().stream().map(PostDTO::new).collect(Collectors.toList());
+    }
 
 }

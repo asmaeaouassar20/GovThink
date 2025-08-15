@@ -98,21 +98,29 @@
       flex-direction: column;
     }
 }
+.creation-date{
+    font-style: italic;
+    font-size: 13px;
+    padding: 5px;
+    color: #0000008f;
+}
 
 
 /* *** footer du poste *** */
-.nbr-reactions{
-    font-size: 15px;
+.reaction{
+    font-size: 12px;
     padding:  5px !important;
+    letter-spacing: 2px;
 }
 
 
 
 /* *** icones du poste ***  */
 .icons i{
-    font-size: 24px;
+    font-size: 22px;
     padding: 10px 38px 10px 0;
     cursor: pointer;
+    color: #769cbb;
 }
 .icons i:hover{
     color:rgb(243, 136, 136) !important ;
@@ -120,6 +128,16 @@
 
 
 
+/* *** Buttons Modal :  bouton pour publier un poste  *** */
+.publish-btn{
+    background-color: #739CC0 ;
+    color: #fff;
+}
+.publish-btn:hover{
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #739CC0 ;
+}
 
 
 /* *** Title Modal  *** */
@@ -129,3 +147,69 @@
     font-style: normal;
     font-size: 22px;
 }
+
+
+
+
+
+
+/*  ***  sélectionner un post pour voir les commentaires  *** */
+.select-post-comments{
+    position: absolute;
+    top:165px;
+    left: 338px;
+    width: 80%;
+    box-shadow: 17px 10px 20px #739CC0;
+    z-index: 1000;
+    background-color: #fff;
+   
+    .comments-section{
+        box-shadow: 8px 10px 18px #aaaaaab7;
+    }
+}
+.user-icon-post{
+    background-color: #739CC0;
+    width: 40px;
+    height: 40px;
+}
+.user-icon-comment{
+    width: 40px;
+    height: 40px;
+    border: 2px solid #739CC0;
+}
+.nb-likes-post{
+    border: 1px solid rgb(129, 212, 219);
+    color: #125a98;
+    padding: 2px 10px;
+    border-radius: 7px;
+    font-size: 13px;
+}
+
+
+
+/* *** pour annuler le poste seléctionné *** */
+.cancel-icon{
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    font-size: 40px;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(247, 111, 111);
+    cursor: pointer;
+    transition: all .4s ease; 
+}
+.cancel-icon:hover{
+    background-color: red;
+    color: #fff;
+}
+.cancel-btn{
+    margin-top: 1.5rem;
+    margin-bottom: 5rem;
+    .badge{
+        cursor: pointer;
+    }
+}
+
+
+

@@ -14,7 +14,7 @@ public class CommentDTO {
     public CommentDTO(Comment comment){
         this.id=comment.getId();
         this.content=comment.getContent();
-        this.authorName=comment.getUser().getNom();
+        this.authorName=comment.getUser().getPrenom()+" "+comment.getUser().getNom() ;
         this.createdAt=comment.getCreatedAt();
         this.updatedAt=comment.getUpdatedAt();
     }
@@ -57,5 +57,11 @@ public class CommentDTO {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+
+    @Override
+    public String toString(){
+        return "id:"+id+" - content:"+content+ " - authorName:"+authorName+ " .\n";
     }
 }

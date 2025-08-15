@@ -1,10 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { DatePipe, NgIf } from '@angular/common';
 import { SidebarComponent } from "../../sidebars/sidebar/sidebar.component";
+import { MyComment, CreatePostRequest, Post, PostResponse, CreateCommentRequest } from '../../interfaces/posts';
+import { PostService } from '../../service/post.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-posts',
-  imports: [FormsModule, SidebarComponent],
+  imports: [FormsModule, SidebarComponent, DatePipe, NgIf],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.css'
 })
@@ -12,14 +16,109 @@ export class PostsComponent implements OnInit {
 
 
   @ViewChild('newpost')  newpost : ElementRef | undefined;
+  posts : Post[] = [];
+  newPost : CreatePostRequest = { title : '', content : '' } ;
+  selectedPost : PostResponse | undefined;
+  addingComment=false;
+  viewComments=false;
+
+  newComment : CreateCommentRequest = {content:''};
+
+  savedPosts : Post[] = [] ;  //Récupérer les posts sauvegardés par l'utilisateur connecté
+ 
 
 
-items=[1,2,3,4,5];
+  constructor(private postService:PostService){}
+
 
   ngOnInit(): void {
-    
+    this.loadPosts();
+    this.getSavedPosts();
   }
 
+  loadPosts(){
+    this.postService.getAllPosts().subscribe({
+      next : (data) => this.posts=data,
+      error : (erreur) => console.error('Erreur lors de la récupération de tous les posts : '+erreur)
+    })
+  }
+
+  publishNewPost(){
+   this.postService.createPost(this.newPost).subscribe({
+    next : (postDtoCreated) => {
+      this.posts.push(postDtoCreated);
+      this.resetFormNewPost();
+      this.closeModalToCreateNewPost();
+    },
+    error : (erreur) => console.error("erreur lors de la creation d'un nouveau post", erreur)
+   })
+  }
+
+
+  resetFormNewPost(){
+    this.newPost.title='';
+    this.newPost.content='';
+  }
+
+
+
+
+
+
+
+
+
+  addLike(postId:number){
+    this.postService.addLike(postId).subscribe({
+      next : (post) => this.loadPosts(),
+      error : (erreur) => console.log("erreur lors de l'ajout d'un like. Erreur: "+erreur)
+    })
+  }
+
+
+
+
+
+
+  openViewCommentsWindow(postId:number){
+    this.viewComments=true;
+    this.postService.getPost(postId).subscribe({
+      next : (post) => {
+        this.selectedPost=post;
+        console.log(this.selectedPost);
+      },
+      error : (erreur) => console.log("erreur lors de la récupération du post avec id "+postId+". Erreur : "+erreur)
+    })
+  }
+  closeViewCommentsWindow(){
+    this.viewComments=false;
+    this.selectedPost=undefined;
+    this.loadPosts();
+  }
+
+
+
+
+
+  openAddCommentWindow(postId:number){
+    this.addingComment=true;
+    this.postService.getPost(postId).subscribe({
+      next : (post) => this.selectedPost=post ,
+      error : (erreur) => console.error("erreur lors de la récupération du post avec id "+postId+". Erreur : "+erreur)
+    })
+  }
+  closeAddCommentWindow(){
+    this.addingComment=false;
+    this.selectedPost=undefined;
+    this.loadPosts();
+  }
+
+  
+
+
+
+
+  // pour créer un nouveau post
   openModalToCreateNewPost(){
     if(this.newpost){
       this.newpost.nativeElement.style.display='block';
@@ -30,5 +129,76 @@ items=[1,2,3,4,5];
       this.newpost.nativeElement.style.display='none';
     }
   }
+
+
+
+
+  // Pour publier un commentaire selon l'id du poste sélectionné 
+  publishComment(postId:number){
+    if(this.newComment.content.length>500 || this.newComment.content.length<8){
+      alert("le commentaire ne doit passer 500 caractères !!");
+      return;
+    }
+    this.postService.addComment(postId,this.newComment).subscribe({
+      next : (comment) => {
+        this.selectedPost.commentsDto.push(comment);
+        this.addingComment=false;
+        this.openViewCommentsWindow(postId);
+      },
+      error : (erreur) => {
+        console.error("erreur lors de l'ajout du commentaire au post d'id "+postId+". Erreur: ");
+        console.log(erreur)
+      }
+    })
+
+  }
+
+
+
+
+  getSavedPosts(){
+    this.postService.getSavedPosts().subscribe({
+      next : (savedPosts) =>  this.savedPosts=savedPosts,
+      error : (erreur) => {
+        console.error("erreur lors de la récupération des posts sauvegardés. Erreur : ");
+        console.log(erreur);
+      }
+    })
+  }
+  containsPost(id:number){
+    for(let post of this.savedPosts){
+      if(post.id===id) return true;
+    }
+    return false;
+  }
+
+
+
+  savePost(postId:number){
+    this.postService.savePost(postId).subscribe({
+      next : (user) => {
+          this.getSavedPosts();
+      },
+      error : (erreur) =>{
+        console.log("erreur lors de la sauvegarde du post. Erreur : ");
+        console.log(erreur);
+      }
+    })
+
+  }
+
+  unsavePost(postId:number){
+    this.postService.unsavePost(postId).subscribe({
+      next : (user) => {
+        this.getSavedPosts();
+      },
+      error : (erreur) => {
+        console.log("erreur lors de la sauvegarde du post. Erreur : ");
+        console.log(erreur);
+      }
+    })
+  }
+
+  
   
 }

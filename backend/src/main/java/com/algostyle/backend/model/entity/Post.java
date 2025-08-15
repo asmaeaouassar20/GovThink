@@ -1,12 +1,16 @@
 package com.algostyle.backend.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "posts")
@@ -15,8 +19,12 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String title;
+
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
+
+    private int likesCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -32,9 +40,24 @@ public class Post {
     private List<Comment> comments=new ArrayList<>();
 
 
+    @ManyToMany(mappedBy = "savedPosts")
+    private Set<User> savedByUsers = new HashSet<>();
+
+
+
+
+
+
+    public Post() {
+        likesCount=0;
+
+    }
+
     public Post(String content, User author){
         this.content=content;
         this.user=author;
+        likesCount=0;
+
     }
 
     public Long getId() {
@@ -43,6 +66,14 @@ public class Post {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
@@ -83,5 +114,27 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public int getLikesCount() {
+        return likesCount;
+    }
+
+    public void setLikesCount(int likesCount) {
+        this.likesCount = likesCount;
+    }
+
+
+    public Set<User> getSavedByUsers() {
+        return savedByUsers;
+    }
+
+    public void setSavedByUsers(Set<User> savedByUsers) {
+        this.savedByUsers = savedByUsers;
+    }
+
+    @Override
+    public String toString(){
+        return "id:"+id+" - content:"+content+" - user email:"+ user.getEmail()+" -  likes count:"+likesCount+" .\n";
     }
 }

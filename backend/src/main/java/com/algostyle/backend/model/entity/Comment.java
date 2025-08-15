@@ -1,5 +1,6 @@
 package com.algostyle.backend.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -18,10 +19,12 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id", nullable = false)
+    @JsonIgnore
     private Post post;
 
     @CreationTimestamp
@@ -30,6 +33,8 @@ public class Comment {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    public Comment() {
+    }
 
     public Comment(String content, User author, Post post){
         this.content=content;

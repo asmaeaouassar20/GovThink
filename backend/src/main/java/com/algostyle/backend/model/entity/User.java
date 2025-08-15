@@ -2,6 +2,7 @@ package com.algostyle.backend.model.entity;
 
 
 import jakarta.persistence.*;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -10,7 +11,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
@@ -74,10 +77,6 @@ public class User {
         this.updatedAt = LocalDateTime.now();
     }
 
-    @Override
-    public String toString() {
-        return "id:"+id+" , nom:"+nom+" , prenom:"+prenom+" , email:"+email+" , createdAt:"+createdAt+" , bio:"+bio+" , profilePictureUrl:"+profilePictureUrl + " , profilePictureFilename:"+profilePictureFilename+" .\n";
-    }
 
 
     @PrePersist
@@ -93,6 +92,30 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Project> projects = new ArrayList<>();
+
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_saved_posts",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "post_id")
+    )
+    private Set<Post> savedPosts = new HashSet<>();
+
+
+
+    // pour sauvegarder un post
+    public void savePost(Post post){
+        this.savedPosts.add(post);
+    }
+    public boolean unsavePost(Post post){
+        return this.savedPosts.remove(post);
+    }
+    public boolean isPostSaved(Post post){
+        return this.savedPosts.contains(post);
+    }
+
 
 
     public Long getId() {
@@ -160,6 +183,7 @@ public class User {
     }
 
 
+
     public String getBio() {
         return bio;
     }
@@ -199,6 +223,24 @@ public class User {
     }
 
     public void setProjects(List<Project> projects) {
-        this.projects = projects;
+        this.projects = projects;}
+
+    public Set<Post> getSavedPosts() {
+        return savedPosts;
     }
+
+    public void setSavedPosts(Set<Post> savedPosts) {
+        this.savedPosts = savedPosts;
+    }
+
+
+
+
+
+    @Override
+    public String toString() {
+        return "id:"+id+" , nom:"+nom+" , prenom:"+prenom+" , email:"+email+" , createdAt:"+createdAt+" , bio:"+bio+" , profilePictureUrl:"+profilePictureUrl + " , profilePictureFilename:"+profilePictureFilename+" .\n";
+    }
+
+
 }

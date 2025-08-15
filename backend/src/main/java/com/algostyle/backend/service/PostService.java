@@ -102,5 +102,9 @@ public class PostService {
     }
 
 
+    public List<PostDTO> getPostByUser(User user){
+         return postRepository.findAllByUser(user).stream().map(PostDTO::new).toList();
+    }
+
 
 }

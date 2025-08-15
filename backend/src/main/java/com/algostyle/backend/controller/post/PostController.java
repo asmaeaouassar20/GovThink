@@ -131,4 +131,16 @@ public class PostController {
        }
     }
 
+
+    // Récupérer les postes de l'utilisateur connecté
+    @GetMapping("/my-posts")
+    public ResponseEntity<List<PostDTO>> getPosts(@AuthenticationPrincipal User user){
+        try {
+            List<PostDTO> myPosts = postService.getPostByUser(user);
+            return ResponseEntity.ok(myPosts);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
 }

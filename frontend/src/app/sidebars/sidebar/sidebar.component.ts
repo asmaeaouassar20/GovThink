@@ -21,14 +21,13 @@ export class SidebarComponent {
   menuItems : MenuItem[] = [
     { titre: 'Accueil ', icon: 'home', lien: '/accueil' },
     { titre:'Tableaux de bord', icon:'dashboard', lien:'/dashboard'},
-    { titre:'Catalogue des jeux de données', icon:'storage', lien:'/*'},
     { titre:'Profils utilisateurs ', icon:'people', lien:'/profiles'},
     { titre:'Assistant chatbot ', icon:'chat', lien:'/*'},
     { titre:'Forum communautaire', icon:'forum', lien:'/posts'},
     { titre:'Projets/analyses des utilisateurs', icon:'analytics', lien:'/users-projects'},
     { titre:'À propos ', icon:'info', lien:'/apropos'},
     { titre:'profil', icon:'account_circle', lien:'/my-profile'},
-    { titre:'déconnexion', icon:'logout', lien:'/*'} 
+    { titre:'déconnexion', icon:'logout', lien:'/home'} 
   ]
 
 
@@ -41,7 +40,7 @@ export class SidebarComponent {
 
 
   logout(){
-
+    localStorage.removeItem('token');
   }
   
   

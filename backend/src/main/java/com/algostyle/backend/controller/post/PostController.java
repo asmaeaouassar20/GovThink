@@ -99,7 +99,6 @@ public class PostController {
             @PathVariable(value = "id") Long postId,
             @AuthenticationPrincipal User user
     ){
-        System.out.println("......... "+user);
         try{
             UserDTO userDTO=postService.savePost(postId,user.getId());
             return ResponseEntity.status(HttpStatus.CREATED).body(userDTO);

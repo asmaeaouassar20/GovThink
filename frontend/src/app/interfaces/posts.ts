@@ -7,6 +7,7 @@ export interface Post {
     updatedAt:string;
     commentCount:number; 
     likesCount:number;
+    authorProfilePictureUrl:string;
 }
 export interface PostResponse {
     id:number;

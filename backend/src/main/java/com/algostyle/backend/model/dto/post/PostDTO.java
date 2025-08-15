@@ -9,6 +9,7 @@ public class PostDTO {
     private String title;
     private String content;
     private String authorName;
+    private String authorProfilePictureUrl; // propriété pour l'URL de la photo de profile
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private int commentCount;
@@ -20,6 +21,7 @@ public class PostDTO {
         this.title=post.getTitle();
         this.content=post.getContent();
         this.authorName=post.getUser().getNom();
+        this.authorProfilePictureUrl="http://localhost:8080"+post.getUser().getProfilePictureUrl();
         this.createdAt=post.getCreatedAt();
         this.updatedAt=post.getUpdatedAt();
         this.commentCount=post.getComments().size();
@@ -56,6 +58,14 @@ public class PostDTO {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
+    }
+
+    public String getAuthorProfilePictureUrl() {
+        return authorProfilePictureUrl;
+    }
+
+    public void setAuthorProfilePictureUrl(String authorProfilePictureUrl) {
+        this.authorProfilePictureUrl = authorProfilePictureUrl;
     }
 
     public LocalDateTime getCreatedAt() {

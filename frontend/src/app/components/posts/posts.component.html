@@ -78,7 +78,7 @@
 
             <div class="mb-3">
                 <label for="poste" class="form-label">Contenu du poste</label>
-                <textarea type="text" rows="5" class="form-control" id="poste" aria-describedby="emailHelp" placeholder="écrire quelque chose, partager une information, poser des questions ..." name="contenu" [(ngModel)]="newPost.content" required></textarea>
+                <textarea type="text" rows="5" class="form-control" id="poste" aria-describedby="emailHelp" placeholder="écrire quelque chose, partager une information, poser des questions ..." name="contenu" [(ngModel)]="newPost.content" required minlength="8"></textarea>
             </div>
 
             <div class="modal-footer">

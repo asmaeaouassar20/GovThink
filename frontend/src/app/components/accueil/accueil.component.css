@@ -29,13 +29,31 @@
 
 
 
-.progression{
+.user-impact{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    box-shadow: 8px 12px 20px #0000005e;
+    box-shadow: -8px -12px 20px #739cc077;
 
-    .seq-connex , .progression-cercle{
+    .seq-connex {
         text-align: center;
+        span{
+           font-size: 14px;
+        }
+        p{
+            font-family: "Libertinus Mono", monospace;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 17px;
+        }
+        ul {
+            margin: 10px auto;      
+        li {
+            font-style: italic;
+            font-size: 14px;
+            }
+        }
     }
     h6{
         font-family: "Libertinus Math", system-ui;
@@ -63,13 +81,10 @@
     margin: 5rem auto;
 }
 .card-header{
-
     cursor: pointer;
-
     display: flex ;
     justify-content: space-between;
     align-items: center;
-   
     border: none;
     background-color: transparent;
 

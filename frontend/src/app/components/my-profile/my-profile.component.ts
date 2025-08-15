@@ -44,8 +44,10 @@ export class MyProfileComponent implements OnInit{
 
   // Les posts sauvegardés par l'utilisateur
   savedPosts : Post[] = [];
+  publishedPosts : Post[] = [];
 
   savedPostsView=false;
+  publishedPostView=false;
 
 
 
@@ -268,10 +270,10 @@ export class MyProfileComponent implements OnInit{
   // Récupération des postes sauvegradés
   getSavedPosts(){
     this.savedPostsView=!this.savedPostsView;
+    this.publishedPostView=false;
     this.postService.getSavedPosts().subscribe({
       next : (savedPosts) => {
         this.savedPosts=savedPosts;
-        console.log(this.savedPosts);
       },
       error : (erreur) => {
         console.log("Erreur lors de la récupérations des posts sauvegardé. Erreur : ");
@@ -290,6 +292,19 @@ export class MyProfileComponent implements OnInit{
       },
       error : (erreur) => {
         console.log("Erreur lors de unsave post. Erreur : ");
+        console.log(erreur);
+      }
+    })
+  }
+
+  // Récupérer les postes publiés
+  getPublishedPosts(){
+    this.publishedPostView=!this.publishedPostView;
+    this.savedPostsView=false;
+    this.postService.getPublishedPosts().subscribe({
+      next : (publishedPosts) => this.publishedPosts=publishedPosts,
+      error : (erreur) => {
+        console.log("Erreur lors de la récupération des postes publiés. Erreur : ");
         console.log(erreur);
       }
     })

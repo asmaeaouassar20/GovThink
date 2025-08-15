@@ -107,11 +107,11 @@
         </div>
 
         <div class="d-grid mt-5 gap-2" style="grid-template-columns: auto auto;">
-            <button class="btn btn-profile-post">Mes Postes Publiés</button>
+            <button class="btn btn-profile-post" (click)="getPublishedPosts()">Mes Postes Publiés</button>
             <button class="btn btn-profile-post" (click)="getSavedPosts()">Mes Postes Sauvegardés</button>
         </div>
 
-        <!-- Liste des posts de l'utilisateur connecté -->
+        <!-- Liste des posts publiés par l'utilisateur connecté -->
         <div class="posts   mb-5 mt-5" *ngIf="savedPostsView">
           @if (savedPosts.length==0) {
             <h1 class="text-center fw-semibold" style="color: #eb6047;">Aucun poste sauvegardé</h1>
@@ -138,6 +138,44 @@
                             <i class="fa-regular fa-comment" ><span class="reaction">{{post.commentCount}}</span></i>
                             
                                 <i class="fa-solid fa-bookmark ms-2"  (click)="unsavePost(post.id)"></i>
+                            
+                        </div>
+                        <i class="fa-solid fa-plus" ><span class="reaction">Ajouter un commentaire pour ce post</span></i>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            }
+          }
+        </div>
+
+         <!-- Liste des posts publiés par  l'utilisateur connecté -->
+        <div class="posts   mb-5 mt-5" *ngIf="publishedPostView">
+          @if (publishedPosts.length==0) {
+            <h1 class="text-center fw-semibold" style="color: #eb6047;">Vous n'avez publié aucun poste</h1>
+          }
+          @else {
+              @for (post of publishedPosts; track $index) {
+                 <div class="row mt-3">
+                <div class="card">
+                <h5 class="card-header">
+                    <span class="photo-profile">
+                        <img [src]="post.authorProfilePictureUrl" alt="photo de profile de l'utilisateur">
+                    </span>
+                    <div class="infos">
+                        <span>{{post.authorName}}</span>
+                        <span class="creation-date">{{post.createdAt | date : 'MMMM dd, yyyy - HH:mm:ss'}}</span>
+                    </div>
+                </h5>
+                <div class="card-body">
+                    <!-- <h5 class="card-title">Special title treatment</h5> -->
+                    <p class="card-text">{{post.content}}</p>
+                    <div class="mt-4 icons d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fa-regular fa-thumbs-up" ><span class="reaction">{{post.likesCount}}</span></i>
+                            <i class="fa-regular fa-comment" ><span class="reaction">{{post.commentCount}}</span></i>
+                            
                             
                         </div>
                         <i class="fa-solid fa-plus" ><span class="reaction">Ajouter un commentaire pour ce post</span></i>

@@ -72,4 +72,12 @@ export class PostService {
     });
   }
 
+  getPublishedPosts() : Observable<Post[]>{
+    return this.http.get<Post[]>(`${this.apiUrl}/my-posts`,{
+      headers : {
+        'Authorization' : `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+  }
+
 }

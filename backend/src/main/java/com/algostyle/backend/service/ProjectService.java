@@ -2,6 +2,7 @@ package com.algostyle.backend.service;
 
 
 import com.algostyle.backend.model.entity.Project;
+import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,11 @@ public class ProjectService {
     }
     public Project findById(Long id){
         return this.projectRepository.findById(id).orElseThrow(()->new RuntimeException("Projet avec id "+id+" nexste pas"));
+    }
+
+
+    public List<Project> getProjectsByUser(User user){
+        return this.projectRepository.findAllByUser(user);
     }
 
     public Project saveProjectWithFiles(

@@ -6,6 +6,7 @@ import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.service.ProjectService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -97,6 +98,23 @@ public class ProjectController {
         return projects;
     }
 
+
+
+
+    @GetMapping("/my-projects")
+    public ResponseEntity<List<Project>> getMyProjects(@AuthenticationPrincipal User user){
+
+        try{
+            // Récupérer les projets de l'utilisateur connecté
+            List<Project> projects=projectService.getProjectsByUser(user);
+            return ResponseEntity.ok(projects);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(null);
+        }
+
+
+
+    }
 
 
 }

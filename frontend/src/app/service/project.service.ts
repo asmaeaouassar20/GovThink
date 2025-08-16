@@ -24,5 +24,14 @@ export class ProjectService {
 
     });
   }
+
+
+  getMyProjects() : Observable<Project[]>{
+    return this.http.get<Project[]>(`${this.apiUrl}/my-projects`,{
+      headers : {
+        'Authorization' : `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+  }
   
 }

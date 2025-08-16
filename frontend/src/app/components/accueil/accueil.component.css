@@ -35,6 +35,9 @@
     align-items: center;
     box-shadow: 8px 12px 20px #0000005e;
     box-shadow: -8px -12px 20px #739cc077;
+    border-bottom: 1px solid #739cc071;
+    border-right: 1px solid #739cc071;
+    
 
     .seq-connex {
         text-align: center;
@@ -111,3 +114,27 @@
 
 
 
+
+/* La carte qui contient les différentes sections   */
+.col{
+    display: flex;
+}
+
+
+
+
+
+
+/* la section "Mon travail"  */
+.espace-perso-user{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap: 6px;
+
+    cursor: pointer;
+    .badge{
+        background-color: #739CC0;
+    }
+}

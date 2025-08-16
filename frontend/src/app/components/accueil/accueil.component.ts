@@ -23,7 +23,6 @@ export class AccueilComponent implements OnInit {
 
 
   // Les contributions de l'utilisateur connecté
-  nbrMyDatasets : number =0;
   nbrPublishedPosts : number =0;
   nbrMyProjets : number =0;
 

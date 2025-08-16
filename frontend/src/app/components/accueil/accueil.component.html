@@ -28,7 +28,7 @@
             <div class="seq-connex">
                 <h6>Votre impact</h6>
                 <h1 class="p-3 mb-2">{{nbrPublishedPosts + +nbrMyProjets }}</h1>
-               @if(nbrPublishedPosts!==0 || nbrMyProjets!==0 || nbrMyDatasets!==0){
+               @if(nbrPublishedPosts!==0 || nbrMyProjets!==0){
                  <p>contributions</p>
                     <ul class="mb-3">
                         @if(nbrPublishedPosts!==0){
@@ -37,10 +37,6 @@
                         @if(nbrMyProjets!==0){
                             <li class="mt-1">nombre de projets déposés : <span class=" ms-1 badge text-bg-info">{{nbrMyProjets}}</span></li>
                         }
-                         @if(nbrMyDatasets!==0){
-                            <li class="mt-1">nombre de projets déposés : <span class=" ms-1 badge text-bg-info">{{nbrMyDatasets}}</span></li>
-                        }
-                        
                     </ul>
                 <span class="fw-semibold">Merci pour votre contribution à l'e-gov marocain !</span>
                }
@@ -52,7 +48,7 @@
     </div>
 
 
-    <div class="row">
+    <div class="row cards">
         <div class="col">
             <div class="card">
                 <div class="card-header">
@@ -66,11 +62,19 @@
                     <blockquote class="blockquote">
                         <p>0</p>
                     </blockquote>
+
                     <figcaption class="blockquote-footer">
                         Gérez vos contributions à la plateforme : Vos projets d'analyse, 
  vos publications et discussions ...
                     </figcaption>
                     </figure>
+                    
+                    <div class="espace-perso-user">
+                        <span class="badge">mes publications</span>
+                        <span class="badge ">mes projets</span>
+                        <span class="badge">mon profil</span>
+                    </div>
+
                 </div>
             </div>
         </div>

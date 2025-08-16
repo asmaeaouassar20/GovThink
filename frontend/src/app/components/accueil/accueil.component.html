@@ -21,19 +21,32 @@
 
     <div class="row d-grid  p-5" style="grid-template-columns: auto auto;">
         <div class="welcome-col">
-            <h1 class="mb-5">Bienvenue, {{prenom}} !</h1>
+            <h1 class="mb-5">Bienvenue, {{username}} !</h1>
             <h5 > L’espace idéal pour explorer l’e-gouvernement marocain,<br> interagir avec les données ouvertes et prendre des décisions éclairées.</h5>
         </div>
         <div class="user-impact p-4">
             <div class="seq-connex">
                 <h6>Votre impact</h6>
-                <h1 class="p-3 mb-2">5</h1>
-                <p>contributions</p>
-                <ul class="mb-3">
-                    <li>nombre de postes publiés : <span>{{nbrPublishedPosts}}</span></li>
-                    <li>contribution 2</li>
-                </ul>
+                <h1 class="p-3 mb-2">{{nbrPublishedPosts + +nbrMyProjets }}</h1>
+               @if(nbrPublishedPosts!==0 || nbrMyProjets!==0 || nbrMyDatasets!==0){
+                 <p>contributions</p>
+                    <ul class="mb-3">
+                        @if(nbrPublishedPosts!==0){
+                            <li>nombre de postes publiés : <span class=" ms-1 badge text-bg-info">{{nbrPublishedPosts}}</span></li>
+                        }
+                        @if(nbrMyProjets!==0){
+                            <li class="mt-1">nombre de projets déposés : <span class=" ms-1 badge text-bg-info">{{nbrMyProjets}}</span></li>
+                        }
+                         @if(nbrMyDatasets!==0){
+                            <li class="mt-1">nombre de projets déposés : <span class=" ms-1 badge text-bg-info">{{nbrMyDatasets}}</span></li>
+                        }
+                        
+                    </ul>
                 <span class="fw-semibold">Merci pour votre contribution à l'e-gov marocain !</span>
+               }
+               @else {
+                <span class="fw-semibold">Contribuez à l'e-gov marocain !</span>
+               }
             </div>
         </div>
     </div>

@@ -84,7 +84,6 @@ export class AccueilComponent implements OnInit {
     this.postService.getPublishedPosts().subscribe({
       next : (posts) => {
         this.nbrPublishedPosts=posts.length;
-        console.log("nbrPublishedPosts : ",this.nbrPublishedPosts);
       },
       error : (erreur) => {
         console.log("Erreur lors de la récupération des postes publiés");

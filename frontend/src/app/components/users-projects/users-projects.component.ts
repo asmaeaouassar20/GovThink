@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { ProjectService } from '../../service/project.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
-
+ 
 @Component({
   selector: 'app-users-projects',
   imports: [SidebarComponent, NgIf, FormsModule, ReactiveFormsModule, TruncatePipe],
@@ -22,6 +22,12 @@ export class UsersProjectsComponent implements OnInit{
   selectedImage : File | null = null;
   myForm : FormGroup;
   selectedProject : Project;
+  filteredProjects : Project[] = [];
+
+
+  // Pour la recherche
+  searchedTerm : string = '';  // le mot recherché
+
 
 
 
@@ -50,6 +56,7 @@ export class UsersProjectsComponent implements OnInit{
     this.projectService.getAllProjects().subscribe({
       next : (data) => {
         this.projects=data;
+        this.filteredProjects=[...this.projects];
       },
       error : (error) =>{
         console.error('Erreur lors du chargement du projet');
@@ -120,6 +127,43 @@ export class UsersProjectsComponent implements OnInit{
   selectProject(project : Project){
     this.selectedProject=project;
   }
+
+
+
+  filterProjects(){
+    if(!this.searchedTerm || !this.searchedTerm.trim()){
+      this.filteredProjects=[...this.projects];
+      return;
+    }
+
+    // le mot recherché
+    const keyWord = this.searchedTerm.toLowerCase().trim();
+
+    this.filteredProjects = this.projects.filter( project => {
+
+      // recherche dans le  titre
+      const titleMatch = project.titre && project.titre.toLowerCase().includes(keyWord);
+
+      // recherche dans la description
+      const descriptionMatch = project.description && project.description.toLowerCase().includes(keyWord);
+
+      // recherche dans imageUrl
+      const imageUrlMatch = project.imageUrl && project.imageUrl.toLowerCase().includes(keyWord);
+
+      // recherche dans lienProjet
+      const lienProjetMatch = project.lienProjet && project.lienProjet.toLowerCase().includes(keyWord);
+
+      // recherche dans fileUrl
+      const fileUrl=project.fileUrl && project.fileUrl.toLowerCase().includes(keyWord);
+
+      return titleMatch || descriptionMatch || imageUrlMatch || lienProjetMatch || fileUrl
+
+    })
+  }
   
+onSearch(event:any){
+  this.searchedTerm=event.target.value;
+  this.filterProjects();
+}
 
 }

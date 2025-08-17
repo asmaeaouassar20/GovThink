@@ -14,28 +14,6 @@ aside {
             background-color: #739CC0;
             border-radius: 5px;
         }
-
-        .create-btn {
-            color: #fff;
-            border: 2px solid #fff;
-            font-size: 20px;
-            padding: 5px 0;
-            border-radius: 25px;
-            background-color: transparent;
-            box-shadow: 1px 1px 5px #bebfcd;
-            font-weight: 600;
-            width: 100%;
-            transition: background-color .6s ease;
-            &:hover{
-                background-color: #376791;
-            }
-
-
-        i{
-            margin-right: 10px;
-            margin-left: 0;
-        }
-        }
         nav{
             position: sticky;
             margin-top: 170px;
@@ -79,9 +57,6 @@ aside {
 
             }
         }
-        .div-btn-create{
-            margin: 1rem 0 2rem 0;
-        }
 
     }
 
@@ -94,29 +69,7 @@ aside {
 .top-side-bar-reduit{
     width: 50px !important;
 }
-.create-btn-reduit {
-    color: #fff;
-    border: 2px solid #fff;
-    font-size: 18px;
-    border-radius: 25px;
-    background-color: transparent;
-    box-shadow: 1px 1px 5px #bebfcd;
-    font-weight: 600;
-    width: 100%;
-    transition: background-color .6s ease;
 
-    &:hover{
-         background-color: #376791;
-    }
-    i{
-            margin-right: 0px;
-            margin-left: 0;
-    }
-}
-
-.div-create-btn-reduit{
-    margin-top: 5rem;
-}
 
     .hero-reduit{
             position: relative;

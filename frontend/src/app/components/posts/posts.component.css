@@ -78,7 +78,13 @@
 
 
 
+/* Recherche par mot clé  */
+.barre-recherche .info{
+    font-style: italic;
+    color: #5d5c5cd5;
+    font-size: 15px;
+}
 
-
-
-
+.nb-result {
+    opacity: 0;
+}

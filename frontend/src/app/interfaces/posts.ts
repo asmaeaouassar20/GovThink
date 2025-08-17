@@ -4,7 +4,7 @@ export interface Post {
     content:string;
     authorName:string;
     createdAt:string;
-    updatedAt:string;
+    updatedAt:string; 
     commentCount:number; 
     likesCount:number;
     authorProfilePictureUrl:string;

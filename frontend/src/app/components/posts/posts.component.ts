@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DatePipe, NgIf } from '@angular/common';
+import { DatePipe, NgIf,NgClass } from '@angular/common';
 import { SidebarComponent } from "../../sidebars/sidebar/sidebar.component";
-import { MyComment, CreatePostRequest, Post, PostResponse, CreateCommentRequest } from '../../interfaces/posts';
+import { CreatePostRequest, Post, PostResponse, CreateCommentRequest } from '../../interfaces/posts';
 import { PostService } from '../../service/post.service';
-import { error } from 'console';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-posts',
-  imports: [FormsModule, SidebarComponent, DatePipe, NgIf],
+  imports: [FormsModule, SidebarComponent, DatePipe, NgIf, NgClass],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.css'
 })
@@ -17,6 +17,7 @@ export class PostsComponent implements OnInit {
 
   @ViewChild('newpost')  newpost : ElementRef | undefined;
   posts : Post[] = [];
+  filteredPosts : Post[] = [];
   newPost : CreatePostRequest = { title : '', content : '' } ;
   selectedPost : PostResponse | undefined;
   addingComment=false;
@@ -27,8 +28,14 @@ export class PostsComponent implements OnInit {
   savedPosts : Post[] = [] ;  //Récupérer les posts sauvegardés par l'utilisateur connecté
  
 
+  // Pour la recherche
+  searchTerm : string ='';  // Ce que l'utilisateur tape dans la barre de recherche
+  searchResultsCount : number = 0;  // Nombre de résultats trouvés
 
-  constructor(private postService:PostService){}
+
+  constructor(private postService:PostService,
+              private sanitizer : DomSanitizer  // Angular bloque du HTML "dangereux" (pour éviter les failles XSS). DomSanitizer permet de dire à Angular "Ce HTML est sûr, affiche-le"
+  ){}
 
 
   ngOnInit(): void {
@@ -38,7 +45,10 @@ export class PostsComponent implements OnInit {
 
   loadPosts(){
     this.postService.getAllPosts().subscribe({
-      next : (data) => this.posts=data,
+      next : (data) => {
+        this.posts=data;
+        this.filteredPosts=[...this.posts];
+      },
       error : (erreur) => console.error('Erreur lors de la récupération de tous les posts : '+erreur)
     })
   }
@@ -199,6 +209,158 @@ export class PostsComponent implements OnInit {
     })
   }
 
-  
+
+
+
+  /**
+   * Méthode appelée lors de la saisie dans la barre de recherche
+   * @param event : l'événementde saisie
+   */
+  onSearchInput(event : any) : void{
+    this.searchTerm = event.target.value; //récupérer le texte tapé
+    this.updateSearchResultsCount();  // Mettre à jour le nombre de résultats
+    this.filterPosts();
+  }
+
+
+  /**
+   * Met à jour le nombre de résultats de recherche
+   */
+  private updateSearchResultsCount() : void{
+    if(!this.searchTerm.trim()){
+      this.searchResultsCount=0;
+      return;
+    }
+    let count =0;
+    const searchLower = this.searchTerm.toLowerCase();
+
+    // Recherche dans les posts
+    this.posts.forEach( post => {
+      if(
+        this.containsSearchTerm(post.title,searchLower) ||
+        this.containsSearchTerm(post.content,searchLower) ||
+        this.containsSearchTerm(post.authorName,searchLower) 
+      ){
+        count ++;
+      }
+  });
+  this.searchResultsCount=count;
+  }
+
+
+
+  /**
+   *  Vérifie si un texte le terme de ercherche
+   * @param text - Le texte à vérifier
+   * @param searchTerm  - Le terme de recherche en miniscule
+   * @returns true si le texte contient le terme
+   */
+  private containsSearchTerm(text:string, searchTerm:string) : boolean {
+    if (!text || !searchTerm) return false;
+    return text.toLowerCase().includes(searchTerm);
+  }
+
+
+
+
+
+/**
+ * Fonction qui surligne un terme recherché dans un texte
+ * @param text 
+ * @param searchTerm - Le mot à surligner
+ * @returns safeHtml ( du HTML "sécurisé" que Angular acceptera d'afficher)
+ */
+  highlightText(text:string, searchTerm:string) : SafeHtml {
+
+    // Si le texte est vide, on retourne une chaîne vide
+    if (!text) return '';
+
+    // Si aucun mot n'est recherché  ->  on retourne juste le texte original échappé
+    // escapeHtml()  empêche qu'un texte comme "<b>gras</b>" soit interprété comme du HTML
+    if(!searchTerm || !searchTerm.trim()){
+      return this.sanitizer.bypassSecurityTrustHtml(this.escapeHtml(text));
+    }
+
+    // On échappe les caractères spéciaux HTML dans le texte
+    // Ex : "<div>" devient "&lt;div&gt;"
+    const escapedText = this.escapeHtml(text);
+
+
+    // On échappe les caractères spéciaux du terme pour éviter de casser la regex
+    // Ex: si le mot cherché est c++, on le transforme en "c\+\+"
+    const escapedSearchTerm = this.escapeRegex(searchTerm.trim());
+
+
+    // On construit une expression régulière qui cherche toutes les occurrences du mot
+    // 'gi' signifie : 
+    // g = global (chercher toutes les occurrence)
+    // i = insensitive (ignorer majuscule/mnuscule)
+    const regex = new RegExp(`(${escapedSearchTerm})`,'gi');
+
+    // On remplace chaque occurence trouvée par le même text entouré de <mark>
+    // Exemple : "Bonjour Asmae" avec searchTerm="asmae" devient "Bonjour <mark class='bg-danger'>Asmae</mark>"
+    const highlightedText = escapedText.replace(regex,'<mark>$1</mark>');
+
+    // On dit à Angular : "Ce HTML est sûr, affiche-le tel quel"
+    return this.sanitizer.bypassSecurityTrustHtml(highlightedText);
+  }
+
+
+
+  /**
+   * échappe les caractères HTML spécieux
+   * @param text 
+   * EXEMPLE1 : "<b>gras</b>" => "&lt;b&gt;gras&lt;/b&gt;"
+   * EXEMPLE1 : escapeHtml("Bonjour <b>Ali</b>") donne  Bonjour &lt;b&gt;Ali&lt;/b&gt;
+   */
+  private escapeHtml(text:string) : string {
+      const div = document.createElement('div'); // Créer une balise <div>
+      div.textContent=text; // Mettre le texte à l'intérieur
+      return div.innerHTML;
+  }
+
+
+
+
+  /**
+   * échappe les caractères spéciaux des regex
+   * @param string 
+   * EXEMPLE : "c++" -> "c\+\+"
+   */
+  private escapeRegex(string:string) : string{
+      return string.replace(/[.*+?^${}()|[\]\\]/g,'\\$g');  // remplacer tous les symboles spéciaux de regx par une version <<protégée>> (précédée d'un \)
+  }
+
+
+
+
+  // filtrer les posts selon le mot-clé de recherche
+  filterPosts(){
+    if(!this.searchTerm || this.searchTerm.trim().length==0){
+      this.filteredPosts=[...this.posts]; // si pas de mot clé, afficher tous les posts
+      return;
+    }
+
+    const keyword = this.searchTerm.toLowerCase().trim();
+
+    this.filteredPosts=this.posts.filter( post => {
+
+      // recherche dans le titre
+      const titleMatch = post.title && post.title.toLowerCase().includes(keyword);
+
+
+      // recherche dans le contenu 
+      const contentMatch = post.content && post.content.toLowerCase().includes(keyword);
+
+      // recherche dans le nom de l'auteur
+      const authorNameMatch = post.authorName && post.authorName.toLowerCase().includes(keyword);
+
+      return titleMatch || contentMatch || authorNameMatch;
+
+    });
+
+  }
+
+
   
 }

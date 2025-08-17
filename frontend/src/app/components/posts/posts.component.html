@@ -4,6 +4,26 @@
     </div>
     
     <div class="conteneur">
+
+
+        <!-- Barre de recherche  -->
+         <div class="m-5 barre-recherche">
+            <input 
+                    type="text"
+                    placeholder="🔎 Recherche dans les posts  ... "
+                    class="form-control"
+                    [(ngModel)]="searchTerm"
+                    (input)="onSearchInput($event)"
+                    >
+                    
+                    <div [ngClass]="{'nb-result': searchResultsCount==0 }">
+                       <!-- @if (searchResultsCount!==0) { -->
+                         <small class="info">{{searchResultsCount}} {{searchResultsCount>1 ? ' résultats trouvés' : ' résultat trouvé'}}   pour <span class="text-primary">{{searchTerm}}</span> </small>
+                       <!-- } -->
+                    </div>
+         </div>
+
+
         <div class="div-create-poste">
            <div class="create-poste" (click)="openModalToCreateNewPost()">
                 <div class="icon">
@@ -11,27 +31,27 @@
                 </div>
                 <div class="new-post">
                     <h3>Créer votre post</h3>
-                    <p>Partagez une photo ou un message</p>
+                    <p>Partagez quelque chose avec la communauté</p>
                 </div>
            </div>
         </div>
 
         <div class="posts">
-            @for (post of posts; track $index) {
+            @for (post of filteredPosts; track $index) {
                  <div class="row mt-3">
                 <div class="card">
                 <h5 class="card-header">
                     <span class="photo-profile">
-                        <img [src]="post.authorProfilePictureUrl" alt="photo de profile de l'utilisateur">
+                        <img [src]="post.authorProfilePictureUrl" [alt]="post.authorName">
                     </span>
                     <div class="infos">
-                        <span>{{post.authorName}}</span>
+                        <span [innerHTML]="highlightText(post.authorName,searchTerm)"></span>
                         <span class="creation-date">{{post.createdAt | date : 'MMMM dd, yyyy - HH:mm:ss'}}</span>
                     </div>
                 </h5>
                 <div class="card-body">
                     <!-- <h5 class="card-title">Special title treatment</h5> -->
-                    <p class="card-text">{{post.content}}</p>
+                    <p class="card-text" [innerHTML]="highlightText(post.content,searchTerm)"></p>
                     <div class="mt-4 icons d-flex justify-content-between align-items-center">
                         <div>
                             <i class="fa-regular fa-thumbs-up" (click)="addLike(post.id)"  ><span class="reaction">{{post.likesCount}}</span></i>

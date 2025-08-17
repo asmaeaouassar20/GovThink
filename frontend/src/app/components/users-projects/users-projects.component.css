@@ -38,24 +38,7 @@
 }
 
 
-/* *** style pour la carte qui représente le projet ***  */
-.card-title{
-    font-size: 1.5rem;
-}
-.card-body a{
-    font-style: italic;
-}
-.card-body a:hover{
-    color: rgb(251, 110, 110);
-}
 
-.card-img-top{
-   height: 280px;
-   object-fit: cover;
-}
-.card{
-    cursor: pointer;
-}
 
 
 /* Style pour le bouton d'ajout d'un nouveau projet */
@@ -121,22 +104,3 @@
 
 
 
-
-/* La section qui permet d'afficher les détails d'un projet */
-.project-details{
-    position: absolute;
-    top: 12%;
-    left: 45%;
-    background-color: #00000059;
-    padding: .8rem 1.8rem 1.8rem 1.8rem;
-    box-shadow: 8px 10px 20px #0000008b;
-
-    .fa-rectangle-xmark{
-        font-size: 30px;
-       cursor: pointer;
-    }
-    a{
-        font-style: italic;
-        color: #739CC0;
-    }
-}

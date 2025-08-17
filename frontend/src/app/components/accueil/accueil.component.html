@@ -27,15 +27,15 @@
         <div class="user-impact p-4">
             <div class="seq-connex">
                 <h6>Votre impact</h6>
-                <h1 class="p-3 mb-2">{{nbrPublishedPosts + +nbrMyProjets }}</h1>
+                <span class="m-3  badge text-bg-info">{{nbrPublishedPosts + +nbrMyProjets }}</span>
                @if(nbrPublishedPosts!==0 || nbrMyProjets!==0){
                  <p>contributions</p>
                     <ul class="mb-3">
                         @if(nbrPublishedPosts!==0){
-                            <li>nombre de postes publiés : <span class=" ms-1 badge text-bg-info">{{nbrPublishedPosts}}</span></li>
+                            <li>nombre de postes publiés : <span class=" ms-1">{{nbrPublishedPosts}}</span></li>
                         }
                         @if(nbrMyProjets!==0){
-                            <li class="mt-1">nombre de projets déposés : <span class=" ms-1 badge text-bg-info">{{nbrMyProjets}}</span></li>
+                            <li class="mt-1">nombre de projets déposés : <span class=" ms-1">{{nbrMyProjets}}</span></li>
                         }
                     </ul>
                 <span class="fw-semibold">Merci pour votre contribution à l'e-gov marocain !</span>
@@ -60,7 +60,7 @@
                 <div class="card-body">
                     <figure>
                     <blockquote class="blockquote">
-                        <p>0</p>
+                        <p>{{nbrPublishedPosts++nbrMyProjets}}</p>
                     </blockquote>
 
                     <figcaption class="blockquote-footer">
@@ -70,9 +70,9 @@
                     </figure>
                     
                     <div class="espace-perso-user">
-                        <span class="badge">mes publications</span>
-                        <span class="badge ">mes projets</span>
-                        <span class="badge">mon profil</span>
+                        <span class="badge" routerLink="/my-posts">mes publications</span>
+                        <span class="badge " routerLink="/my-projects">mes projets</span>
+                        <span class="badge" routerLink="/my-profile">Mon profil</span>
                     </div>
 
                 </div>
@@ -89,7 +89,7 @@
                 <div class="card-body">
                     <figure>
                     <blockquote class="blockquote">
-                        <p>0</p>
+                        <p>{{nbrTotalDatasets}}</p>
                     </blockquote>
                     <figcaption class="blockquote-footer">
                         visualisations des données ouvertes de l'e-gov marocain   
@@ -110,7 +110,7 @@ selon votre secteur d'activité.
                 <div class="card-body">
                     <figure>
                     <blockquote class="blockquote">
-                        <p>0</p>
+                        <p>{{nbrTotalPosts}}</p>
                     </blockquote>
                     <figcaption class="blockquote-footer">
                         Échangez avec la communauté sur l'e-gouvernement et les données ouvertes
@@ -130,7 +130,7 @@ selon votre secteur d'activité.
                 <div class="card-body">
                     <figure>
                     <blockquote class="blockquote">
-                        <p>0</p>
+                        <p>{{nbrTotalprojets}}</p>
                     </blockquote>
                     <figcaption class="blockquote-footer">
                         Découvrez des analyses types pour vous inspirer dans vos projets

@@ -11,6 +11,8 @@ import { UsersProjectsComponent } from './components/users-projects/users-projec
 import { PostsComponent } from './components/posts/posts.component';
 import { AproposComponent } from './components/apropos/apropos.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { MyPostsComponent } from './components/my-posts/my-posts.component';
+import { MyProjectsComponent } from './components/my-projects/my-projects.component';
 export const routes: Routes = [
 
     {path:'', redirectTo:'/home', pathMatch:'full'},
@@ -38,6 +40,8 @@ export const routes: Routes = [
     { path : 'posts' , component:PostsComponent},
     { path : 'apropos', component:AproposComponent},
     { path : 'my-profile' , component:MyProfileComponent},
+    { path : 'my-posts' , component:MyPostsComponent},    
+    { path : 'my-projects', component:MyProjectsComponent},
 
     
     {path:'**', redirectTo:'/home'}

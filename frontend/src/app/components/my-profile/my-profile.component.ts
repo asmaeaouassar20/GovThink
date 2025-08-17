@@ -4,7 +4,6 @@ import { DatePipe, NgIf } from '@angular/common';
 import { ProfileService } from '../../service/profile.service';
 import { UpdateProfile, UserProfile } from '../../interfaces/profile';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../service/auth.service';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Post } from '../../interfaces/posts';

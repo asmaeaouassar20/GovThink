@@ -1,4 +1,5 @@
-import { Component, OnInit , ViewChild, ElementRef, OnDestroy} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { RouterLink} from '@angular/router';
 import { SidebarComponent } from "../../sidebars/sidebar/sidebar.component";
 
 
@@ -6,18 +7,16 @@ import { SidebarComponent } from "../../sidebars/sidebar/sidebar.component";
 import { UserService } from '../../service/user.service';
 import { PostService } from '../../service/post.service';
 import { ProjectService } from '../../service/project.service';
+import { DashboardService } from '../../service/dashboard.service';
 
 
 @Component({
   selector: 'app-accueil',
-  imports: [SidebarComponent],
+  imports: [SidebarComponent,RouterLink],
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.css'
 })
 export class AccueilComponent implements OnInit {
-  
-  // Référence à l'élément canvas dans le template via ViewChild
-  @ViewChild('donutCanvas', { static: true }) donutCanvas!: ElementRef<HTMLCanvasElement>;
   
   username : string = 'someone';
 
@@ -26,10 +25,16 @@ export class AccueilComponent implements OnInit {
   nbrPublishedPosts : number =0;
   nbrMyProjets : number =0;
 
+  // Total
+  nbrTotalPosts : number = 0; // Nombre total des posts
+  nbrTotalprojets : number = 0; // Nombre total des projets
+  nbrTotalDatasets : number =0; // Nombre total de datasets
+
 
   constructor(private userService : UserService,
             private postService : PostService,
-            private projectService : ProjectService
+            private projectService : ProjectService,
+            private dashboardService : DashboardService
   ){}
 
 
@@ -37,6 +42,9 @@ export class AccueilComponent implements OnInit {
     this.loadProfile();
     this.getNumberOfPublishedPosts();
     this.getNumberOfMyProjects();
+    this.getNombreTotalPosts();
+    this.getNombreTotalProjets();
+    this.getNombreTotalDatasets();
   }
 
 
@@ -99,4 +107,38 @@ export class AccueilComponent implements OnInit {
   }
 
 
+  getNombreTotalPosts(){
+    this.postService.getAllPosts().subscribe({
+      next : (posts) => this.nbrTotalPosts=posts.length,
+      error : (erreur) => {
+        console.log("Erreur lors de la récupération du nombre total des posts");
+        console.log(erreur);
+      }
+    })
+  }
+
+
+  getNombreTotalProjets(){
+    this.projectService.getAllProjects().subscribe({
+      next : (projects) => {
+        this.nbrTotalprojets=projects.length
+      },
+      error : (erreur) => {
+        console.log("Erreur lors de la récupération de tous les projets");
+        console.log(erreur);
+      }
+    })
+  }
+
+
+
+  getNombreTotalDatasets(){
+    this.dashboardService.getAllFiles().subscribe({
+      next : (files) => this.nbrTotalDatasets=files.length,
+      error : (erreur) => {
+        console.log("Erreur lors de la récupération des datasets. ERREUR: ");
+        console.log(erreur);
+      }
+    })
+  }
 }

@@ -53,6 +53,7 @@ export class UsersProjectsComponent implements OnInit{
       },
       error : (error) =>{
         console.error('Erreur lors du chargement du projet');
+        console.log(error);
       }
     });
   }

@@ -22,7 +22,8 @@
     </div>
     <div class="conteneur">
       
-        <div *ngIf="!isEditingProfile">
+        @if (!isEditingProfile && userProfile!==null) {
+                    <div>
             <div>
                 <button class="edit-btn" (click)="startEditingProfile()">
                     <i class="fa-solid fa-pencil me-2" style="color: #7ca2ca;"></i>
@@ -50,6 +51,8 @@
                 }
             </div>
         </div>
+        }
+
 
         <div *ngIf="isEditingProfile" >
             <form [formGroup]="profileForm" >

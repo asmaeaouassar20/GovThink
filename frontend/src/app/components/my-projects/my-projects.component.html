@@ -1,0 +1,56 @@
+<div class="result-container">
+    <div class="sidebar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="conteneur"> 
+        <div class="row my-4">
+           @if (myProjects.length>0) {
+            @for (projet of myProjects; track $index) {
+             <div class="card col-12 col-md-6 col-lg-4 col-xl-3 m-2" style="width: 18rem;" >
+                <img class="card-img-top" [alt]="projet.description" [src]="projet.imageUrl">
+                <div class="card-body">
+                    <h5 class="card-title fw-semibold">{{projet.titre}}</h5>
+                    <p class="card-text" (click)="selectProject(projet)">{{projet.description | truncate}}</p>
+                    <a  href="{{projet.lienProjet}}" class="text-blue-600 visited:text-purple-600"> Consultez le projet </a><br>
+                    @if (projet.fileUrl) {
+                        <a  class="text-blue-600 visited:text-purple-600"> Consultez le fichier </a>
+                    }
+                </div>
+            </div>
+           }
+           }@else {
+            <p class="text-center">Vous n'avez partagé aucun projet</p>
+           }
+        </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+@if (selectedProject!=undefined) {
+
+<div class="project-details">
+  <i class="fa-solid fa-rectangle-xmark text-danger"  (click)="selectedProject=undefined"></i>
+<div class="card" style="width: 18rem;" >
+  <div class="card-body">
+    <h5 class="card-title">{{selectedProject.titre}}</h5>
+    <a href="{{selectedProject.imageUrl}}" >voir l'image</a>
+    <p class="card-text my-4">{{selectedProject.description}}</p>
+    
+    @if (selectedProject.lienProjet) {
+        <a [href]="selectedProject.lienProjet" class="card-link">consulter le projet</a>
+    }
+    
+    @if (selectedProject.fileUrl) {
+        <a [href]="" class="card-link">consulter le fichier</a>
+    }
+
+  </div>
+</div>
+</div>
+}

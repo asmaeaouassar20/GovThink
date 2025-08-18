@@ -43,7 +43,7 @@
             </div>
             <div class="profile-bio">
                 <h2>Biographie</h2>
-                @if(userProfile.bio.length===0){
+                @if( userProfile.bio && userProfile.bio.length===0){
                     <span class="fw-semibold none-bio">aucune bio </span>
                 }
                 @else {

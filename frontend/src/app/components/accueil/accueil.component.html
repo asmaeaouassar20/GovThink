@@ -25,11 +25,11 @@
             <h5 > L’espace idéal pour explorer l’e-gouvernement marocain,<br> interagir avec les données ouvertes et prendre des décisions éclairées.</h5>
         </div>
         <div class="user-impact p-4">
-            <div class="seq-connex">
+            <div class="seq-connex d-flex justify-content-center align-items-center flex-column">
                 <h6>Votre impact</h6>
                 <span class="m-3  badge text-bg-info">{{nbrPublishedPosts + +nbrMyProjets }}</span>
                @if(nbrPublishedPosts!==0 || nbrMyProjets!==0){
-                 <p>contributions</p>
+                 <p>{{(nbrPublishedPosts+nbrMyProjets)>=2? 'contributions':'contribution'}}</p>
                     <ul class="mb-3">
                         @if(nbrPublishedPosts!==0){
                             <li>nombre de postes publiés : <span class=" ms-1">{{nbrPublishedPosts}}</span></li>

@@ -64,7 +64,7 @@ export class MyProfileComponent implements OnInit{
 
 
 
-  
+   
   // Charger le profil de l'utilisateur
   loadUserProfile() : void{
     this.profileService.getCurrentProfile().subscribe({

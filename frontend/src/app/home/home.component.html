@@ -12,9 +12,9 @@
 
      <nav class="menu">
         <a href="#" class="me-5 p-1 rounded fw-semibold" (click)="scrollTo('intro'); $event.preventDefault()">Accueil</a>
-  <a href="#" class="me-5 p-1 rounded fw-semibold" (click)="scrollTo('who'); $event.preventDefault()">Services</a>
-  <a href="#" class="me-5 p-1 rounded fw-semibold" (click)="scrollTo('fonctionnalites'); $event.preventDefault()">fonctionnalites</a>
-  <a href="#" class="me-5 p-1 rounded fw-semibold" (click)="scrollTo('community'); $event.preventDefault()">Communauté</a>
+        <a href="#" class="me-5 p-1 rounded fw-semibold" (click)="scrollTo('who'); $event.preventDefault()">Services</a>
+        <a href="#" class="me-5 p-1 rounded fw-semibold" (click)="scrollTo('fonctionnalites'); $event.preventDefault()">fonctionnalites</a>
+        <a href="#" class="me-5 p-1 rounded fw-semibold" (click)="scrollTo('community'); $event.preventDefault()">Communauté</a>
      </nav>
 
 
@@ -38,9 +38,9 @@
             <h1 class="my-5">Votre portail vers le numérique public</h1>
             <h4 class="mb-4">Explorez, analysez et contribuez à la transformation numérique des services publics au Maroc.</h4>
             <p>Rejoignez une communauté d'acteurs du numérique, de chercheurs et de citoyens engagés.
-            Explorez des tableaux de bord interactifs, accédez à des données ouvertes fiables et inspirez vos décisions grâce à l'intelligence des données publiques.</p>
+            Explorez des tableaux de bord interactifs, accédez à des données ouvertes fiables et inspirez vos décisions grâce à aux données publiques.</p>
             <div class="mt-5 btns">
-              <button type="button" routerLink="/register">S'inscrire avec Email</button>
+              <button type="button" routerLink="/register">S'inscrire</button>
             </div>
           </div>
           <div class="col image d-flex justify-content-center align-items-center">
@@ -99,77 +99,61 @@
 
       <section class="fonctionnalites" id="fonctionnalites">
         <div class="row">
-          <div class="col">
-            <div class="card">
+          <div class="col d-flex">
+            <div class="card flex-fill">
               <h5 class="card-header py-4">
                 Jeux de données open source
                 <img src="assets/dataset.png" alt="icone représentant un dataset, car notre platfome permet aux utilisateurs de consulter les jeux de données disponibles">
               </h5>
               <div class="card-body">
-                <p class="card-text">Données publiques organisées, filtrées et téléchargeables pour vos projets ou analyses.</p>
-                <a href="#" class="btn">Voir plus</a>
+                <p class="card-text">Données publiques organisées  pour vos projets ou analyses.</p>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="card">
+          <div class="col d-flex">
+            <div class="card flex-fill">
               <h5 class="card-header py-4">
                 Tableaux de bord interactifs
                 <img src="assets/dashboard.png" alt="icone représentant un dataset, car notre platfome permet aux utilisateurs de consulter les tableaux de bord réalisés à partir des jeux de données">
               </h5>
               <div class="card-body">
-                <p class="card-text">Visualisations claires pour suivre les indicateurs clés du numérique.</p>
-                <a href="#" class="btn ">Voir plus</a>
+                <p class="card-text">Visualisations claires  des données ouvertes de l'e-gouvernement marocain sous forme de graphiques et tableaux personnalisés.</p>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="card">
+          <div class="col d-flex">
+            <div class="card flex-fill">
               <h5 class="card-header py-4">
-                Articles & fiches explicatives
+                Espace personnel
                 <img src="assets/article.png" alt="icone représentant un dataset, car notre platfome permet aux utilisateurs de consulter les articles et les fiches explicatives publiées après vérification">
               </h5>
               <div class="card-body">
-                <p class="card-text">Analyses, synthèses et vulgarisation autour de l’e-gouvernement.</p>
-                <a href="#" class="btn ">Voir plus</a>
+                <p class="card-text">Gérez vos publications suivez vos contributions à la plateforme.</p>
               </div>
             </div>
           </div>
         </div>
          <div class="row">
-          <div class="col">
-            <div class="card">
+          <div class="col d-flex">
+            <div class="card flex-fill">
               <h5 class="card-header py-4">
-                Études & analyses approfondies
+                Projets & analyses partagés
                 <img src="assets/data-analytics.png" alt="icone représentant un dataset, car notre platfome permet aux utilisateurs de consulter les études et les  analyses  publiées après vérification">
               </h5>
               <div class="card-body">
-                <p class="card-text">Rapports, diagnostics et comparaisons locales ou internationales.</p>
-                <a href="#" class="btn ">Voir plus</a>
+                <p class="card-text">Découvrez des analyses, études de marché et projets innovants dans le domaine de l'e-gouvernement au Maroc.</p>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="card">
-              <h5 class="card-header py-4">
-                Liens utiles vers les services e-gov
-              <img src="assets/cliquez-sur.png" alt="icone représentant un dataset, car notre platfome permet aux utilisateurs de consulter et publier les liens vers les services e-gov qui peuvent être utiles pour les utilisateurs de la plateforme">
-              </h5>
-              <div class="card-body">
-                <p class="card-text">Portails administratifs, plateformes en ligne, services régionaux.</p>
-                <a href="#" class="btn ">Voir plus</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card">
+        
+          <div class="col d-flex">
+            <div class="card flex-fill">
               <h5 class="card-header py-4"> 
                 Espace communautaire 
               <img src="assets/reunion.png" alt="icone représentant un dataset, car notre platfome fournit un espace communautaire pour échanger">
               </h5>
               <div class="card-body">
-                <p class="card-text">Forum pour échanger, poser des questions ou partager des idées.</p>
-                <a href="#" class="btn ">Voir plus</a>
+                <p class="card-text">Posez vos questions sur les démarches administratives, partagez vos expériences et obtenez des réponses de la communauté.</p>
               </div>
             </div>
           </div>
@@ -183,7 +167,7 @@
         <div class="text">
           <p> Le futur du service public passe par l’innovation, la transparence et la collaboration.</p>
           <p>Que vous soyez citoyen engagé, entrepreneur du digital, chercheur passionné, ou acteur public, votre contribution compte.</p>
-          <p>Rejoignez GovThink pour partager vos idées, valoriser les données ouvertes et construire des solutions concrètes au service de tous les Marocains.</p>
+          <p>Rejoignez GovThink pour partager vos idées, valoriser les données ouvertes et construire des solutions concrètes au service des Marocains.</p>
         </div>
       </section>
 

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&display=swap');
+
 /* faire des espaces entre les sections */
 section{
     margin-top: 8rem;
@@ -43,6 +45,7 @@ section{
         border-radius: 20px;
         padding: .5rem 1rem;
         background-color: white;
+        width: 45%;
     }
     .image img{ 
         border-radius: 50%;
@@ -292,3 +295,17 @@ section{
     }
 }
 
+
+
+
+/* 
+ */
+
+
+h1{
+  font-family: "Mozilla Headline", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-size: 28px;
+  color: #456581;
+}

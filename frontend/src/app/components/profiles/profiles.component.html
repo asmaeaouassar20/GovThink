@@ -42,21 +42,6 @@
                     <span class="feature-tag" (click)="openPopup()">Voir plus</span>
                     </div>
                 </div>
-                  <div 
-                    class="profile-card col" 
-                    [class.selected]="selectedProfile === 'developer'"
-                    (click)="selectProfile('developer', 'Développeur')"
-                    (mouseenter)="onCardHover($event, true)"
-                    (mouseleave)="onCardHover($event, false)">
-                    <div class="profile-icon">💻</div>
-                    <h3 class="profile-title">Développeur</h3>
-                    <p class="profile-description">
-                    Accédez aux APIs, documentation technique et outils de développement pour vos projets.
-                    </p>
-                    <div class="profile-features">
-                    <span class="feature-tag"  (click)="openPopup()">Voir plus</span>
-                    </div>
-                </div>
             </div>
 
             <div class="row">
@@ -94,6 +79,8 @@
             </div>
 
         </div>
+
+        
     </div>
 </div>
 
@@ -107,12 +94,72 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closePopup()"></button>
       </div>
       <div class="modal-body">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio dignissimos alias autem magni neque, quam, adipisci quis earum hic illum quaerat eum tempora, repudiandae optio non pariatur quas. Tempora fugit nesciunt quaerat debitis? Aliquam minus quisquam ratione repudiandae quaerat, neque in harum quod dignissimos. Id suscipit cumque impedit sunt necessitatibus?</p>
+      @if (this.selectedProfileTitle=='Citoyen') {
+      <p>
+        <strong>GovThink simplifie vos démarches administratives</strong> en centralisant  les informations utiles. 
+        Accédez à :
+      </p>
+      <ul>
+        <li>Des <strong>sources et données ouvertes.</strong></li>
+        <li>Des <strong>tableaux de bord personnalisés.</strong></li>
+        <li>Un <strong>espace de discussion.</strong></li>
+      </ul>
+      <p class="highlight">
+        Visualisez  les projets qui vous concernent et participez à la transparence administrative.
+      </p>
+      }
+
+
+
+
+      @if (this.selectedProfileTitle=='Entrepreneur') {
+        <p>
+          <strong>Boostez votre business</strong> avec nos  :
+        </p>
+        <ul>
+          <li><strong>Données sectorielles.</strong></li>
+          <li><strong>Communauté de différents profiles</strong> pour  partage d'expérience</li>
+        </ul>
+        <p class="highlight">
+          Identifiez les marchés porteurs et optimisez vos stratégies.
+        </p>
+        }
+
+
+        @if (this.selectedProfileTitle=='Chercheur & Étudiant') {
+         <p>
+        <strong>Exploitez nos données pour vos recherches</strong> :
+      </p>
+      <ul>
+        <li>Publiez vos analyses et recevez des <strong>retours qualifiés</strong></li>
+        <li>Collaborez avec d'autres chercheurs via notre <strong>forum d'échange</strong></li>
+      </ul>
+      <p class="highlight">
+        Contribuez à l'innovation grâce à notre plateforme open science.
+      </p>
+        }
+
+
+        @if (this.selectedProfileTitle=='Administration & Décideurs') {
+          <p>
+        <strong>Améliorez vos services publics</strong> avec nos outils :
+      </p>
+      <ul>
+        <li><strong>Visualisations personnalisées</strong></li>
+        <li><strong>Analyses et projets partagés</strong> pour prioriser vos actions</li>
+        <li><strong>Espace de co-construction</strong> avec les citoyens/entreprises</li>
+      </ul>
+      <p class="highlight">
+        Pilotez vos politiques publiques .
+      </p>
+        }
+
       </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closePopup()">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
+
+
+      
+      
     </div>
   </div>
 </div>
+

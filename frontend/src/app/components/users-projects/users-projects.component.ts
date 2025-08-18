@@ -91,6 +91,7 @@ export class UsersProjectsComponent implements OnInit{
         setTimeout(()=>{
           this.addingNewProject=false;
           this.resetMyForm();
+          this.loadProjects();
         },2000)
       });
     }

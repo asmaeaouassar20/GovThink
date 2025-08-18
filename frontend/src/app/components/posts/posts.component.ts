@@ -59,6 +59,7 @@ export class PostsComponent implements OnInit {
       this.posts.push(postDtoCreated);
       this.resetFormNewPost();
       this.closeModalToCreateNewPost();
+      this.loadPosts();
     },
     error : (erreur) => console.error("erreur lors de la creation d'un nouveau post", erreur)
    })

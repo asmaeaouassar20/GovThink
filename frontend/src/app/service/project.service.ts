@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Project } from '../interfaces/projects';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ProjectService {
 
   private apiUrl = 'http://localhost:8080/api/projects';
 
-  constructor(private http:HttpClient){}
+  constructor(private http:HttpClient, private authService:AuthService){}
 
   getAllProjects() : Observable<Project[]>{
     return this.http.get<Project[]>(this.apiUrl);
@@ -18,9 +19,7 @@ export class ProjectService {
 
   publishProject(formData : FormData) : Observable<Project>{
     return this.http.post<Project>(`${this.apiUrl}/upload`,formData, {
-      headers : {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
+      headers : this.authService.getHeaders()
 
     });
   }

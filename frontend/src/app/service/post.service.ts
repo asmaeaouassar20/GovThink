@@ -3,6 +3,7 @@ import { CreateCommentRequest, CreatePostRequest, Post, MyComment, PostResponse 
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UserDTO } from '../interfaces/users';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class PostService {
 
 
   http = inject(HttpClient)
+  authService = inject(AuthService);
 
   getAllPosts() : Observable<Post[]>{
     return this.http.get<Post[]>(`${this.apiUrl}`);
@@ -24,10 +26,8 @@ export class PostService {
   }
 
   createPost(post : CreatePostRequest) : Observable<Post>{
-    return this.http.post<Post>(`${this.apiUrl}`,post, {
-      headers : {
-        'Authorization' : `Bearer ${localStorage.getItem('token')}`
-      }
+    return this.http.post<Post>(`${this.apiUrl}`,post,{
+      headers: this.authService.getHeaders()
     });
   }
 
@@ -40,18 +40,14 @@ export class PostService {
 
   addComment(id : number, comment : CreateCommentRequest) : Observable<MyComment>{
     return this.http.post<MyComment>(`${this.apiUrl}/${id}/comments`,comment,{
-      headers : {
-        'Authorization' : `Bearer ${localStorage.getItem('token')}`
-      }
+      headers : this.authService.getHeaders()
     });
   }
 
 
   getSavedPosts():Observable<Post[]>{
     return this.http.get<Post[]>(`${this.apiUrl}/saved-posts`,{
-      headers : {
-        'Authorization' : `Bearer ${localStorage.getItem('token')}`
-      }
+      headers :this.authService.getHeaders()
     });
   }
 

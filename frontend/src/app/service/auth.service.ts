@@ -55,6 +55,13 @@ export class AuthService {
     });
   }
 
+  getHeaders() : HttpHeaders {
+    const token=localStorage.getItem('token');
+    return new HttpHeaders({
+      'Authorization' : `Bearer ${token}`
+    })
+  }
+
 
 
 

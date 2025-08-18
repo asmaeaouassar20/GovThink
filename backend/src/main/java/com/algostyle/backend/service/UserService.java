@@ -41,6 +41,9 @@ public class UserService
         if(userRepository.existsByEmail(request.getEmail())){
             throw new RuntimeException("Cet email est déjà pris");
         }
+        if(!request.getPassword().equals(request.getPasswordconfirm())){
+            throw new RuntimeException(("Problème lors de la confirmation du mot de passe"));
+        }
 
         User user=new User();
         user.setEmail(request.getEmail());
@@ -48,6 +51,7 @@ public class UserService
         user.setPrenom(request.getPrenom());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setBio(request.getBio());
+
 
         if(profilePicture!=null && !profilePicture.isEmpty()){
             try{

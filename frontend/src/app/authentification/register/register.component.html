@@ -31,7 +31,7 @@
           </div>
 
            <div class="form-group user-password">
-            <div class="password">
+            <div class="password div-mpd">
               <label for="password" >Mot de passe</label>
               <input type="{{mdpVisible? 'text':'password'}}" id="password" name="password" required="" [(ngModel)]="userData.password">
               @if(mdpVisible){
@@ -40,9 +40,9 @@
                 <i class="fa-solid fa-eye" (click)="mdpVisible=!mdpVisible"></i>
               }
             </div>
-            <div class="password-confirm">
+            <div class="password-confirm div-mpd">
               <label for="password-confirm">Confirmation du mot de passe</label>
-              <input type="{{confirmMdpVisible? 'text':'password'}}" id="password-confirm" name="password-confirm" required="">
+              <input type="{{confirmMdpVisible? 'text':'password'}}" id="password-confirm" name="passwordconfirm" required=""  [(ngModel)]="userData.passwordconfirm">
               @if(confirmMdpVisible){
                 <i class="fa-solid fa-eye-slash" (click)="confirmMdpVisible=!confirmMdpVisible"></i>
               }@else {

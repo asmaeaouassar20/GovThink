@@ -12,7 +12,7 @@ import { NgIf } from '@angular/common';
 })
 export class RegisterComponent {
 
-  userData = { nom:'', prenom:'', email:'', password:'' , bio:''};
+  userData = { nom:'', prenom:'', email:'', password:'',passwordconfirm:'' , bio:''};
   message = '';
   error = '';
 
@@ -33,6 +33,9 @@ export class RegisterComponent {
   ){}
 
   onSignup() : void {
+    if(!this.isFormValid()){
+      return;
+    }
     const formData = new FormData();
 
     // Ajouter les données utilisateur sous forme de chaîne JSON
@@ -63,6 +66,27 @@ export class RegisterComponent {
   }
   validateBio(){
     this.showPopupBiographie=false;
+  }
+
+  isFormValid() : boolean{
+    if(this.userData.nom.length<=1){
+      alert('Le nom doit contenir au moins 2 caractères');
+      return false;
+    }
+
+    if(this.userData.prenom.length<=1){
+      alert('Le prénom doit contenir au moins 2 caractères');
+      return false;
+    }
+    if(!this.userData.email || !this.userData.email.endsWith("@gmail.com")){
+      alert('Email invalid');
+      return false;
+    }
+    if(this.userData.password!==this.userData.passwordconfirm){
+      alert('Probleme dans la confirmation du password');
+      return false;
+    }
+    return true;
   }
 
 } 

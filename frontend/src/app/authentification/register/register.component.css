@@ -90,12 +90,3 @@
 
 
 
-/* visibilité mot de passe  */
-.password-confirm, .password{
-  position: relative;
-  i {
-    position: absolute;
-    right: 14px;
-    bottom: 17px;
-  }
-}

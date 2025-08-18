@@ -16,6 +16,8 @@ public class SignupRequest {
     @Size(min = 6, message = "Le mot de passe doit contenir au moins 6 caractères")
     private String password;
 
+    private String passwordconfirm;
+
     private String bio;
 
 
@@ -57,5 +59,19 @@ public class SignupRequest {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public String getPasswordconfirm() {
+        return passwordconfirm;
+    }
+
+    public void setPasswordconfirm(String passwordconfirm) {
+        this.passwordconfirm = passwordconfirm;
+    }
+
+
+    @Override
+    public String toString() {
+        return "nom:"+nom+" - prenom:"+prenom+" - email:"+email+" - mdp:"+password+" - passwordconfirm:"+passwordconfirm+" - bio:"+bio;
     }
 }

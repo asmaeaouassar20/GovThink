@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -78,6 +79,8 @@ public class UserService
 
     public User authenticate(String email, String password){
         User user= userRepository.findByEmail(email);
+        user.setUpdatedAt(LocalDateTime.now());
+        this.userRepository.save(user);
         if(user!=null && passwordEncoder.matches(password,user.getPassword())){
             return user;
         }

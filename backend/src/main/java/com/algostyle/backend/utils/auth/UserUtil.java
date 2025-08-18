@@ -14,7 +14,9 @@ public class UserUtil {
                 user.getEmail(),
                 user.getBio(),
                 user.getProfilePictureUrl(),
-                user.getProfilePictureFilename()
+                user.getProfilePictureFilename(),
+                user.getCreatedAt(),
+                user.getUpdatedAt()
         );
     }
 

@@ -22,7 +22,7 @@ public class UserProfileDTO {
 
     private LocalDateTime updatedAt;
 
-    public UserProfileDTO(Long id, String nom, String prenom, String email, String bio, String profilePictureUrl, String profilePictureFilename) {
+    public UserProfileDTO(Long id, String nom, String prenom, String email, String bio, String profilePictureUrl, String profilePictureFilename, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -30,8 +30,8 @@ public class UserProfileDTO {
         this.bio = bio;
         this.profilePictureUrl = profilePictureUrl;
         this.profilePictureFilename = profilePictureFilename;
-        this.createdAt=LocalDateTime.now();
-        this.updatedAt=LocalDateTime.now();
+        this.createdAt=createdAt;
+        this.updatedAt=updatedAt;
     }
 
     @Override

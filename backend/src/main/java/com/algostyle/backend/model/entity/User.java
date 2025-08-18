@@ -73,8 +73,6 @@ public class User {
         this.bio = bio;
         this.profilePictureUrl = profilePictureUrl;
         this.profilePictureFilename = profilePictureFilename;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
     }
 
 
@@ -82,7 +80,6 @@ public class User {
     @PrePersist
     protected void onCreate(){
         createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
     }
 
     @PreUpdate

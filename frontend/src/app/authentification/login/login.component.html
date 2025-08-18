@@ -22,11 +22,11 @@
 
            <div class="form-group div-mpd">
               <label for="password" >Mot de passe</label>
-              <input type="{{!mdpVisibility? 'text' : 'password'}}" id="password" name="password" required="" [(ngModel)]="credentials.password">
-              @if (!mdpVisibility) {
+              <input type="{{mdpVisibility? 'text' : 'password'}}" id="password" name="password" required="" [(ngModel)]="credentials.password">
+              @if (mdpVisibility) {
                 <i class="fa-solid fa-eye"  (click)="mdpVisibility=!mdpVisibility"></i>
               }
-              @if (mdpVisibility) {
+              @if (!mdpVisibility) {
                   <i class="fa-solid fa-eye-slash" (click)="mdpVisibility=!mdpVisibility"></i>
               }
               

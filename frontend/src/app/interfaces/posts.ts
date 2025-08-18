@@ -4,7 +4,6 @@ export interface Post {
     content:string;
     authorName:string;
     createdAt:string;
-    updatedAt:string; 
     commentCount:number; 
     likesCount:number;
     authorProfilePictureUrl:string;
@@ -15,7 +14,6 @@ export interface PostResponse {
     content:string;
     authorName:string;
     createdAt:string;
-    updatedAt:string;
     commentCount:number; 
     likesCount:number;
     commentsDto : MyComment[]
@@ -26,7 +24,6 @@ export interface MyComment {
     content:string;
     authorName:string;
     createdAt:string;
-    updatedAt:string; 
 }
 
 export interface CreateCommentRequest{

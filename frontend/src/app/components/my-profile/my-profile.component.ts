@@ -82,7 +82,7 @@ export class MyProfileComponent implements OnInit{
       },
       error : (error) =>{
         this.errorMessage = 'Erreur lors du chargement du profil';
-        console.error('erreur : '+error);
+        console.error(error);
       }
     });
   }

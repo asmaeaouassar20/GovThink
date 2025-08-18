@@ -5,7 +5,10 @@
 }
 .others{
   display: flex;
-  gap: 5rem;
+  /* justify-content: center;
+  align-items: center; */
+  flex-direction: column;
+  /* gap: 10rem; */
   width: 45%;
 }
 .others button{
@@ -80,4 +83,19 @@
 
 .add-bio .form-floating{
   margin: 3rem 1.5rem 1.2rem 1.5rem;
+}
+
+
+
+
+
+
+/* visibilité mot de passe  */
+.password-confirm, .password{
+  position: relative;
+  i {
+    position: absolute;
+    right: 14px;
+    bottom: 17px;
+  }
 }

@@ -14,6 +14,8 @@ export class LoginComponent {
 
   credentials = {email:'' , password:''};
   error = '';
+  mdpVisibility : boolean = false;
+
 
   constructor(private authService : AuthService,
           private router : Router

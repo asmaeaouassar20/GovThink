@@ -41,3 +41,17 @@
   gap: 20px;
 }
 
+.div-mpd{
+  position: relative;
+  .fa-eye, .fa-eye-slash{
+    position: absolute;
+    right: 16px;
+    bottom: 14px;
+    font-size: 17px;
+    color: #5f8fba;
+  }
+}
+.error{
+  font-style: italic;
+  color: rgba(249, 41, 41, 0.948);
+}

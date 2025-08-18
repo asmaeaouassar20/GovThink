@@ -16,6 +16,9 @@ export class RegisterComponent {
   message = '';
   error = '';
 
+  mdpVisible : boolean = false;
+  confirmMdpVisible : boolean = false;
+
   // Pour l'ajout de la photo de profil et de la biographie
   isContentVisible = true;
   showPopupPhotoProfil = false;

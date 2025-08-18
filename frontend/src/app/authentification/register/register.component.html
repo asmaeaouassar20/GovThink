@@ -33,11 +33,21 @@
            <div class="form-group user-password">
             <div class="password">
               <label for="password" >Mot de passe</label>
-              <input type="password" id="password" name="password" required="" [(ngModel)]="userData.password">
+              <input type="{{mdpVisible? 'text':'password'}}" id="password" name="password" required="" [(ngModel)]="userData.password">
+              @if(mdpVisible){
+                <i class="fa-solid fa-eye-slash" (click)="mdpVisible=!mdpVisible"></i>
+              }@else {
+                <i class="fa-solid fa-eye" (click)="mdpVisible=!mdpVisible"></i>
+              }
             </div>
             <div class="password-confirm">
               <label for="password-confirm">Confirmation du mot de passe</label>
-              <input type="password" id="password-confirm" name="password-confirm" required="">
+              <input type="{{confirmMdpVisible? 'text':'password'}}" id="password-confirm" name="password-confirm" required="">
+              @if(confirmMdpVisible){
+                <i class="fa-solid fa-eye-slash" (click)="confirmMdpVisible=!confirmMdpVisible"></i>
+              }@else {
+                <i class="fa-solid fa-eye" (click)="confirmMdpVisible=!confirmMdpVisible"></i>
+              }
             </div>
           </div>
          
@@ -53,11 +63,11 @@
             </div>
           </div>
       </div>
-
+ 
       <div class="others mt-5" *ngIf="!showPopupBiographie && !showPopupPhotoProfil">
-        <button class="form-submit-btn btn btn-outline-light" type="submit">Se Connecter</button>
-        <button class="form-submit-btn btn btn-outline-light" type="submit">S'inscrire avec Google</button>
-      </div>
+            <label class="mb-3">Vous avez déjà un compte ?</label>
+        <button class="form-submit-btn btn btn-outline-light" type="submit" routerLink="/login">Se Connecter</button>
+      </div>  
      
 </div>
 

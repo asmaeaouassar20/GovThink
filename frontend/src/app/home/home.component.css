@@ -11,9 +11,7 @@ section{
     top: 0;
     z-index: 1000;
     background-color: #739CC0 !important;
-    nav{
-        background-color: #739CC0 !important;
-    }
+    
     .connection-btns{
         width: 20%;
         text-align: center;
@@ -21,20 +19,24 @@ section{
             margin-right: 1rem;
         }
     }
-    #navbarSupportedContent{
-        margin-left: 5rem;
-        font-size: 17px;
-        font-weight: 600;
-
-        ul, form{
-            margin-left:  3rem;
-        }
-
-        ul li{
-            padding: 0 .5rem;
-        }
-    }
+   
 }
+.menu a{
+  transition: all .6s ease;
+}
+
+.menu a:hover{
+   background-color: rgba(157, 243, 246, 0.351);
+}
+.burger {
+    display: none;
+}
+
+.menu-toggle{
+    display: none;
+}
+
+
 
 
 /* ***** la première section *****  */
@@ -309,3 +311,30 @@ h1{
   font-size: 28px;
   color: #456581;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

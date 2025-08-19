@@ -93,6 +93,7 @@ export class PostsComponent implements OnInit {
 
   openViewCommentsWindow(postId:number){
     this.viewComments=true;
+    this.addingComment=false;
     this.postService.getPost(postId).subscribe({
       next : (post) => {
         this.selectedPost=post;
@@ -113,6 +114,7 @@ export class PostsComponent implements OnInit {
 
   openAddCommentWindow(postId:number){
     this.addingComment=true;
+    this.viewComments=false;
     this.postService.getPost(postId).subscribe({
       next : (post) => this.selectedPost=post ,
       error : (erreur) => console.error("erreur lors de la récupération du post avec id "+postId+". Erreur : "+erreur)

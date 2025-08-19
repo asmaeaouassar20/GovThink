@@ -6,7 +6,7 @@ import { UpdateProfile, UserProfile } from '../../interfaces/profile';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { Post } from '../../interfaces/posts';
+import { Post, PostResponse } from '../../interfaces/posts';
 import { PostService } from '../../service/post.service';
 
 @Component({
@@ -17,6 +17,8 @@ import { PostService } from '../../service/post.service';
 })
 export class MyProfileComponent implements OnInit{
   isEditingProfile = false;
+  viewComments : boolean = false;
+  selectedPost : PostResponse | undefined = undefined;
 
   // Données du profile
   userProfile : UserProfile | null = null;
@@ -308,6 +310,33 @@ export class MyProfileComponent implements OnInit{
         console.log("Erreur lors de la récupération des postes publiés. Erreur : ");
         console.log(erreur);
       }
+    })
+  }
+
+
+  closeViewCommentsWindow(){
+    this.viewComments=false;
+    this.selectedPost=undefined;
+  }
+
+   openViewCommentsWindow(postId:number){
+    this.viewComments=true;
+    this.postService.getPost(postId).subscribe({
+      next : (post) => this.selectedPost=post,
+      error : (erreur) => console.log(erreur)
+    })
+  }
+
+
+
+  deletePostById(postId:number){
+    this.postService.deletePost(postId).subscribe({
+      next : () =>{
+         console.log("post avec id "+postId+" est supprimé avec succès");
+         this.getPublishedPosts();
+         this.savedPostsView=true;
+      },
+      error : (erreur) => console.log(erreur)
     })
   }
 

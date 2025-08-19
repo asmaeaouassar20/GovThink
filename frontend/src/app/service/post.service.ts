@@ -54,25 +54,25 @@ export class PostService {
 
   savePost(postId:number):Observable<UserDTO>{
     return this.http.post<UserDTO>(`${this.apiUrl}/${postId}/save`,{},{
-      headers : {
-        'Authorization' : `Bearer ${localStorage.getItem('token')}`
-      }
+      headers : this.authService.getHeaders()
     });
   }
 
   unsavePost(postId:number):Observable<UserDTO>{
     return this.http.delete<UserDTO>(`${this.apiUrl}/${postId}/unsave`,{
-      headers : {
-        'Authorization' : `Bearer ${localStorage.getItem('token')}`
-      }
+      headers : this.authService.getHeaders()
     });
   }
 
   getPublishedPosts() : Observable<Post[]>{
     return this.http.get<Post[]>(`${this.apiUrl}/my-posts`,{
-      headers : {
-        'Authorization' : `Bearer ${localStorage.getItem('token')}`
-      }
+      headers : this.authService.getHeaders()
+    })
+  }
+
+  deletePost(postId:number): Observable<void>{
+    return this.http.delete<void>(`${this.apiUrl}/${postId}`,{
+      headers : this.authService.getHeaders()
     })
   }
 

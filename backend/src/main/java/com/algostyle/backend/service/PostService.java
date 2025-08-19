@@ -107,4 +107,12 @@ public class PostService {
     }
 
 
+
+    public void deletePostById(Long postId,User user){
+        Post post = this.postRepository.findById(postId).get();
+        List<Post> postList=postRepository.findAllByUser(user);
+        if(!postList.contains(post)) throw new RuntimeException("Vous n'avez pas le droit de supprimer ce post");
+        postRepository.deleteById(postId);
+    }
+
 }

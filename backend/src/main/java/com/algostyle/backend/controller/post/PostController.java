@@ -143,4 +143,15 @@ public class PostController {
         }
     }
 
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePostById(
+            @PathVariable(value = "id") Long postId,
+            @AuthenticationPrincipal User user
+    ){
+        this.postService.deletePostById(postId,user);
+        return ResponseEntity.noContent().build();
+
+    }
+
 }

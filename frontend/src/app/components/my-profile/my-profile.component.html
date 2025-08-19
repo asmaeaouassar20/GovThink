@@ -142,7 +142,7 @@
                     <div class="mt-4 icons d-flex justify-content-between align-items-center">
                         <div>
                             <i class="fa-regular fa-thumbs-up" ><span class="reaction">{{post.likesCount}}</span></i>
-                            <i class="fa-regular fa-comment" ><span class="reaction">{{post.commentCount}}</span></i>
+                            <i class="fa-regular fa-comment" (click)="openViewCommentsWindow(post.id)" ><span class="reaction">{{post.commentCount}}</span></i>
                             
                                 <i class="fa-solid fa-bookmark ms-2"  (click)="unsavePost(post.id)"></i>
                             
@@ -181,11 +181,11 @@
                     <div class="mt-4 icons d-flex justify-content-between align-items-center">
                         <div>
                             <i class="fa-regular fa-thumbs-up" ><span class="reaction">{{post.likesCount}}</span></i>
-                            <i class="fa-regular fa-comment" ><span class="reaction">{{post.commentCount}}</span></i>
+                            <i class="fa-regular fa-comment"  (click)="openViewCommentsWindow(post.id)"><span class="reaction">{{post.commentCount}}</span></i>
                             
                             
                         </div>
-                        <i class="fa-solid fa-plus" ><span class="reaction">Ajouter un commentaire pour ce post</span></i>
+                        <i class="fa-solid fa-trash" (click)="deletePostById(post.id)"></i>
                     </div>
                 </div>
                 </div>
@@ -194,6 +194,124 @@
             }
           }
         </div>
+
+
+
+        @if (viewComments) {
+    <div class="select-post-comments">
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <div class="rounded-circle d-flex justify-content-center align-items-center  cancel-icon"
+                (click)="closeViewCommentsWindow()"
+                >
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                <!-- Titre du poste s'il existe -->
+                 @if (selectedPost.title) {
+                    <h1 class="card-title display-6 fw-bold  mb-3">
+                        {{selectedPost.title}}
+                    </h1>
+                 }
+                
+
+                 <!-- Informations sur l'autheur et la date de création du poste -->
+                  <div class="d-flex align-items-center mb-4">
+
+
+                    <div class="user-icon-post d-flex justify-content-center align-items-center rounded-circle me-3">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <h6 class="fw-semibold">{{selectedPost.authorName}}</h6>
+                        <small class="text-muted">
+                            <i class="fas fa-calendar-alt me-2"></i>
+                            {{selectedPost.createdAt | date : 'MMMM dd, yyyy - HH:mm:ss'}}
+                        </small>
+                    </div>
+                  </div>
+
+
+
+                  <!-- Contenu du post -->
+                   <div class="post-content">
+                        <p class="card-text fs-5">
+                            {{selectedPost.content}}
+                        </p>
+                   </div>
+
+
+                   <!-- Actions  du post  -->
+                    <div class="border-top mt-3 pt-3">
+                        <div>
+                            <span class="nb-likes-post me-2">
+                                <i class="fas fa-thumbs-up me-1"></i> {{selectedPost.likesCount}}
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <!-- section des commentaires  -->
+                     <div class="card comments-section mt-4 mb-3">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-comments me-2"></i>
+                                Commentaires <span>{{selectedPost.commentCount}}</span>
+                            </h5>
+                        </div>
+
+                        <!-- Liste des commentaires -->
+                        <div>
+
+                            @for (comment of selectedPost.commentsDto; track $index) {
+                            <div class="m-3 p-3 border rounded-3 ">
+                        
+                                    <div >
+                                        <div class="d-flex">
+                                                <!-- Avatar du commentateur -->
+                                            <div class="user-icon-comment rounded-circle d-flex align-items-center justify-content-center me-3 ">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+
+                                            <!-- autheur et creation date  -->
+                                            <div class="flex-grow-1">
+                                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                                        <h6 class="mb-0 fw-semibold">{{comment.authorName}}</h6>
+                                                        <small class="text-muted">
+                                                            created at {{comment.createdAt | date : 'MMMM dd, yyyy  HH:mm:ss'}}
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <p class="p-3">{{comment.content}}</p>
+
+                                    </div>
+                            </div>
+                        }
+
+
+                        @if (selectedPost.commentCount==0) {
+                            <div class="text-center py-4" >
+                                <i class="fas fa-comment-slash fa-2x text-muted mb-2"></i>
+                                <p class="text-muted">Aucun commentaire pour le moment. Soyez le premier à commenter !</p>
+                            </div>
+                        }
+                           
+                        </div>
+                     </div>
+
+            </div>
+        </div>
+        <div class="cancel-btn" (click)="closeViewCommentsWindow()" >
+            <span class="badge text-bg-secondary">retourner aux posts</span>
+        </div>
+    </div>
+</div>
+}
+
+
+
+
 
        }
 

@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+AU+NSW:wght@100..400&display=swap');
 
 
 /*******  Pour le sidebar qu'on doit ajouter dans chaque composant *********/
@@ -43,9 +42,8 @@ h1{
     border-left:5px solid #739CC0 ; 
     cursor: pointer; 
     p{
+        margin-top: 8px;
         font-family: "Playwrite AU NSW", cursive;
-        font-optical-sizing: auto;
-        font-style: normal;
     }
 }
 .section:hover{

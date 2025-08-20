@@ -1,7 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
 
 
 /*******  Pour le sidebar qu'on doit ajouter dans chaque composant *********/
@@ -99,9 +96,7 @@
         }
         p{
             font-family: "Roboto Mono", monospace;
-            font-optical-sizing: auto;
-            font-weight: 200;
-            font-style: normal;
+            color: #000000ac;
             font-size: 1.8rem;
         }
         h1{

@@ -18,7 +18,7 @@ import { DashboardService } from '../../service/dashboard.service';
 })
 export class AccueilComponent implements OnInit {
   
-  username : string = 'someone';
+  username : string = 'Test';
 
 
   // Les contributions de l'utilisateur connecté

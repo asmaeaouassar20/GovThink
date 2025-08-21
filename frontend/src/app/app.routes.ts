@@ -15,7 +15,7 @@ import { MyPostsComponent } from './components/my-posts/my-posts.component';
 import { MyProjectsComponent } from './components/my-projects/my-projects.component';
 export const routes: Routes = [
 
-    {path:'', redirectTo:'/home', pathMatch:'full'},
+    {path:'', redirectTo:'home', pathMatch:'full'},
 
     { path:'home' , component : HomeComponent}, //page d'acceuil
     { path:'register' , component : RegisterComponent},

@@ -17,12 +17,12 @@
 
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required="" [(ngModel)]="credentials.email">
+            <input type="email" id="email" name="email" required="" [(ngModel)]="credentials.email" >
           </div>
 
            <div class="form-group div-mpd">
               <label for="password" >Mot de passe</label>
-              <input type="{{mdpVisibility? 'text' : 'password'}}" id="password" name="password" required="" [(ngModel)]="credentials.password">
+              <input type="{{mdpVisibility? 'text' : 'password'}}" id="password" name="password" required="" [(ngModel)]="credentials.password" autocomplete="off">
               @if (mdpVisibility) {
                 <i class="fa-solid fa-eye"  (click)="mdpVisibility=!mdpVisibility"></i>
               }

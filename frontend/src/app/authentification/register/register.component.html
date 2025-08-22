@@ -17,23 +17,23 @@
           <div class="form-group nomComplet">
             <div class="nom">
               <label for="nom">Nom</label>
-              <input type="text" id="nom" name="nom" required="" [(ngModel)]="userData.nom">
+              <input type="text" id="nom" name="nom" required="" [(ngModel)]="userData.nom" autocomplete="off">
             </div>
             <div class=" prenom">
               <label for="prénom">Prénom</label>
-              <input type="text" id="prenom" name="prenom" required="" [(ngModel)]="userData.prenom">
+              <input type="text" id="prenom" name="prenom" required="" [(ngModel)]="userData.prenom" autocomplete="off">
             </div>
           </div>  
 
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required="" [(ngModel)]="userData.email">
+            <input type="email" id="email" name="email" required="" [(ngModel)]="userData.email" autocomplete="off">
           </div>
 
            <div class="form-group user-password">
             <div class="password div-mpd">
               <label for="password" >Mot de passe</label>
-              <input type="{{!mdpVisible? 'password' : 'text'}}" id="password" name="password" required="" [(ngModel)]="userData.password">
+              <input type="{{!mdpVisible? 'password' : 'text'}}" id="password" name="password" required="" [(ngModel)]="userData.password" autocomplete="off">
               @if(mdpVisible){
                 <i class="fa-solid fa-eye" (click)="mdpVisible=!mdpVisible"></i>
               }@else {
@@ -42,7 +42,7 @@
             </div>
             <div class="password-confirm div-mpd">
               <label for="password-confirm">Confirmation du mot de passe</label>
-              <input type="{{!confirmMdpVisible? 'password':'text'}}" id="password-confirm" name="passwordconfirm" required=""  [(ngModel)]="userData.passwordconfirm">
+              <input type="{{!confirmMdpVisible? 'password':'text'}}" id="password-confirm" name="passwordconfirm" required=""  [(ngModel)]="userData.passwordconfirm" autocomplete="off">
               @if(confirmMdpVisible){
                 <i class="fa-solid fa-eye" (click)="confirmMdpVisible=!confirmMdpVisible"></i>
               }@else {

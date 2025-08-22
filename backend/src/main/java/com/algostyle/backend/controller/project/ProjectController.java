@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController // indique que cette classe est un contrôleur REST qui renvoie des données JSON
 @RequestMapping("/api/projects")    // toutes les routes commencent par /api/projects
-@CrossOrigin(origins = "http://localhost:4200") // Autorise le frontend Angular (port 4200) à accéder à cette API
+@CrossOrigin(origins={"https://govthink.netlify.app","http://localhost:4200"})// Autorise le frontend Angular (port 4200) à accéder à cette API ainsi que Ntlify
 public class ProjectController {
 
 

@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 
 @RestController
 @RequestMapping("/api/files")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins={"https://govthink.netlify.app","http://localhost:4200"})
 public class ImageController {
 
 

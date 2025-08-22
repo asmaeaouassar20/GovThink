@@ -1,6 +1,5 @@
 package com.algostyle.backend.model.dto.post;
 
-import com.algostyle.backend.model.entity.Comment;
 import com.algostyle.backend.model.entity.Post;
 
 import java.time.LocalDateTime;

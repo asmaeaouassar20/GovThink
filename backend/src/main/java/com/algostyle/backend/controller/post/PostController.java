@@ -1,26 +1,21 @@
 package com.algostyle.backend.controller.post;
 
 import com.algostyle.backend.model.dto.post.*;
-import com.algostyle.backend.model.entity.Comment;
-import com.algostyle.backend.model.entity.Post;
 import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.service.PostService;
 import com.algostyle.backend.service.UserService;
 import jakarta.validation.Valid;
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/posts")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins={"https://govthink.netlify.app","http://localhost:4200"})
 public class PostController {
     @Autowired
     private PostService postService;

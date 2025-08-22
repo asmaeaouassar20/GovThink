@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/excel")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins={"https://govthink.netlify.app","http://localhost:4200"})
 public class ExcelController {
 
     @Autowired

@@ -1,14 +1,6 @@
 package com.algostyle.backend.model.dto.post;
 
-import com.algostyle.backend.model.entity.Comment;
-import com.algostyle.backend.model.entity.Post;
 import com.algostyle.backend.model.entity.User;
-import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserDTO {
     private String email;

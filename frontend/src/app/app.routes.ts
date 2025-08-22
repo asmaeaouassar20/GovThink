@@ -13,6 +13,7 @@ import { AproposComponent } from './components/apropos/apropos.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { MyPostsComponent } from './components/my-posts/my-posts.component';
 import { MyProjectsComponent } from './components/my-projects/my-projects.component';
+import { authGuard } from './guard/auth.guard';
 export const routes: Routes = [
 
     {path:'', redirectTo:'home', pathMatch:'full'},
@@ -25,23 +26,24 @@ export const routes: Routes = [
 
 
     // Composants
-    { path : 'accueil', component:AccueilComponent},
+    { path : 'accueil', component:AccueilComponent, canActivate:[authGuard]},
     {
         path: 'dashboard',
         component : DashboardComponent,  // Contient les boutons et le <router-outlet>
+        canActivate:[authGuard],
         children : [
             { path: 'tables', component: TablesComponent},
             { path: 'charts', component: ChartsComponent},
             { path:'', redirectTo:'tables',pathMatch:'full'}
         ]
     },
-    { path : 'profiles' , component:ProfilesComponent},
-    { path : 'users-projects', component:UsersProjectsComponent},
-    { path : 'posts' , component:PostsComponent},
-    { path : 'apropos', component:AproposComponent},
-    { path : 'my-profile' , component:MyProfileComponent},
-    { path : 'my-posts' , component:MyPostsComponent},    
-    { path : 'my-projects', component:MyProjectsComponent},
+    { path : 'profiles' , component:ProfilesComponent, canActivate:[authGuard]},
+    { path : 'users-projects', component:UsersProjectsComponent, canActivate:[authGuard]},
+    { path : 'posts' , component:PostsComponent, canActivate:[authGuard]},
+    { path : 'apropos', component:AproposComponent, canActivate:[authGuard]},
+    { path : 'my-profile' , component:MyProfileComponent, canActivate:[authGuard]},
+    { path : 'my-posts' , component:MyPostsComponent, canActivate:[authGuard]},    
+    { path : 'my-projects', component:MyProjectsComponent, canActivate:[authGuard]},
 
     
     {path:'**', redirectTo:'/home'}

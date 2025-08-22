@@ -12,7 +12,6 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   const authService = inject(AuthService);
   const router = inject(Router);
-console.log(" ggg "+authService.isLoggedIn())
 
   // Vérification  de l'état de connexion
   if(authService.isLoggedIn()){

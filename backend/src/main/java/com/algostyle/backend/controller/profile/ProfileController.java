@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/profile")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins={"https://govthink.netlify.app","http://localhost:4200"})
 public class ProfileController {
     @Autowired
     private ProfileService profileService;

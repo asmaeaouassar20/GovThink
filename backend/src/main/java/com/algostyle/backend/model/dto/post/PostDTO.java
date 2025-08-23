@@ -20,7 +20,7 @@ public class PostDTO {
         this.id=post.getId();
         this.title=post.getTitle();
         this.content=post.getContent();
-        this.authorName=post.getUser().getNom();
+        this.authorName=post.getUser().getPrenom()+" "+post.getUser().getNom();
         this.authorProfilePictureUrl="http://localhost:8080"+post.getUser().getProfilePictureUrl();
         this.createdAt=post.getCreatedAt();
         this.updatedAt=post.getUpdatedAt();

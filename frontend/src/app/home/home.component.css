@@ -322,3 +322,86 @@ h1{
 .card-header{
     font-weight: 600;
 }
+
+
+
+.menu-reduit{
+    display: none;    
+}
+
+
+@media(max-width:1163px){
+    .who img{
+        display: none;
+    }
+    .menu{
+        display: none;
+    }
+    .menu-reduit{
+        /* display: block; */
+        background-color: #739CC0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: absolute;
+        top: 65px;
+        left: 0;
+    }
+}
+
+@media(max-width:1000px){
+    .menu-reduit{
+         /* display: block; */
+        background-color: #739CC0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: absolute;
+        top: 93px;
+        left: 0;
+        a{
+            margin: 0;
+            padding: 0;
+            font-weight: 100;
+        }
+
+    }
+    .connection-btns button {
+        padding: 5px 8px;
+        margin: 0;
+        font-size: 14px;
+    }
+}
+
+
+
+
+
+
+@media(max-width:461px){
+    .btns button{
+        padding: 2px !important;
+    } 
+    .intro .image img{
+        border-radius: 0%;
+    }
+}
+@media(max-width:367px){
+    .btns button{
+        padding: 2px !important;
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width:1024px){
+    .menu{
+        display: block !important;
+    }
+    .menu-reduit{
+        display: none !important;
+    }
+}
+
+

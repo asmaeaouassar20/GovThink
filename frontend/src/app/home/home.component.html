@@ -16,6 +16,12 @@
         <a href="#" class="me-5 p-1 rounded fw-semibold" (click)="scrollTo('fonctionnalites'); $event.preventDefault()">fonctionnalites</a>
         <a href="#" class="me-5 p-1 rounded fw-semibold" (click)="scrollTo('community'); $event.preventDefault()">Communauté</a>
      </nav>
+     <nav class="menu-reduit">
+        <a href="#" class="m-1 p-1 rounded fw-semibold" (click)="scrollTo('intro'); $event.preventDefault()">Accueil</a>
+        <a href="#" class="m-1 p-1 rounded fw-semibold" (click)="scrollTo('who'); $event.preventDefault()">Services</a>
+        <a href="#" class="m-1 p-1 rounded fw-semibold" (click)="scrollTo('fonctionnalites'); $event.preventDefault()">fonctionnalites</a>
+        <a href="#" class="m-1 p-1 rounded fw-semibold" (click)="scrollTo('community'); $event.preventDefault()">Communauté</a>
+     </nav>
 
 
            <!-- boutons pour se connecter ou s'inscrire -->
@@ -34,16 +40,16 @@
    <div class="container " >
       <section class="intro" id="intro" > 
         <div class="row">
-          <div class="col">
+          <div class="col desc ">
             <h1 class="my-5">Votre portail vers le numérique public</h1>
             <h4 class="mb-4">Explorez, analysez et contribuez à la transformation numérique des services publics au Maroc.</h4>
             <p>Rejoignez une communauté d'acteurs du numérique, de chercheurs et de citoyens engagés.
             Explorez des tableaux de bord interactifs, accédez à des données ouvertes fiables et inspirez vos décisions grâce à aux données publiques.</p>
             <div class="mt-5 btns">
-              <button type="button" routerLink="/register">S'inscrire</button>
+              <button routerLink="/register">S'inscrire</button>
             </div>
           </div>
-          <div class="col image d-flex justify-content-center align-items-center">
+          <div class="colimage d-flex justify-content-center align-items-center">
             <img src="assets/e-gov.png" alt="">
           </div>
         </div>

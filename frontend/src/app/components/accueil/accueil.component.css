@@ -147,3 +147,54 @@
         background-color: #739CC0;
     }
 }
+
+
+@media screen and (max-width:1020px){
+   .welcome-col{ 
+    margin-right: 0rem;
+    h5{
+        font-family: "Source Code Pro", monospace;
+        font-weight: 400;
+        font-size: 14px;
+    }
+    h1{
+        font-size: 40px;
+        font-weight: 100;
+    }
+}
+.user-impact{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 8px 12px 20px #0000005e;
+    box-shadow: -8px -12px 20px #739cc077;
+    border-bottom: 1px solid #739cc071;
+    border-right: 1px solid #739cc071;
+    
+
+    .seq-connex {
+        text-align: center;
+        span{
+           font-size: 12px;
+        }
+        p{
+            font-family: "Libertinus Mono", monospace;
+            font-weight: 200;
+            font-size: 14px;
+        }
+        ul {
+            margin: 10px auto;      
+        li {
+            font-style: italic;
+            font-size: 12px;
+            }
+        }
+    }
+    h6{
+        font-weight: 200;
+    }
+    .badge{
+        font-size: 12px !important;
+    }
+}
+}

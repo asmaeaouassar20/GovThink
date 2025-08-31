@@ -41,3 +41,74 @@
   gap: 20px;
 }
 
+@media(max-width:500px){
+  .form-container  {
+    margin-top: 8px;
+    label,  input, button{
+      font-size: 12px !important;
+      padding: 2px;
+    }
+    .fa-solid{
+      bottom: 6px !important;
+      font-size: 12px;
+    }
+  }
+  .back-home{
+    font-size: 13px !important;
+  }
+  .home-icon{
+    font-size: 20px;
+  }
+  
+.logo-style{
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 0px;
+
+    .gov{
+        color: #E8081B;
+    }
+    .think{
+        color: #088508;
+    }
+}
+
+.quote {
+    position: relative;
+    padding:5px;
+    font-style: italic;
+    font-size: 12px;
+    color: #739CC0;
+    width: 100%;
+}
+
+.slogan{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+  .others{
+      width: 50%;
+      border: 2px solid transparent;
+      padding: 22px 24px;
+      font-size: 5px !important;
+      font-family: inherit;
+      color: #000;
+      box-sizing: border-box;
+      box-shadow: 0px 0px 10px #a4a6a8;
+    .form-group label{
+      font-size: 12px !important;
+    }
+    .form-submit-btn{
+      font-size: 12px !important;
+      padding: 2px;
+    }   
+}
+.form-container{
+  width: 60%;
+}
+}

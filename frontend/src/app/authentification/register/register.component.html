@@ -41,7 +41,7 @@
               }
             </div>
             <div class="password-confirm div-mpd">
-              <label for="password-confirm">Confirmation du mot de passe</label>
+              <label for="password-confirm">Confirmation du mdp</label>
               <input type="{{!confirmMdpVisible? 'password':'text'}}" id="password-confirm" name="passwordconfirm" required=""  [(ngModel)]="userData.passwordconfirm" autocomplete="off">
               @if(confirmMdpVisible){
                 <i class="fa-solid fa-eye" (click)="confirmMdpVisible=!confirmMdpVisible"></i>
@@ -79,6 +79,7 @@
   <input type="file" class="form-control" (change)="onFileSelected($event)">
   <button (click)="validateImage()">OK</button>
 </div>
+
 <div class="add-bio" *ngIf="showPopupBiographie">
   <i class="fa-solid fa-xmark" style="color: #ffffff;" (click)="showPopupBiographie=false"></i>
   <div class="form-floating">

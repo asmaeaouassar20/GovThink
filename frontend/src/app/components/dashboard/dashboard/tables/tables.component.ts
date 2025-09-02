@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DashboardService } from '../../../../service/dashboard.service';
 import { NgIf, NgFor } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { error } from 'console';
 
 @Component({
   selector: 'app-tables',

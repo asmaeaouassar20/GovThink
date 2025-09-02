@@ -16,6 +16,9 @@ public class PostDTO {
     private int likesCount;
 
 
+    public PostDTO() {
+    }
+
     public PostDTO(Post post){
         this.id=post.getId();
         this.title=post.getTitle();

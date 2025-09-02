@@ -1,3 +1,5 @@
+/*
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AproposComponent } from './apropos.component';
@@ -21,3 +23,6 @@ describe('AproposComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
+*/

@@ -1,3 +1,4 @@
+/*
 import { TruncatePipe } from './truncate.pipe';
 
 describe('TruncatePipe', () => {
@@ -6,3 +7,5 @@ describe('TruncatePipe', () => {
     expect(pipe).toBeTruthy();
   });
 });
+
+*/

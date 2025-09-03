@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -108,10 +109,21 @@ public class PostService {
 
 
     public void deletePostById(Long postId,User user){
-        Post post = this.postRepository.findById(postId).get();
-        List<Post> postList=postRepository.findAllByUser(user);
-        if(!postList.contains(post)) throw new RuntimeException("Vous n'avez pas le droit de supprimer ce post");
+        Optional<Post> postOptional = postRepository.findById(postId);
+        if(postOptional.isEmpty()){
+            return;
+        }
+        Post post=postOptional.get();
+
+        // Vérification de l'auteur
+        if(!utilisateurAutorise(post, user)){
+            throw new RuntimeException("Vous n'avez pas le droit de supprimer ce post");
+        }
         postRepository.deleteById(postId);
+    }
+
+    private boolean utilisateurAutorise(Post post, User user){
+        return post.getUser().getId().equals(user.getId());
     }
 
 }

@@ -10,4 +10,21 @@ import { HomeComponent } from "./home/home.component";
 })
 export class AppComponent {
   title = 'frontend';
+  Count : number = 10;
+
+  ShowMessage(msg:string) : string{
+    return msg;
+  }
+  IncreaseCount(num:number){
+    this.Count+=num;
+  }
+  DecreaseCount(num:number){
+    this.Count-=num;
+  }
+
 }
+
+
+
+
+

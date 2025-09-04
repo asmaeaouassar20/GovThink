@@ -3,6 +3,7 @@ package com.algostyle.backend.service;
 import com.algostyle.backend.model.dto.post.CreatePostRequest;
 import com.algostyle.backend.model.dto.post.PostDTO;
 import com.algostyle.backend.model.dto.post.PostResponse;
+import com.algostyle.backend.model.dto.post.UserDTO;
 import com.algostyle.backend.model.entity.Post;
 import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.repository.PostRepository;
@@ -18,11 +19,10 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.parameters.P;
 
+import javax.swing.text.html.Option;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.mockito.Mockito.*;
 
@@ -37,6 +37,12 @@ public class PostServiceTest
     @InjectMocks
     PostService postService;
 
+    private static Post  post=null;
+
+    @BeforeAll
+    public static void init(){
+        post=new Post();
+    }
 
     @Test
     void createPostShouldCreatePostSuccessfully(){
@@ -48,7 +54,6 @@ public class PostServiceTest
         author.setId(1L);
         author.setEmail(email);
         // le post
-        Post post=new Post();
         post.setId(1L);
         post.setContent("content test");
         post.setTitle("title test");
@@ -76,7 +81,6 @@ public class PostServiceTest
         User auteur=new User();
         auteur.setId(1L);
 
-        Post post=new Post();
         post.setId(1L);
         post.setUser(auteur);
 
@@ -103,14 +107,66 @@ public class PostServiceTest
         User user=new User();
         user.setId(1L);
 
-        Post post=new Post();
         post.setUser(user);
 
-        // Appeler la méthode rivée
+        // Appeler la méthode privée
         Boolean resultat = (Boolean) utilisateurAutorise.invoke(postService,post, user);
 
         // Vérifier le résultat
         Assertions.assertTrue(resultat);
    }
+
+
+
+   // Tester le cas négatif
+    @Test
+    public void testPrivateMethod_utilisateurAutoriseSiUtilisateurNonAutorise() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        // Récupérer la méthode privée avec les bons paramètres
+        Method utilisateurAutorise = PostService.class.getDeclaredMethod("utilisateurAutorise", Post.class, User.class);
+
+        // Rendre la méthode accessible
+        utilisateurAutorise.setAccessible(true);
+
+        // Préparer les objets
+        User user1=new User();
+        user1.setId(1L);
+        User user2=new User();
+        user2.setId(2L);
+
+        post.setUser(user2);
+
+        // Appeler la méthode rivée
+        Boolean resultat = (Boolean) utilisateurAutorise.invoke(postService,post, user1);
+
+        // Vérifier le résultat
+        Assertions.assertFalse(resultat);
+    }
+
+
+    // lancer une exception lorsque l'utilisateur sauvegarde un post déjà sauvegardé
+    @Test
+    public void savePostShouldThrowExceptionIfPostIsAlreadySaved(){
+        // Arrange (Préparation)a
+        User user=new User();
+
+        // On simule que l'utilisateur a déjà sauvegardé ce post
+        // C'est la condition qui devrait déclencher l'exception
+        user.savePost(post);
+
+        // Configurer les mocks pour qu'ils retournent nos objets de test
+        when(userRepository.findById(1L)).thenReturn(Optional.of(user));
+        when(postRepository.findById(1L)).thenReturn(Optional.of(post));
+
+        // Act & Assert (Action et Vérification)
+        RuntimeException exception=Assertions.assertThrows(RuntimeException.class, ()-> {
+            postService.savePost(1L,1L);
+        });
+
+        // On vérifie que le message de l'exception est exactement celui qu'on attend
+        Assertions.assertEquals("Post déjà sauvegardé", exception.getMessage());
+        // verify(userRepository,times(0)).save(any(User.class));     // ne sera pas appelée car elle a lancé une exception
+        verify(userRepository,never()).save(any(User.class));     // ne sera pas appelée car elle a lancé une exception
+    }
+
 
 }

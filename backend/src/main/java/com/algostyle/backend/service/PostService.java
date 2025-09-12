@@ -57,8 +57,6 @@ public class PostService {
     }
 
 
-
-
     public CommentDTO addComment(Long postId, CreateCommentRequest request, String email){
         Post post = postRepository.findById(postId).orElseThrow(()-> new RuntimeException("post avec id "+postId+" n'existe pas"));
         User author = userRepository.findByEmail(email);

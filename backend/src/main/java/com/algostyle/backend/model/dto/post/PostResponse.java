@@ -19,6 +19,9 @@ public class PostResponse {
     private List<CommentDTO> commentsDto = new ArrayList<>();
 
 
+    public PostResponse() {
+    }
+
     public PostResponse(Post post){
         this.id=post.getId();
         this.title=post.getTitle();

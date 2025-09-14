@@ -1,4 +1,4 @@
-package com.algostyle.backend.service;
+package com.algostyle.backend.unit.service;
 
 import com.algostyle.backend.model.dto.post.*;
 import com.algostyle.backend.model.entity.Comment;
@@ -7,6 +7,7 @@ import com.algostyle.backend.model.entity.User;
 import com.algostyle.backend.repository.CommentRepository;
 import com.algostyle.backend.repository.PostRepository;
 import com.algostyle.backend.repository.UserRepository;
+import com.algostyle.backend.service.PostService;
 import jakarta.validation.constraints.AssertTrue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

@@ -39,7 +39,7 @@ public class PostService {
 
     public PostDTO createPost(CreatePostRequest request, String email){
         User author = userRepository.findByEmail(email);
-        Post post = new Post(request.getContent(),author);
+        Post post = new Post(request.getTitle(),request.getContent(),author);
 
         Post createdPost = this.postRepository.save(post);
         return new PostDTO(createdPost);

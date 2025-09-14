@@ -57,6 +57,13 @@ public class Post {
         likesCount=0;
 
     }
+    public Post(String title,String content, User author){
+        this.content=content;
+        this.title=title;
+        this.user=author;
+        likesCount=0;
+
+    }
 
     public Long getId() {
         return id;

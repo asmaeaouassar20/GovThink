@@ -89,6 +89,9 @@ public class PostController {
 
 
 
+
+
+
     @PostMapping("/{id}/save")
     public ResponseEntity<UserDTO> savePost(
             @PathVariable(value = "id") Long postId,
@@ -101,6 +104,10 @@ public class PostController {
             return ResponseEntity.badRequest().body(null);
         }
     }
+
+
+
+
 
     @DeleteMapping("/{id}/unsave")
     public ResponseEntity<UserDTO> unsavePost(
@@ -116,6 +123,10 @@ public class PostController {
     }
 
 
+
+
+
+
     @GetMapping("/saved-posts")
     public ResponseEntity<List<PostDTO>> getSavedPosts(@AuthenticationPrincipal User user){
        try{
@@ -125,6 +136,10 @@ public class PostController {
            return ResponseEntity.badRequest().body(null);
        }
     }
+
+
+
+
 
 
     // Récupérer les postes de l'utilisateur connecté

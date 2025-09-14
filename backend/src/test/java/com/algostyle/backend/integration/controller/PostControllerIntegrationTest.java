@@ -1,4 +1,4 @@
-package com.algostyle.backend.integration;
+package com.algostyle.backend.integration.controller;
 
 import com.algostyle.backend.model.dto.post.CreateCommentRequest;
 import com.algostyle.backend.model.dto.post.CreatePostRequest;

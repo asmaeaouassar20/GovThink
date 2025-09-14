@@ -8,7 +8,6 @@ import com.algostyle.backend.repository.CommentRepository;
 import com.algostyle.backend.repository.PostRepository;
 import com.algostyle.backend.repository.UserRepository;
 import com.algostyle.backend.service.PostService;
-import jakarta.validation.constraints.AssertTrue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

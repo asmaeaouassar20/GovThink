@@ -1,0 +1,22 @@
+# exclure les répertoires de build
+target/
+build/
+
+# exclure les fichiers de configuration IDE
+.idea/
+
+# exclure les logs
+*.log
+logs/
+
+# exclure les fichiers de test
+**/test-results/
+
+# exclure les fichiers Docker
+Dockerfile
+
+
+
+
+
+

@@ -2,7 +2,8 @@
 spring:
   datasource:
     password: Asmae@123
-    url: jdbc:mysql://host.docker.internal:3306/govthink
+    # En utilisant docker compose : pour se connecter à la BD ( mysql = nom du conteneur dans docker-compose )
+    url: jdbc:mysql://mysql:3306/govthink
     username: root
   jpa:
     hibernate:
@@ -12,6 +13,7 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
     show-sql: true
+
 
 
 

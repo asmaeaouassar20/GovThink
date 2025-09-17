@@ -1,0 +1,48 @@
+
+services: # Définir les différents services (containers) qui vont tourner ensemble
+  mysql: # Premier service : la base de données MySQL
+    image: mysql:8.0  # On utilise l'image officielle MySQL version 8.0
+    container_name: govthink-mysql  # Nom du conteneur pour faciliter l'identification
+    environment: # Variable d'environnement pour configurer MySQL
+      MYSQL_DATABASE: govthink  # Nom de la BD créée automatiquement
+      MYSQL_ROOT_PASSWORD: Asmae@123  # MDP du compte root (administrateur)
+    ports:
+      - "3307:3306"  # Port 3307 pour éviter le conflit
+                     # On mappe le port 3306 (MySQL dans le container) vers 3307 de mon PC
+                     # Comme ça je peux accéder à MySQL depuis mon PC via localhost:3307
+                     # (utile pour éviter un conflit si un autre MySQL tourne déjà sur 3306)
+    volumes:
+      - mysql_data:/var/lib/mysql
+      # On crée un volume persistant pour stocker les données de la BD
+      # => même si le container s'arrête ou est supprimé, les données restent sauvegardées
+
+  backend: # Deuxième service : app backend Spring Boot
+    build: ./backend  # Docker va construire une image à partir du Dockerfile situé dans ./backend
+    container_name: govthink-backend  # Nom du container backend
+    ports:
+      - "8080:8080" # Le backend écoute sur le port 8080 (dans le container et sur le PC)
+    depends_on:
+      - mysql   # Le backend ne démarre qu'après le service MySQL
+    restart: "no"  # Pas de restart automatique pour le debug
+                   # Pas de redémarrage automatique 
+                   # Pratique pour débugger: si le container plante et on veut le voir directement au lieu qu'il redémarre en boucle
+
+  frontend: # Troisième service  : app frontend Angular
+    build: ./frontend # Docker va construire une image à partir du Dockerfile situé dans ./frontend
+    container_name: govthink-frontend # Nom du container frontend
+    ports:
+      - "4200:4200" # Le frontend écoute sur le port 4200
+    depends_on:
+      - backend   # Le frontend ne redémarre qu'après le backend
+    restart: "no" # pas de rdémarrage automatique
+
+volumes:  # définition des volumes (stockage persistent)
+  mysql_data: # Volume utilisé pour sauvegarder les données MySQL
+
+
+
+
+
+
+
+  

@@ -2,7 +2,7 @@
 spring:
   datasource:
     password: Asmae@123
-    url: jdbc:mysql://host.docker.internal:3306/govthink
+    url: jdbc:mysql://localhost:3306/govthink
     username: root
   jpa:
     hibernate:

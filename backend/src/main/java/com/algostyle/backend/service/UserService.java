@@ -43,7 +43,7 @@ public class UserService
             throw new RuntimeException("Cet email est déjà pris");
         }
         if(!request.getPassword().equals(request.getPasswordconfirm())){
-            throw new RuntimeException(("Problème lors de la confirmation du mot de passe"));
+            throw new RuntimeException("Problème lors de la confirmation du mot de passe");
         }
 
         User user=new User();

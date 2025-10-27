@@ -26,7 +26,7 @@ export const routes: Routes = [
 
 
     // Composants
-    { path : 'accueil', component:AccueilComponent, canActivate:[authGuard]},
+    { path : 'accueil', component:AccueilComponent},
     {
         path: 'dashboard',
         component : DashboardComponent,  // Contient les boutons et le <router-outlet>
@@ -37,13 +37,13 @@ export const routes: Routes = [
             { path:'', redirectTo:'tables',pathMatch:'full'}
         ]
     },
-    { path : 'profiles' , component:ProfilesComponent, canActivate:[authGuard]},
-    { path : 'users-projects', component:UsersProjectsComponent, canActivate:[authGuard]},
-    { path : 'posts' , component:PostsComponent, canActivate:[authGuard]},
-    { path : 'apropos', component:AproposComponent, canActivate:[authGuard]},
-    { path : 'my-profile' , component:MyProfileComponent, canActivate:[authGuard]},
-    { path : 'my-posts' , component:MyPostsComponent, canActivate:[authGuard]},    
-    { path : 'my-projects', component:MyProjectsComponent, canActivate:[authGuard]},
+    { path : 'profiles' , component:ProfilesComponent},
+    { path : 'users-projects', component:UsersProjectsComponent},
+    { path : 'posts' , component:PostsComponent},
+    { path : 'apropos', component:AproposComponent},
+    { path : 'my-profile' , component:MyProfileComponent},
+    { path : 'my-posts' , component:MyPostsComponent},    
+    { path : 'my-projects', component:MyProjectsComponent},
 
     
     {path:'**', redirectTo:'/home'}
